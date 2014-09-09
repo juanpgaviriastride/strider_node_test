@@ -6,9 +6,9 @@ App
 
   * PT is used for managing stories:
     * https://www.pivotaltracker.com/s/projects/1145488
-  * Git is used for source control, canonical repo is at https://bitbucket.org/nullind/contextsurgery_backend
+  * Git is used for source control, canonical repo is at https://github.com/context-aware/backend/
   * Jenkins is used for Continuous Integration, CI server is located at http://162.209.94.221/
-  * Staging server is at https://23.253.52.225  User: mimo Pass: mimo
+  * Staging server is at 
   * ...
 
 ## Git practices
