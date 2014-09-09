@@ -1,0 +1,631 @@
+/* ==========================================================================
+ * Author: Daniely Wright
+ * URL: http://danielyewright.com
+ * Theme Name: Kreativa
+ * Description: Bootstrap 3 Landing Page Theme
+ * Version: 1.0
+========================================================================== */
+
+
+/* ==========================================================================
+   Global Styles
+========================================================================== */
+
+body {
+  font-family: 'opensans-regular', sans-serif ;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+  color: #838c95;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (max-width: 768px) {
+  body { 
+    text-align: center; 
+  }
+}
+
+/* Headings & Titles */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'montserrat-regular', sans-serif;
+  font-style: normal;
+}
+h1 {
+	text-transform: uppercase;
+	font-style: normal;
+
+}
+
+h3 {
+  font: 16px/24px 'montserrat-bold', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #222;
+}
+
+h3 { 
+  font-size: 20px;
+  color: #348de1;
+}
+.logo {
+	height:71px;
+	margin-top: -25px;
+}
+
+/* Paragraph & Typographic */
+
+p {
+  line-height: 28px;
+  margin-bottom: 25px;
+}
+
+/* Links */
+
+a {
+  color: #11abb0;
+  word-wrap: break-word;
+}
+
+a:hover,
+a:focus {
+  color: #14d0d6;
+  text-decoration: none;
+  outline: 0;
+  -webkit-transition: color .2s ease-in-out;
+  -moz-transition: color .2s ease-in-out;
+  -ms-transition: color .2s ease-in-out;
+  -o-transition: color .2s ease-in-out;
+  transition: color .2s ease-in-out;
+}
+
+/* Misc. */
+
+.pad-bottom { padding-bottom: 95px; }
+.pad-top { padding-top: 40px; }
+.logo-accent { color: #00a69e; }
+
+/* Bootstrap Modifications
+-------------------------------------------------------------------------- */
+
+/* Buttons */
+
+.btn {
+  border-radius: 2px;
+  font: 14px/24px 'montserrat-bold', sans-serif;
+  text-transform: uppercase;
+  padding: 12px 20px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  -webkit-transition: all .2s ease-in-out;
+     -moz-transition: all .2s ease-in-out;
+          transition: all .2s ease-in-out;
+}
+
+.btn-theme {
+  background-color: #00a69e;
+  color: #fff;
+}
+
+.btn-theme:hover,
+.btn-theme:focus {
+  background-color: #3657A7;
+  color: #fff;
+}
+
+.btn-trial {
+  background-color: #348de1;
+  color: #fff;
+}
+
+.btn-trial:hover {
+  background-color: #1d73c5;
+  color: #fff;
+}
+
+.buttons a {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+/* Form Control */
+
+input[type="email"] {
+  min-width: 250px;
+  font-size: 14px;
+}
+
+.form-control {
+  padding: 12px 20px;
+  height: 50px;
+  margin-right: 20px;
+  text-align: center;
+  border: 0;
+  background-color: #d3d9d9;
+}
+
+@media (max-width: 320px) {
+  .form-control {
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .form-control {
+    margin-bottom: 10px;
+  }
+}
+
+.form-control:focus {
+  box-shadow: none;
+  border: 0;
+  background-color: #777;
+  color: #ccc;
+  -webkit-transition: background-color .2s ease-in-out;
+     -moz-transition: background-color .2s ease-in-out;
+          transition: background-color .2s ease-in-out;
+}
+
+
+/* ==========================================================================
+   Site Sections
+========================================================================== */
+
+/* Navbar
+-------------------------------------------------------------------------- */
+
+.navbar-default {
+  background-color: #fff;
+  /* background-color: #0f0c1b; */
+  letter-spacing: 1.5px;
+  padding: 10px 0;
+}
+
+.navbar-default .navbar-brand {
+  color: #58687a;
+  font-family: 'montserrat-bold', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:hover {
+  color: #58687a;
+}
+
+.navbar-default .navbar-nav > li > a {
+  font-family: 'montserrat-regular', sans-serif;
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #58687a;
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color: #00a69e;
+}
+
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  background-color: transparent;
+  color: #00a69e;
+}
+
+.navbar-default .navbar-right .fa {
+  color: #58687a;
+  font-size: 20px;
+}
+.betasign li a {
+  background-color: #3657a7 !important;
+  color: #fff !important;
+	
+}
+.betasign li a:hover, .betasign li a:focus, .betasign li a:active {
+  background-color: #00a69e !important;
+  color: #fff !important;
+	
+}
+
+.navbar-default .navbar-right .fa-facebook:hover {
+  color: #3b5998;
+  -webkit-transition: color .2s ease-in-out;
+     -moz-transition: color .2s ease-in-out;
+          transition: color .2s ease-in-out;
+}
+
+.navbar-default .navbar-right .fa-twitter:hover {
+  color: #00aced;
+  -webkit-transition: color .2s ease-in-out;
+     -moz-transition: color .2s ease-in-out;
+          transition: color .2s ease-in-out;
+}
+
+.navbar-default .navbar-right .fa-google-plus:hover {
+  color: #dd4b39;
+  -webkit-transition: color .2s ease-in-out;
+     -moz-transition: color .2s ease-in-out;
+          transition: color .2s ease-in-out;
+}
+
+/* Modified Responsive CSS */
+
+@media (max-width: 979px) {
+	.btn-navbar {
+		display: none;
+	}
+	.navbar .nav-collapse {
+		clear: none;
+	}
+
+	.nav-collapse {
+		height: auto;
+		overflow: auto;
+	}
+
+	.navbar .nav {
+		float: left;
+		margin: 0 10px 0 0;
+	}
+
+	.navbar .brand {
+		margin-left: -20px;
+		padding: 8px 20px 12px;
+	}
+
+	.navbar .dropdown-menu:before, 
+	.navbar .dropdown-menu:after {
+		display: block;
+	}
+
+	.navbar .nav > li > a, 
+	.navbar .dropdown-menu a {
+		border-radius: 0;
+		color: #999999;
+		font-weight: normal;
+		padding: 10px 10px 11px;
+	}
+
+	.navbar .nav > li {
+		float: left;
+	}
+
+	.navbar .dropdown-menu {
+		background-clip: padding-box;
+		background-color: #FFFFFF;
+		border-color: rgba(0, 0, 0, 0.2);
+		border-radius: 0 0 5px 5px;
+		border-style: solid;
+		border-width: 1px;
+		box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+		display: none;
+		float: left;
+		left: 0;
+		list-style: none outside none;
+		margin: 0;
+		min-width: 160px;
+		padding: 4px 0;
+		position: absolute;
+		top: 100%;
+		z-index: 1000;
+	}
+
+	.navbar-form, .navbar-search {
+		border:none;
+		box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1) inset, 0 1px 0 rgba(255, 255, 255, 0.1);
+		float: left;
+		margin-bottom: 0;
+		margin-top:6px;
+		padding: 9px 15px;
+	}
+
+	.navbar .nav.pull-right {
+		float: right;
+		margin-left: auto;
+	}
+}
+
+@media (max-width: 550px) {
+	.btn-navbar {
+		display: block;
+	}
+	.navbar .nav-collapse {
+		clear: left;
+	}
+
+	.nav-collapse {
+		height: 0;
+		overflow: hidden;
+	}
+
+	.navbar .nav {
+		float: none;
+		margin: 0 0 9px;
+	}
+
+	.navbar .brand {
+		margin: 0 0 0 -5px;
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+
+	.navbar .dropdown-menu:before, 
+	.navbar .dropdown-menu:after {
+		display: none;
+	}
+
+	.navbar .nav > li > a, 
+	.navbar .dropdown-menu a {
+		border-radius: 3px 3px 3px 3px;
+		color: #999999;
+		font-weight: bold;
+		padding: 6px 15px;
+	}
+
+	.navbar .nav > li {
+		float: none;
+	}
+
+	.navbar .dropdown-menu {
+		background-color: transparent;
+		border: medium none;
+		border-radius: 0 0 0 0;
+		box-shadow: none;
+		display: block;
+		float: none;
+		left: auto;
+		margin: 0 15px;
+		max-width: none;
+		padding: 0;
+		position: static;
+		top: auto;
+	}
+
+	.navbar-form, .navbar-search {
+		border-bottom: 1px solid #222222;
+		border-top: 1px solid #222222;
+		box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1) inset, 0 1px 0 rgba(255, 255, 255, 0.1);
+		float: none;
+		margin: 9px 0;
+		padding: 9px 15px;
+	}
+
+	.navbar .nav.pull-right {
+		float: none;
+		margin-left: 0;
+	}
+}
+
+
+/* Hero (Header)
+-------------------------------------------------------------------------- */
+
+.hero {
+  background: #00a69e url(../img/bg.jpg) center center;
+  background-size: cover;
+  *margin-top: 50px;
+  padding-top: 110px;
+  color: #ccc;
+}
+
+.hero h1 {
+  font-size: 40px;
+  color: #fff;
+  -webkit-animation-delay: 1s;
+          animation-delay: 1s;
+}
+
+@media (max-width: 480px) {
+  .hero h1 { font-size: 24px; }
+}
+
+/* Features Wrap
+-------------------------------------------------------------------------- */
+
+.featureswrap {
+  background-color: #fff;
+  padding: 150px 0;
+}
+
+.featureswrap h3 {
+  font: 16px/24px 'montserrat-bold', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #348de1;
+}
+
+.featureswrap h3.text-center { font-size: 20px; }
+
+@media (max-width: 768px) {
+  .featureswrap .col-md-6 {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+/* Pricing
+-------------------------------------------------------------------------- */
+
+.details {
+  background: #f3f7fb;
+  padding: 150px 0;
+  border-top: 1px solid #f0f0f0;
+  border-bottom: 1px solid #f0f0f0;
+  text-align: center;
+}
+
+.details .price-block {
+  background: #fff;
+  border: 1px solid #E6E6E6;
+  text-align: left;
+  margin-bottom: 36px;
+  padding: 0px 20px 20px 20px;
+}
+.detailicon {
+	font-size:60px;
+	text-align: center;
+	color:#348DE1;
+	/*color:#3657A7;*/
+}
+.details .price-block .icon{
+	text-align: center;
+	padding-top:30px;
+}
+
+.plan-title {
+  font: 15px/30px 'montserrat-regular', sans-serif;
+  padding: 0px 20px 6px 20px;
+  margin-bottom: 0px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.plan-title .fa {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 26px;
+}
+
+.plan-price {
+  font-family: 'montserrat-bold', sans-serif;
+  font-size: 30px;
+  color: #333;
+  padding: 6px 30px 6px 30px;
+  margin-bottom: 0;
+  text-align: center;
+  letter-spacing: .5px;
+}
+
+.plan-price span {
+	font-family: 'opensans-light', sans-serif;
+	font-size: 15px;
+	color: #999;
+	display: block;
+	margin-top: 0;
+}
+
+ul.features {
+  margin: 12px 0 0 0;
+  list-style: none;
+}
+
+ul.features li {
+  line-height: 39px;
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.plan-sign-up {
+  padding: 24px 15px;
+  margin: 0;
+  text-align: center;
+}
+
+/* Clients
+-------------------------------------------------------------------------- */
+
+.clientswrap {
+  background-color: #fff;
+  padding: 110px 0;
+}
+
+.clientswrap h3 { color: #348de1; }
+
+@media (max-width: 768px) {
+  .clientswrap img {
+    display: table;
+    margin: 0 auto;
+    padding: 10px;
+  }
+}
+
+/* Testimonials
+-------------------------------------------------------------------------- */
+
+.testimonials {
+  background: #00a69e url(../img/bg.jpg) center center;
+  background-size: cover;
+  padding: 60px 0;
+  color: #fff;
+}
+
+.testimonials h3 {
+  color: #fff;
+  text-transform: none;
+}
+
+/* Testimonials
+-------------------------------------------------------------------------- */
+
+.infotop {
+  background: #3657a7  center center;
+  background-size: cover;
+  padding: 20px 0;
+  color: #fff;
+}
+
+.infotop {
+  color: #fff;
+  text-transform: none;
+}
+
+/* Contact
+-------------------------------------------------------------------------- */
+
+.contactwrap {
+  background-color: #fff;
+  padding: 110px 0;
+}
+
+.contactwrap h3 {
+  color: #348de1;
+}
+
+.contactwrap small { font-size: 11px; }
+
+/* Footer */
+
+.footerwrap {
+  background-color: #253341;
+  color: #7b8f9d;
+  padding: 60px 0;
+  border-top: 5px solid #ccc;
+  font-size: 13px;
+}
+
+.footerwrap h2 { color: #fff; }
+
+.footerwrap h3 {
+  font-size: 16px;
+  color: #fff;
+}
+
+.footerwrap .col-md-2 a { color: #7b8f9d; }
+.footerwrap .col-md-2 a:hover { color: #fff; }
+.footerwrap .col-md-6 a { color: #348de1; }
+.footerwrap .col-md-6 .fa { color: #c0392b; }
+.footerwrap .col-md-2 hr { border-top: 1px solid #7b8f9d; }
+
+.footerwrap .social-icons i {
+  font-size: 20px;
+  margin-right: 15px;
+}
+
+/* ==========================================================================
+   IE 10 in Windows 8 and Windows Phone 8 fix
+========================================================================== */
+
+@-webkit-viewport   { width: device-width; }
+@-moz-viewport      { width: device-width; }
+@-ms-viewport       { width: device-width; }
+@-o-viewport        { width: device-width; }
+@viewport           { width: device-width; }

@@ -1,0 +1,25 @@
+{
+  "name": "frontend",
+  "version": "0.0.1",
+  "authors": [
+    "scastillo <sebastian@nullindustries.co>",
+    "jgaviria  <juanpablo@nullindustries.co>"
+  ],
+  "license": "Copyrigth",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "*",
+    "bootstrap": "~3.2.0"
+  },
+  "devDependencies": {
+    "qunit": ">1.11.0"
+  }
+}

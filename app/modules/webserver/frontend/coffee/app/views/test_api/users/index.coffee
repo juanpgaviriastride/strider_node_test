@@ -1,0 +1,21 @@
+class App.Views.TestApi.Users.Index extends System.Views.Base
+  template: JST['app/test_api/users/index.html']
+
+  initialize: (options) =>
+    super
+
+    @collection = new App.Collections.Users()
+
+    @form = new App.Views.TestApi.Users.Form
+      collection: @collection
+
+    @table = new App.Views.TestApi.Users.Table
+      collection: @collection
+
+  render: () =>
+    super
+
+    @appendView @form.render(), '.create-form'
+    @appendView @table.render(), '.list'
+
+    @collection.fetch()
