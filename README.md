@@ -1,17 +1,14 @@
 App
 ===
 
-Geniusly truck managing system.
 
 ## Project Resources
 
-  * Trello is used for managing stories:
-    * https://trello.com/b/hq57oJY7/sprint
-    * https://trello.com/b/m8PUDfwL/product
-    * https://trello.com/b/jHulMJyG/data-sets
-  * Git is used for source control, canonical repo is at https://github.com/Geniusly/tms
-  * Jenkins is used for Continuous Integration, CI server is located at http://ci.geniously.com/
-  * Staging server is at https://staging.geniously.com  User: mimo Pass: mimo
+  * PT is used for managing stories:
+    * https://www.pivotaltracker.com/s/projects/1145488
+  * Git is used for source control, canonical repo is at https://bitbucket.org/nullind/contextsurgery_backend
+  * Jenkins is used for Continuous Integration, CI server is located at http://162.209.94.221/
+  * Staging server is at https://23.253.52.225  User: mimo Pass: mimo
   * ...
 
 ## Git practices
