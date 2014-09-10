@@ -14,9 +14,4 @@ Message = new Schema
 
 Message.plugin schemaHelpers
 
-
-
-
-
-
 module.exports = mongoose.model 'message', Message
