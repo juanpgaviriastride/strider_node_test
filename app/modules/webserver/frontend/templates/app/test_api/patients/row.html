@@ -1,0 +1,11 @@
+<td><%= model.id %></td>
+<td><%= model.escape('ssn') %></td>
+<td><%= model.get('name').prefix %> <%= model.get('name').firt %> <%= model.get('name').last %></td>
+<td><%= model.escape('dob') %></td>
+<td><%= model.escape('role') %></td>
+<td>work: <%= model.get('contactInfo').email.work %><br>personal: <%= model.get('contactInfo').email.personal %></td>
+<td>office: <%= model.get('contactInfo').phone.office %><br>cell: <%= model.get('contactInfo').phone.cell %></td>
+<td>
+  <button class="btn btn-danger delete"><span class="glyphicon glyphicon-trash"></span></button>
+  <button class="btn btn-warning edit"><span class="glyphicon glyphicon-edit"></span></button>
+</td>

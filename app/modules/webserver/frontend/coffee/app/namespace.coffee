@@ -6,5 +6,9 @@ window.App =
   Views: {
     TestApi: {
       Users: {}
+      Patients: {}
+      Surgeries: {}
+      Locations: {}
+      Messages: {}
     }
   }
