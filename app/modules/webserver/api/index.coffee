@@ -117,6 +117,136 @@ apiController.namespace("/api/v1", () ->
     new JobResource.CronJobResource().detail(req, res, next)
   )
 
+  ##
+  # Patietns controllers
+  ##
+
+
+  PatientsResource = require "./controllers/patients"
+
+  # list of delivery patietns
+  apiController.get('/patients', (req, res, next) ->
+    new PatientsResource().list(req, res, next)
+  )
+
+  # detail of delivery patietns
+  apiController.get('/patients/:id', (req, res, next) ->
+    new PatientsResource().detail(req, res, next)
+  )
+
+  # create delivery patietns
+  apiController.post('/patients', (req, res, next) ->
+    new PatientsResource().create(req, res, next)
+  )
+
+  # update delivery patietns
+  apiController.put('/patients/:id', (req, res, next) ->
+    new PatientsResource().update(req, res, next)
+  )
+
+  # update delivery patietns
+  apiController.del('/patients/:id', (req, res, next) ->
+    new PatientsResource().delete(req, res, next)
+  )
+
+  ##
+  # Surgery controllers
+  ##
+
+
+  SurgeriesResource = require "./controllers/surgeries"
+
+  # list of delivery surgeries
+  apiController.get('/surgeries', (req, res, next) ->
+    new SurgeriesResource().list(req, res, next)
+  )
+
+  # detail of delivery surgeries
+  apiController.get('/surgeries/:id', (req, res, next) ->
+    new SurgeriesResource().detail(req, res, next)
+  )
+
+  # create delivery surgeries
+  apiController.post('/surgeries', (req, res, next) ->
+    new SurgeriesResource().create(req, res, next)
+  )
+
+  # update delivery surgeries
+  apiController.put('/surgeries/:id', (req, res, next) ->
+    new SurgeriesResource().update(req, res, next)
+  )
+
+  # update delivery surgeries
+  apiController.del('/surgeries/:id', (req, res, next) ->
+    new SurgeriesResource().delete(req, res, next)
+  )
+
+
+  ##
+  # Locations controllers
+  ##
+
+
+  LocationsResource = require "./controllers/locations"
+
+  # list of delivery locations
+  apiController.get('/locations', (req, res, next) ->
+    new LocationsResource().list(req, res, next)
+  )
+
+  # detail of delivery locations
+  apiController.get('/locations/:id', (req, res, next) ->
+    new LocationsResource().detail(req, res, next)
+  )
+
+  # create delivery locations
+  apiController.post('/locations', (req, res, next) ->
+    new LocationsResource().create(req, res, next)
+  )
+
+  # update delivery locations
+  apiController.put('/locations/:id', (req, res, next) ->
+    new LocationsResource().update(req, res, next)
+  )
+
+  # update delivery locations
+  apiController.del('/locations/:id', (req, res, next) ->
+    new LocationsResource().delete(req, res, next)
+  )
+
+
+  ##
+  # Messages controllers
+  ##
+
+
+  MessagesResource = require "./controllers/messages"
+
+  # list of delivery messages
+  apiController.get('/messages', (req, res, next) ->
+    new MessagesResource().list(req, res, next)
+  )
+
+  # detail of delivery messages
+  apiController.get('/messages/:id', (req, res, next) ->
+    new MessagesResource().detail(req, res, next)
+  )
+
+  # create delivery messages
+  apiController.post('/messages', (req, res, next) ->
+    new MessagesResource().create(req, res, next)
+  )
+
+  # update delivery messages
+  apiController.put('/messages/:id', (req, res, next) ->
+    new MessagesResource().update(req, res, next)
+  )
+
+  # update delivery messages
+  apiController.del('/messages/:id', (req, res, next) ->
+    new MessagesResource().delete(req, res, next)
+  )
+
 
 
 )
