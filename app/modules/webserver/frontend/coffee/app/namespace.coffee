@@ -11,4 +11,11 @@ window.App =
       Locations: {}
       Messages: {}
     }
+    Helpers: {
+      Users: {}
+      Patients: {}
+      Surgeries: {}
+      Locations: {}
+      Messages: {}
+    }
   }

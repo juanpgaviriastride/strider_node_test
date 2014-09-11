@@ -1,0 +1,76 @@
+<div class="panel panel-default">
+  <div class="panel-heading">Create</div>
+  <div class="panel-body">
+    <form role="form" class="surgery-form">
+      <div class="form-group">
+        <label for="exampleInputEmail1">SSN</label>
+        <input type="text" class="form-control" id="ssn" placeholder="Enter ssn" required>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Display Name</label>
+        <input type="text" class="form-control" id="display_name" placeholder="Enter display name" required>
+      </div>
+      <div class="form-group">
+        <div class=col-xs-12>
+          <label for="exampleInputEmail1">Start</label>
+        </div>
+        <div class="col-xs-6">
+          <label for="exampleInputEmail1">Date</label>
+          <input type="date" class="form-control" id="start_date" placeholder="Enter Start date" required>
+        </div>
+        <div class="col-xs-6">
+          <label for="exampleInputEmail1">Time</label>
+          <input type="time" class="form-control" id="start_time" placeholder="Enter Start time" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class=col-xs-12>
+          <label for="exampleInputEmail1">End</label>
+        </div>
+        <div class="col-xs-6">
+          <label for="exampleInputEmail1">Date</label>
+          <input type="date" class="form-control" id="end_date" placeholder="Enter End date" required>
+        </div>
+        <div class="col-xs-6">
+          <label for="exampleInputEmail1">Time</label>
+          <input type="time" class="form-control" id="end_time" placeholder="Enter End time" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="exampleInputEmail1">Patient</label>
+        <select class="form-control" id="patient" placeholder="Enter patient" >
+          <option value=""></option>
+          <!-- backbone view -->
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="exampleInputEmail1">Team</label>
+        <select class="form-control" id="team" placeholder="select team" >
+        <!-- backbone view -->
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="exampleInputEmail1">Location</label>
+        <select class="form-control" id="location" placeholder="select location" >
+          <option value=""></option>
+          <!-- backbone view -->
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="exampleInputEmail1">Status</label>
+        <select class="form-control" id="status" placeholder="Enter status" required>
+          <option value=""></option>
+          <option value="pending">Pending</option>
+          <option value="progress">Progress</option>
+          <option value="completed">Completed</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-default save">Submit</button>
+    </form>
+  </div>
+</div>

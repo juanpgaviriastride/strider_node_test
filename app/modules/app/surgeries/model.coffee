@@ -23,9 +23,6 @@ Surgery = new Schema
   ],
   "location": { type: Schema.Types.ObjectId, ref: 'location' },
   "status": {type: String, required: false},
-  # "xrays":[
-  #   "blobId1", "blobId2"
-  # ]
 
 Surgery.plugin schemaHelpers
 

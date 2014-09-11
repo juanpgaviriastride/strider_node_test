@@ -3,8 +3,4 @@ window.System =
   Models: {}
   Collections: {}
   Views:
-    Form:
-      Field: {}
-    UI: {}
-    Map:
-      Control: {}
+    Helpers: {}

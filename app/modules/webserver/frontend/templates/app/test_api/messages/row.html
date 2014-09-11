@@ -1,0 +1,7 @@
+<td><%= model.id %></td>
+<td><%= model.escape('text') %></td>
+<td><%= moment(model.get('created')).format('YYYY/MM/DD hh:mm a') %></td>
+<td>
+  <button class="btn btn-danger delete"><span class="glyphicon glyphicon-trash"></span></button>
+  <button class="btn btn-warning edit"><span class="glyphicon glyphicon-edit"></span></button>
+</td>

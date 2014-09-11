@@ -2,6 +2,9 @@ class App.Routers.TestApi extends System.Routers.Base
   routes:
     '': 'index',
     'patients': 'patients'
+    'surgeries': 'surgeries'
+    'locations': 'locations'
+    'messages': 'messages'
 
   index: =>
     @selectNav('')
@@ -11,4 +14,19 @@ class App.Routers.TestApi extends System.Routers.Base
   patients: =>
     @selectNav('patients')
     app.current_view = new App.Views.TestApi.Patients.Index({el: "#main"})
+    app.current_view.render()
+
+  surgeries: =>
+    @selectNav('surgeries')
+    app.current_view = new App.Views.TestApi.Surgeries.Index({el: "#main"})
+    app.current_view.render()
+
+  locations: =>
+    @selectNav('locations')
+    app.current_view = new App.Views.TestApi.Locations.Index({el: "#main"})
+    app.current_view.render()
+
+  messages: =>
+    @selectNav('messages')
+    app.current_view = new App.Views.TestApi.Messages.Index({el: "#main"})
     app.current_view.render()
