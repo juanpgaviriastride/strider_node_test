@@ -17,8 +17,30 @@ class App.Views.TestApi.Users.Form extends System.Views.Base
 
     data = @getFormInputs $(@form)
 
-    console.log "User data: ", data
-    @collection.create data, {
+    user =
+      "username": data.username,
+      "password": data.password,
+      "ssn":  data.ssn,
+      "name": {
+        "prefix": data.prefix_name,
+        "first":  data.first_name,
+        "last":  data.last_name
+      },
+      "dob":  data.dob,
+      "role":  data.role,
+      "contactInfo": {
+        "phone":{
+          "office":  data.office_phone
+          "cell":  data.cellphone
+        },
+        "email":{
+          "personal":  data.personal_email
+          "work":  data.work_email
+        }
+      }
+
+    console.log "User data: ", user
+    @collection.create user, {
       success: (model, response) =>
         console.log "Created", model, response
       error: (model, response) =>

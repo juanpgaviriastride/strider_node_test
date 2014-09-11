@@ -9,15 +9,31 @@ env = process.env.NODE_ENV || 'local'
 config = require('../../../config')
 
 User = new Schema
-  full_name       : {type: String, required: true}
-  email           : {type: String, required: true, index: { unique: true }}
-  username        : {type: String, required: true, index: { unique: true }}
-  provider        : String
-  hashed_password : String
-  salt            : String
-  apn_token       : String
-  active          : {type: Boolean, default: true}
-  role            : {type: String, default: 'member', required: true}
+  "username"        : {type: String, required: true, index: { unique: true }}
+  "hashed_password" : String
+  "salt"            : String
+  "apn_token"       : String
+  "active"          : {type: Boolean, default: true}
+
+  "ssn":  {type: String, required: false},
+  "name": {
+    "prefix": {type: String, required: false},
+    "first":  {type: String, required: false},
+    "last":  {type: String, required: false}
+  },
+  "dob":  {type: Date, required: false},
+  "profileUrl":  {type: String, required: false},
+  "role":  {type: String, required: false},
+  "contactInfo": {
+    "phone":{
+      "office":  {type: String, required: false}
+      "cell":  {type: String, required: false}
+    },
+    "email":{
+      "personal":  {type: String, required: false}
+      "work":  {type: String, required: false}
+    }
+  }
 
 User.plugin schemaHelpers
 
@@ -53,7 +69,11 @@ User
   .method 'encryptPassword', (password) ->
     return crypto.createHmac('sha1', @salt).update(password).digest('hex')
 
+User.pre "save", (next) ->
 
+  if @isNew
+    @dob = new Date()
+  next()
 
 
 

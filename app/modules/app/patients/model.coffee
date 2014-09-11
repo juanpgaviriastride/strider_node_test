@@ -9,14 +9,18 @@ config = require('../../../config')
 
 Patient = new Schema
   "ssn":  {type: String, required: false},
+  "ehr": {
+    "ehr": {type: String, required: false},
+    "id": {type: String, required: false},
+  },
   "name": {
     "prefix": {type: String, required: false},
     "first":  {type: String, required: false},
+    "middle": {type: String, required: false},
     "last":  {type: String, required: false}
   },
-  "dob":  {type: String, required: false},
+  "dob":  {type: Date, required: false},
   "profileUrl":  {type: String, required: false},
-  "role":  {type: String, required: false},
   "contactInfo": {
     "phone":{
       "office":  {type: String, required: false}
@@ -28,8 +32,18 @@ Patient = new Schema
     }
   }
 
+  "allergies":[{type: String, required: false}],
+  "currentMedications":[{type: String, required: false}],
+  "procedures":[{type: String, required: false}],
+  "currentLocation": { type: Schema.Types.ObjectId, ref: 'location' }
+
 Patient.plugin schemaHelpers
 
+Patient.pre "save", (next) ->
+  if @isNew
+    @dob = new Date()
+
+  next()
 
 
 

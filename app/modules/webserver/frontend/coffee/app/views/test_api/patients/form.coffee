@@ -11,6 +11,9 @@ class App.Views.TestApi.Patients.Form extends System.Views.Base
 
   render: () =>
     super
+    @locations = new App.Views.Helpers.Locations.Select({el: $('select#currentLocation', @$el)})
+
+    @
 
   saveModel: (e) ->
     e.preventDefault()
@@ -19,13 +22,16 @@ class App.Views.TestApi.Patients.Form extends System.Views.Base
 
     patient =
       "ssn":  data.ssn,
+      "ehr": {
+        "ehr": data.ehr,
+        "id": data.ehr_id,
+      },
       "name": {
         "prefix": data.prefix_name,
         "first":  data.first_name,
+        "middle":  data.middle_name,
         "last":  data.last_name
       },
-      "dob":  data.dob,
-      "role":  data.role,
       "contactInfo": {
         "phone":{
           "office":  data.office_phone
@@ -35,7 +41,12 @@ class App.Views.TestApi.Patients.Form extends System.Views.Base
           "personal":  data.personal_email
           "work":  data.work_email
         }
-      }
+      },
+      "allergies": [data.allergies],
+      "currentMedications": [data.current_medications],
+      "procedures": [data.procedures],
+      "currentLocation": data.location
+
 
     console.log "Patient data: ", patient
     @collection.create patient, {
