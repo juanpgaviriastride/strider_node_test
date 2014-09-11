@@ -51,7 +51,8 @@
     "request": "^2.40.0",
     "node-schedule": "^0.1.13",
     "passport-http-bearer": "^1.0.1",
-    "jwt-simple": "^0.2.0"
+    "jwt-simple": "^0.2.0",
+    "cradle": "^0.6.7"
   },
   "devDependencies": {
     "mocha": "*",
