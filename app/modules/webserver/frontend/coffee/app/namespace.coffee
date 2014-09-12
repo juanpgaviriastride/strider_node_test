@@ -10,6 +10,9 @@ window.App =
       Surgeries: {}
       Locations: {}
       Messages: {}
+      Devices: {
+        DevicesRequestToken: {}
+      }
     }
     Helpers: {
       Users: {}
@@ -17,5 +20,8 @@ window.App =
       Surgeries: {}
       Locations: {}
       Messages: {}
+      Devices: {
+        DevicesRequestToken: {}
+      }
     }
   }

@@ -9,6 +9,7 @@ Schema = mongoose.Schema
 ## User Schema
 authTokenSchema = new Schema({
   token:  { type: String }
+  user_type: { type: String }
   user_id:  { type: String, required: false }
   scope: [{type: String}]
 })
@@ -26,16 +27,15 @@ authTokenSchema.pre 'save', (next) ->
 
 
 ## get or create method
-authTokenSchema.statics.get_or_create = (userId, callback) ->
-  @findOne {"user_id": userId}, (error, result) ->
+authTokenSchema.statics.get_or_create = (options, callback) ->
+  @findOne {"user_id": options.user_id, "user_type": options.user_type}, (error, result) ->
     return callback(error, null) if error
     if result is null
       context =
-        user_id: userId
+        user_id: options.user_id
+        user_type: options.user_type
 
-      scope = ["user"]
-
-      token = new AuthToken({user_id: userId, scope: ['api']})
+      token = new AuthToken({user_id: options.user_id, user_type: options.user_type, scope: ['api']})
       token.save (error,result) ->
         return callback(error, null) if error
         return callback(null,result)

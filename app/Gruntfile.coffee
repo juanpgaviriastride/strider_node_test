@@ -163,6 +163,7 @@ module.exports = (grunt) ->
           SRC_VENDOR + 'js/modernizr.custom.44139.js'
           SRC_VENDOR + 'js/jquery-1.11.1.min.js'
           SRC_VENDOR + 'js/jquery.cookies.2.2.0.min.js'
+          SRC_VENDOR + 'js/jquery.qrcode-0.10.1.min.js'
           SRC_VENDOR + 'js/underscore-min.js'
           SRC_VENDOR + 'js/moment-with-locales.js'
           SRC_VENDOR + 'js/bootstrap.min.js'

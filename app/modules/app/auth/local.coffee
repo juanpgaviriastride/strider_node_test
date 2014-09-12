@@ -29,7 +29,7 @@ passport.use(new LocalStrategy(
 
         authToken = new  AuthToken()
 
-        authToken.get_or_create user.id, (error, result) ->
+        authToken.get_or_create {user_id: user.id, user_type: 'user'}, (error, result) ->
           return done(error, null) if error
           if result is null
             error = new Error("Something went wrong getting the AuthToken")
