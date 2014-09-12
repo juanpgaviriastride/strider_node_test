@@ -1,6 +1,7 @@
 async = require("async")
 require 'mongoose-pagination'
 url_encode = require('form-urlencoded')
+_ = require "underscore"
 
 class BaseResource
   # model controler class
@@ -50,6 +51,7 @@ class BaseResource
     @controller = new @controller_class() if @controller_class
     if options and options.app
       @app = options.app
+    @_fields = _.clone @fields
     @fields = @fields.join(" ")
   ,
 
@@ -158,9 +160,21 @@ class BaseResource
         ,
       }, (err, res) ->
         return callback.call(that, err, res) if err
-        that.controller.getOne({_id: result._id}, (error, result) ->
-          return callback.call(that, error, result) if error
-          return callback.call(that, null, result) if typeof callback == "function"
+
+        that.get_object(result._id, (err, item) ->
+          return callback.call(that, error, result) if err
+
+          removed_fields = _.omit(result.toJSON(), (value, key, object) =>
+            for field in that._fields
+              normailize_field = (if field.search('-') == 0 then field.replace(/^-/, '') else null)
+              if key == normailize_field
+                return true
+            return false
+          )
+          item = item.toJSON()
+          _.extend(item, removed_fields)
+
+          return callback.call(that, null, item) if typeof callback == "function"
         )
       )
     )
