@@ -248,5 +248,40 @@ apiController.namespace("/api/v1", () ->
   )
 
 
+  ##
+  # Devices controllers
+  ##
 
+  DevicesResource = require "./controllers/devices"
+
+  # list of delivery messages
+  apiController.get('/devices', (req, res, next) ->
+    new DevicesResource().list(req, res, next)
+  )
+
+  # detail of delivery messages
+  apiController.get('/devices/:id', (req, res, next) ->
+    new DevicesResource().detail(req, res, next)
+  )
+
+  # create delivery messages
+  apiController.post('/devices/:request_token', (req, res, next) ->
+    new DevicesResource().create(req, res, next)
+  )
+
+  # update delivery messages
+  apiController.put('/devices/:id', (req, res, next) ->
+    new DevicesResource().update(req, res, next)
+  )
+
+  # update delivery messages
+  apiController.del('/devices/:id', (req, res, next) ->
+    new DevicesResource().delete(req, res, next)
+  )
+
+  ## Device request token
+  # create delivery messages
+  apiController.post('/auth/devices/request_token', (req, res, next) ->
+    new DevicesResource.TokenRequestResource().create(req, res, next)
+  )
 )
