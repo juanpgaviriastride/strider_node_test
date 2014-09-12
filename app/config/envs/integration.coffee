@@ -1,6 +1,7 @@
 module.exports = {
   "debug": true
   "auth_token_secret": "8SAvCBIR1XV2DL6Aay4bvF1P1RUBWTLb3YJBU8ER",
+  "request_token_secret": "90AvTZIR1XV2D%6Aay4bvF1P1RUBWTLb3YJBU1TY",
   "app": {
     "baseUrl": "http://localhost:3000/"
     "host": "localhost",
