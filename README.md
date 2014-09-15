@@ -5,10 +5,10 @@ App
 ## Project Resources
 
   * PT is used for managing stories:
-    * https://www.pivotaltracker.com/s/projects/1145488
+    * https://www.pivotaltracker.com/n/projects/1136126
   * Git is used for source control, canonical repo is at https://github.com/context-aware/backend/
   * Jenkins is used for Continuous Integration, CI server is located at http://162.209.94.221/
-  * Staging server is at 
+  * Staging server is at http://162.209.94.221/
   * ...
 
 ## Git practices
