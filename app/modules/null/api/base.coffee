@@ -58,7 +58,7 @@ class BaseResource
   ## GET Detail methods
   get_object: (id, callback) =>
     that = @
-    @controller.getOne({_id: id}, @fields, @populate, (error, result) ->
+    @controller.getOne({id: id}, @fields, @populate, (error, result) ->
       if typeof callback == "function"
         callback.call(that, error, result)
     )
@@ -161,7 +161,7 @@ class BaseResource
       }, (err, res) ->
         return callback.call(that, err, res) if err
 
-        that.get_object(result._id, (err, item) ->
+        that.get_object(result.id, (err, item) ->
           return callback.call(that, error, result) if err
 
           removed_fields = _.omit(result.toJSON(), (value, key, object) =>
@@ -214,7 +214,7 @@ class BaseResource
 
   update_object: (id, data, callback) =>
     that = @
-    data._id = id
+    data.id = id
     @controller.updateOne(data, @request, (err, result) ->
       return callback.call(that, err, null) if err
       async.series({
@@ -265,7 +265,7 @@ class BaseResource
   # delete
   delete_object: (id, callback) =>
     that = @
-    @controller.deleteOne({_id: id}, (err, result) ->
+    @controller.deleteOne({id: id}, (err, result) ->
       return callback.call(that, err, null) if err
       return callback.call(that, null, null) unless result
       async.series({
