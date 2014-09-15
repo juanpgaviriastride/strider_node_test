@@ -11,6 +11,8 @@ class App.Views.TestApi.Devices.Index extends System.Views.Base
       collection: @toke_request_collection
       devices: @collection
 
+    @switch_auth = new App.Views.TestApi.Devices.SwitchAuthToDevice()
+
     @table = new App.Views.TestApi.Devices.Table
       collection: @collection
 
@@ -18,6 +20,7 @@ class App.Views.TestApi.Devices.Index extends System.Views.Base
     super
 
     @appendView @form.render(), '.create-form'
+    @appendView @switch_auth.render(), '.auth-with-device'
     @appendView @table.render(), '.list'
 
     @collection.fetch()

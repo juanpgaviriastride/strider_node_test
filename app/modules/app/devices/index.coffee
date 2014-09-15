@@ -16,11 +16,26 @@ class DeviceController extends BaseController
     [data, options] = params
 
     token_request = new DeviceTokenRequestController()
-    token_request.getOne {request_token: data.token_request}, (err, res) =>
+    token_request.getOne {request_token: data.token_request}, (err, token_request) =>
       return callback(err, null) if err
-      return callback(null, null) unless res
+      return callback(null, null) unless token_request
+      @_getDeviceBySerial(data.data, (err, device) =>
+        return callback(err, null) if err
+        return @_createDevice(data.data, token_request, callback) unless device
 
-      @_createDevice(data.data, res, callback)
+        auth_token_info =
+          user_id: device._id
+          user_type: 'device'
+
+        @_createAuthToken(auth_token_info, (error, access_token) =>
+          return callback(err, null) if error
+          return callback(null, null) unless access_token
+          device.access_token = access_token.token
+
+          callback(null, device)
+        )
+      )
+
 
   _createDevice: (data, request_token, callback) =>
     data =
@@ -42,6 +57,11 @@ class DeviceController extends BaseController
 
         callback(null, res)
       )
+    )
+
+  _getDeviceBySerial: (data, callback) =>
+    @getOne({token: data.token}, (err, res) =>
+      return callback(err, res)
     )
 
   _createAuthToken: (data, callback) =>

@@ -67,7 +67,7 @@ class App.Views.TestApi.Devices.Form extends System.Views.Base
     device.save data, {
       success: (model, response) =>
         console.log "Created", model, response
-        @devices.add(model)
+        @devices.add(model, {merge: true})
       error: (model, response) =>
         console.log "ERror", model, response
       wait: true

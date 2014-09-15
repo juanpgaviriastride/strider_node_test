@@ -167,6 +167,7 @@ module.exports = (grunt) ->
           SRC_VENDOR + 'js/underscore-min.js'
           SRC_VENDOR + 'js/moment-with-locales.js'
           SRC_VENDOR + 'js/bootstrap.min.js'
+          SRC_VENDOR + 'js/pnotify.custom.min.js'
           SRC_VENDOR + 'js/backbone-min.js'
           SRC_VENDOR + 'js/backbone.iobind.js'
           SRC_VENDOR + 'js/backbone_babysitter.js'
@@ -191,6 +192,7 @@ module.exports = (grunt) ->
 
       app_css:
         src: [
+          SRC_VENDOR + 'css/pnotify.custom.min.css'
           SRC_VENDOR + 'css/bootstrap.min.css'
           '<%= less.app.dest %>'
         ]

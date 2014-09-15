@@ -5,6 +5,7 @@ class App.Views.TestApi.Devices.Row extends System.Views.Base
   initialize: (options) =>
     super
     @listenToOnce @model, "destroy", @onDestroy
+    @listenTo @model, "change", @render
 
   events:
     'click .delete': 'deleteItem'

@@ -6,6 +6,7 @@ app = module.exports = express()
 
 
 Users = require("app/users")
+Devices = require("app/devices")
 AuthToken = require("app/auth_token")
 LocalStrategy = require('passport-local').Strategy
 BearerStrategy = require('passport-http-bearer').Strategy
@@ -54,13 +55,29 @@ passport.use(new BearerStrategy(
         return done(error, false, { message: 'Authentication fail'}) if error
         return done(null, false, { message: 'Authentication fail'}) unless (token)
 
-        users = new Users()
-        users.getOne({_id: token.user_id}, (err, result) ->
-          return done(err, false, { message: 'Authentication fail'}) if err
-          return done(null, false, { message: 'Authentication fail'}) unless result
+        switch token.user_type
+          when "user"
+            users = new Users()
+            users.getOne({_id: token.user_id}, (err, result) ->
+              return done(err, false, { message: 'Authentication fail'}) if err
+              return done(null, false, { message: 'Authentication fail'}) unless result
 
-          done(null, result)
-        )
+              done(null, result)
+            )
+          when "device"
+            devices = new Devices()
+            devices.getOne({_id: token.user_id}, null, {user: []}, (err, result) ->
+              return done(err, false, { message: 'Authentication fail'}) if err
+              return done(null, false, { message: 'Authentication fail'}) unless result
+
+              done(null, result.user)
+            )
+          else
+            error =
+              message: "Invalid token type"
+              error: 400
+            done(error, null)
+
       )
 
     )
