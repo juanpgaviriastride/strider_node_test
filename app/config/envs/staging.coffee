@@ -32,6 +32,11 @@ module.exports = {
     }]
     "index_name": "cs_staging"
   },
+  "couchdb": {
+    "database": "cs_dev"
+    "host": "162.209.94.221",
+    "port": 5984
+  },
   "google_maps": {
     "key": "AIzaSyDNls3JPEGa3uPSCjdPEzEvtkURk5PRWjc"
   },
