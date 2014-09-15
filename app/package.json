@@ -27,6 +27,7 @@
     "hiredis": "^0.1.16",
     "form-urlencoded": "0.0.5",
     "mongoose-pagination": "^1.0.0",
+    "mongoose-unique-validator": "^0.3.0",
     "stackers": "^0.1.2",
     "prompt": "^0.2.12",
     "grunt": "^0.4.4",
