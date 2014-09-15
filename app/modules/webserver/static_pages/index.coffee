@@ -8,8 +8,8 @@ express = require "express"
 app = module.exports = express()
 
 # Template engine
-swigHelpers = require('./helpers')
-swigHelpers(swig)
+#swigHelpers = require('./helpers')
+#swigHelpers(swig)
 
 
 swig.setDefaults({ cache: false })
