@@ -4,4 +4,4 @@ base:
     - mongodb
     - nginx
     - redis
-    - elastisearch
+    - elasticsearch
