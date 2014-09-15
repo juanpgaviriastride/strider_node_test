@@ -13,28 +13,28 @@ apiController.namespace("/api/v1", () ->
   UserResource = require("./controllers/users")
 
   # user list
-  apiController.get('/users', auth.passport.authenticate('bearer', { session: false }), (req, res, next) ->
+  apiController.get('/users', (req, res, next) ->
     new UserResource().list(req, res, next)
   )
 
 
   # user detail
-  apiController.get('/users/:id', auth.passport.authenticate('bearer', { session: false }), (req, res, next) ->
+  apiController.get('/users/:id', (req, res, next) ->
     new UserResource().detail(req, res, next)
   )
 
   # create new user
-  apiController.post('/users', auth.passport.authenticate('bearer', { session: false }), (req, res, next) ->
+  apiController.post('/users', (req, res, next) ->
     new UserResource().create(req, res, next)
   )
 
   # update new user
-  apiController.put('/users/:id', auth.passport.authenticate('bearer', { session: false }), (req, res, next) ->
+  apiController.put('/users/:id', (req, res, next) ->
     new UserResource().update(req, res, next)
   )
 
   # delete new user
-  apiController.del('/users/:id', auth.passport.authenticate('bearer', { session: false }), (req, res, next) ->
+  apiController.del('/users/:id', (req, res, next) ->
     new UserResource().delete(req, res, next)
   )
 
