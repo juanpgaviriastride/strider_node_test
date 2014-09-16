@@ -1,22 +1,8 @@
-# Null token auth jobs
-require 'mongoose-pagination'
-Model = require "./model"
-HTTPStatus = require "http-status"
-config = require('../../../config')
-async = require "async"
-BaseController = require("null/controller/base")
-_ = require 'underscore'
-orm = require "../../../lib/orm"
+BaseManager = require("null/models/base_manager")
 
-class AuthTokenController
 
-  constructor: (options) ->
-    @initialize options
-
-  initialize: (options) =>
-    #SMELL: make this a lazy evaluation of a config string?
-    @model = orm.models.authtoken
-    return
+class AuthTokenController extends BaseManager
+  model_identifier: 'authtoken'
 
   get_or_create: (options, callback) =>
     @model.findOne().where(user_id: options.user_id, user_type: options.user_type).exec (err, res) =>
