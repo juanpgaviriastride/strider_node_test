@@ -10,8 +10,8 @@ encryptPassword = (password, salt) ->
 
 
 User = Waterline.Collection.extend(
-  identity: 'user',
-  connection: 'couchdb',
+  identity: 'user'
+  connection: 'couchdb'
 
   attributes:{
 
@@ -24,23 +24,23 @@ User = Waterline.Collection.extend(
 
     ssn:      {type: 'string', required: no}
 
-    name:
-      prefix: {type: 'string', required: no}
-      first:  {type: 'string', required: no}
-      last:   {type: 'string', required: no}
+    #name:
+    prefix_name: {type: 'string', required: no}
+    first_name:  {type: 'string', required: no}
+    last_name:   {type: 'string', required: no}
 
-    dob:          () => @createdAt
-    profileUrl:   {type: 'string', required: no}
-    role:         {type: 'string', required: no}
+    dob:            () => @createdAt
+    profileUrl:     {type: 'string', required: no}
+    role:           {type: 'string', required: no}
 
-    contactInfo:
-      phone:
-        office:   {type: 'string', required: no}
-        cell:     {type: 'string', required: no}
+    #contactInfo:
+    ## phone:
+    office_phone:   {type: 'string', required: no}
+    cell_phone:     {type: 'string', required: no}
 
-      email:
-        personal: {type: 'string', required: no}
-        work:     {type: 'string', required: no}
+    #email:
+    personal_email: {type: 'string', required: no}
+    work_email:     {type: 'string', required: no}
 
     ##Instance methods
 
