@@ -94,13 +94,6 @@ passport.use(new BearerStrategy(
 
 # module.exports = passport
 
-passport.serializeUser (user, done) ->
-  console.log "Serialized user: ", user
-  done null, user.token
-
-passport.deserializeUser (user, done) ->
-  done null, user
-
 
 app.post '/auth/local', passport.authenticate('local'), (req, res, next) ->
   # stay login for 3 weeks
