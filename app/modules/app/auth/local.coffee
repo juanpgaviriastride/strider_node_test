@@ -3,6 +3,7 @@ mongoose = require "mongoose"
 
 express = require "express"
 app = module.exports = express()
+colors = require "colors"
 
 
 Users = require("app/users")
@@ -25,11 +26,12 @@ passport.use(new LocalStrategy(
         return done(err, false, { message: 'Authentication fail'}) if err
         return done({status: 401, message: 'Authentication fail'}, false, { message: 'Authentication fail'}) unless user
 
-        if not user.authenticate (password)
+
+        if not user.authenticate(password)
           return done(null, false, {message: 'Invalid password'})
 
-        authToken = new  AuthToken()
 
+        authToken = new AuthToken()
         authToken.get_or_create {user_id: user.id, user_type: 'user'}, (error, result) ->
           return done(error, null) if error
           if result is null
@@ -37,6 +39,7 @@ passport.use(new LocalStrategy(
             error.status = 500
             return done(error,null)
           else
+            console.log "Authenticated!".green, user, result.token
             user = user.toJSON()
             delete user.hashed_password
             user.token = result.token
@@ -91,6 +94,12 @@ passport.use(new BearerStrategy(
 
 # module.exports = passport
 
+passport.serializeUser (user, done) ->
+  console.log "Serialized user: ", user
+  done null, user.token
+
+passport.deserializeUser (user, done) ->
+  done null, user
 
 
 app.post '/auth/local', passport.authenticate('local'), (req, res, next) ->
