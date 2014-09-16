@@ -2,55 +2,10 @@ config = require('../../../config')
 crypto = require 'crypto'
 Waterline = require("waterline")
 
-<<<<<<< HEAD
-User = new Schema
-  "username"        : {type: String, required: true, index: { unique: true }}
-  "hashed_password" : String
-  "salt"            : String
-  "apn_token"       : String
-  "active"          : {type: Boolean, default: true}
-
-  "ssn":  {type: String, required: false},
-  "name": {
-    "prefix": {type: String, required: false},
-    "first":  {type: String, required: false},
-    "last":  {type: String, required: false}
-  },
-  "dob":  {type: Date, required: false},
-  "profileUrl":  {type: String, required: false},
-  "role":  {type: String, required: false},
-  "contactInfo": {
-    "phone":{
-      "office":  {type: String, required: false}
-      "cell":  {type: String, required: false}
-    },
-    "email":{
-      "personal":  {type: String, required: false}
-      "work":  {type: String, required: false}
-    }
-  }
-
-User.plugin schemaHelpers
-
-User
-  .virtual('password')
-  .set (password) ->
-    @_password = password
-    @salt = @makeSalt()
-    @hashed_password = @encryptPassword(password)
-  .get () ->
-    return @_password
-
-
-User.virtual('token').get(() ->
-  return @_token
-)
-=======
 makeSalt = () ->
   return Math.round((new Date().valueOf() * Math.random())) + ''
 
 encryptPassword = (password, salt) ->
-  console.log "SALT:", salt
   return crypto.createHmac('sha1', salt).update(password).digest('hex')
 
 
@@ -95,15 +50,12 @@ User = Waterline.Collection.extend(
 
 ## Class methods
   beforeCreate: (values, next) =>
-    console.log "VALUES:", values
     @_password = values.password
     delete values.password
-    console.log @
     values.salt = makeSalt()
     values.hashed_password = encryptPassword(@_password, values.salt)
     next()
 ) # end collection
-
 
 module.exports = User
 

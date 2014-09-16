@@ -13,17 +13,6 @@ AuthToken = Waterline.Collection.extend(
     user_type:   {type: 'string'}
     scope:       {type: 'array'}#[{type: 'string'}]
 
-<<<<<<< HEAD
-## Pre save hook to set up password has
-authTokenSchema.pre 'save', (next) ->
-  token = this
-  context = {
-    scope: token.scope
-    user_id: token.user_id
-    user_type: token.user_type
-    timestamp: (new Date()).toISOString
-  }
-
   token.token = jwt.encode(context, config.get("auth_token_secret"))
   next()
 
