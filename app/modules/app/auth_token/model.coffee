@@ -13,9 +13,6 @@ AuthToken = Waterline.Collection.extend(
     user_type:   {type: 'string'}
     scope:       {type: 'array'}#[{type: 'string'}]
 
-  token.token = jwt.encode(context, config.get("auth_token_secret"))
-  next()
-
 ##### To migrate to manager
 #
 ## get or create method
