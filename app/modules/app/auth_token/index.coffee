@@ -18,15 +18,18 @@ class AuthTokenController
     @model = orm.models.authtoken
     return
 
-  get_or_create: (user_id, callback) =>
-    @model.findOne().where(user_id: user_id).exec (err, res) =>
+  get_or_create: (options, callback) =>
+    @model.findOne().where(user_id: options.user_id, user_type: options.user_type).exec (err, res) =>
       return callback(err, null) if err
       if res?
         callback(null, res)
       else
-        context = user_id: user_id
-        scope = ["user"]
-        token = @model.create(user_id: user_id, scope: ['api']).exec (error, result) =>
+        context =
+          user_id: options.user_id
+          user_type: options.user_type
+
+        token = @model.create(user_id: options.user_id, user_type: options.user_type, scope: ['api'])
+        token.exec (error, result) =>
           return callback(error, result)
 
   verify: (token, callback) =>
