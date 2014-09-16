@@ -265,7 +265,7 @@ apiController.namespace("/api/v1", () ->
   )
 
   # create delivery messages
-  apiController.post('/devices/:request_token', (req, res, next) ->
+  apiController.post('/devices/token/:request_token', (req, res, next) ->
     new DevicesResource().create(req, res, next)
   )
 

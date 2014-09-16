@@ -24,7 +24,7 @@ class App.Views.TestApi.Devices.Form extends System.Views.Base
 
     @find('.toggle').removeClass('hide')
     @find('.qr-code').html("")
-    register_url = "#{request_token.get('host_url')}#{(new App.Collections.Devices()).url}/#{request_token.get('request_token')}"
+    register_url = "#{request_token.get('host_url')}#{(new App.Collections.Devices()).url}/token/#{request_token.get('request_token')}"
     @find('.qr-code').qrcode(
       text: register_url
     )
@@ -62,7 +62,7 @@ class App.Views.TestApi.Devices.Form extends System.Views.Base
     console.log "device  data: ", data
 
     device = new App.Models.Device()
-    device.urlRoot = "#{device.urlRoot}/#{@token_request.get('request_token')}"
+    device.urlRoot = "#{device.urlRoot}/token/#{@token_request.get('request_token')}"
 
     device.save data, {
       success: (model, response) =>
