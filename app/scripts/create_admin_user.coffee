@@ -2,7 +2,10 @@ if process.env.NODE_ENV == "undefined"
   process.env.NODE_ENV = "dev"
 
 config = require("../config")
-mongodb = require("../lib/db")
+
+orm = require "../lib/orm"
+orm.start()
+
 User = require("app/users")
 
 prompt = require('prompt')

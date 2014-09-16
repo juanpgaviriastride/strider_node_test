@@ -5,3 +5,4 @@ base:
     - nginx
     - redis
     - elasticsearch
+    - couchdb
