@@ -39,14 +39,14 @@ class ORM
       collections: @collections
 
 
-  start: () =>
+  start: (callback) =>
     @waterline.initialize @config, (err, res) =>
       @models = res.collections
       @connections = res.connections
       colors = require "colors"
       console.log "ORM".blue, "loaded models: ".yellow, "#{k for k,v of @models}".green, "(check modules/app/index.coffee for reference)".grey
       console.log "ORM".blue, "connections: ".yellow, "#{k for k,v of @connections}".green
-
+      callback(err, res)
 
 class SingletonORM
   orm = null

@@ -13,11 +13,9 @@ app.use require "./google"
 app.get '/logout', (req, res) ->
   users = new Users();
   if not req.user? then return res.json()
-  data = req.user._doc
-  data.apn_token = undefined
-  users.updateOne data, (err, user) ->
-    req.logout()
-    res.json({status: 200})
+  req.logout()
+  res.json({status: 200})
+  
 
 module.exports = app
 module.exports.passport = passport

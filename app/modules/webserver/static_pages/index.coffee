@@ -26,7 +26,7 @@ app.set('view cache', false)
 app.get '/', (req, res) ->
   if req.isAuthenticated()
     debug = (if req.query.debug then req.query.debug else config.get('debug'))
-    res.render "index.html", {rootBase: '/', user: req.user, debug: debug, version: pkg.version}
+    res.render "landing/index.html", {rootBase: '/', user: req.user, debug: debug, version: pkg.version}
   else
     #console.log "Redirect non auth user to login page"
     #res.redirect "/login"

@@ -46,7 +46,7 @@ User = Waterline.Collection.extend(
 
     authenticate: (plainText) ->
       return encryptPassword(plainText, @salt) == @hashed_password
-} # end attributes
+  } # end attributes
 
 ## Class methods
   beforeCreate: (values, next) =>

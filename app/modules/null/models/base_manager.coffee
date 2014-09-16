@@ -69,7 +69,7 @@ class BaseManager
 
   getAll: (query, callback) =>
     console.log "getAll #{@model}"
-    console.log orm
+    #console.log orm
     @model.find query, (err, results) ->
       for result, index in results
         results[index] = result
@@ -77,9 +77,9 @@ class BaseManager
 
   filter: (options..., callback) =>
     console.log "Filter"
-    console.log "@model: #{@model}"
-    console.log "orm:"
-    console.log orm
+    console.log "@model: #{@model_identifier}"
+    #console.log "orm:"
+    #console.log orm
 
     that = @
     [query, fields, populate, page, limit, sort_field, sort_direction] = options
