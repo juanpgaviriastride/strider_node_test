@@ -26,6 +26,8 @@ class App.Views.TestApi.Devices.Form extends System.Views.Base
     @find('.qr-code').html("")
     register_url = "#{request_token.get('host_url')}#{(new App.Collections.Devices()).url}/token/#{request_token.get('request_token')}"
     @find('.qr-code').qrcode(
+      ecLevel: 'L'
+      size: 400
       text: register_url
     )
 
