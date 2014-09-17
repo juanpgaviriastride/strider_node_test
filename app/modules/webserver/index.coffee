@@ -6,8 +6,11 @@ path = require("path")
 config = require("../../config")
 RedisStore = require('connect-redis')(express)
 
+
 redis = require("../../lib/redis")
-db = require("../../lib/db")
+# WIP: mongoose is being replaced by a waterline couchdb adapter
+#db = require("../../lib/db")
+
 
 # Mailer
 mailer = require('../../lib/mailer')

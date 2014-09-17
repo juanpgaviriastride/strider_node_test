@@ -7,10 +7,10 @@ app = module.exports = express()
 users = new Users()
 # rules for serialize sessions (we need them as common part)
 passport.serializeUser (user, done) ->
-  done(null, user._id)
+  done(null, user.id)
 
 passport.deserializeUser (id, done) ->
-  users.getOneRaw {_id: id}, (err, user) ->
+  users.getOneRaw {id: id}, (err, user) ->
     done err, user
 
 # initialize passport itself and passport sessions

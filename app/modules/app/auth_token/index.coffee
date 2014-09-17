@@ -1,19 +1,27 @@
-# Null token auth jobs
-require 'mongoose-pagination'
-Model = require "./model"
-HTTPStatus = require "http-status"
-config = require('../../../config')
-async = require "async"
-BaseController = require("null/controller/base")
-_ = require 'underscore'
+BaseManager = require("null/models/base_manager")
 
-class AuthTokenController extends BaseController
-  model: Model
 
-  get_or_create: (user_id, callback) =>
-    Model.get_or_create(user_id, callback)
+class AuthTokenController extends BaseManager
+  model_identifier: 'authtoken'
+
+  get_or_create: (options, callback) =>
+    @model.findOne().where(user_id: options.user_id, user_type: options.user_type).exec (err, res) =>
+      return callback(err, null) if err
+      if res?
+        callback(null, res)
+      else
+        context =
+          user_id: options.user_id
+          user_type: options.user_type
+
+        token = @model.create(user_id: options.user_id, user_type: options.user_type, scope: ['api'])
+        token.exec (error, result) =>
+          return callback(error, result)
 
   verify: (token, callback) =>
-    Model.verify(token, callback)
+    @model.findOne().where(token: token).exec(error, result) ->
+      return callback(error, null) if error
+        callback(null, result)
+
 
 module.exports = AuthTokenController

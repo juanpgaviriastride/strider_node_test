@@ -3,22 +3,19 @@ http = require "http"
 path = require "path"
 fs = require "fs"
 
-#global.env = env
+async = require "async"
+
 global.root = __dirname
 
-#config = require "tms/config"
+async.series({
+  orm: (done) ->
+    orm = require "./lib/orm"
+    orm.start(done)
+  }, (err, res) ->
+    return console.log "ERROR: Initializing ORM ", err if err
+    webserver = require "webserver"
+    webserver.start()
 
-#routes = require("./routes/api")
-
-###
-# Static routes
-###
-
-webserver = require "webserver"
-
-
-webserver.start()
-
-
-# Services
-services = require "services"
+    # Services
+    services = require "services"
+)
