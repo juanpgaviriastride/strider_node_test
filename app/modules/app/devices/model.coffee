@@ -1,57 +1,49 @@
 fs = require "fs"
-mongoose = require 'mongoose'
-Schema = mongoose.Schema
-ObjectId = Schema.ObjectId
-_ = require 'lodash'
-schemaHelpers = require 'null/schema-helpers'
-env = process.env.NODE_ENV || 'local'
 config = require('../../../config')
+Waterline = require("waterline")
 
 jwt = require "jwt-simple"
 
 
-Device = new Schema({
-  "created": {type: Date}
-  "user": { type: Schema.Types.ObjectId, ref: 'user' }
-  "token": {type: String, required: false}
-#})
- },{
-     toObject: { virtuals: true, getters: true },
-     toJSON: { virtuals: true, getters: true }
- })
+Device = Waterline.Collection.extend(
+  identity: 'device'
+  connection: 'couchdb'
 
-Device.virtual('access_token').get( () ->
-  return @_access_token
+  attributes: {
+    "user": { model: 'user' },
+    "token": {type: 'string'},
+  }
 )
 
-Device.virtual('access_token').set( (access_token) ->
-  @_access_token = access_token
-)
+# TODO: check viertual fields
+# Device.virtual('access_token').get( () ->
+#   return @_access_token
+# )
+#
+# Device.virtual('access_token').set( (access_token) ->
+#   @_access_token = access_token
+# )
 
-#Device.plugin schemaHelpers
+DeviceTokenRequest = Waterline.Collection.extend(
+  identity: 'device_token_request'
+  connection: 'couchdb'
 
-
-DeviceTokenRequest = new Schema
-  "created": {type: Date}
-  "user": { type: Schema.Types.ObjectId, ref: 'user', required: true}
-  "status": {type: String, default: "sent"}
-  "host_url": {type: String, default: config.get('app').baseUrl}
-  "request_token": {type: String, required: false}
-
-DeviceTokenRequest.pre 'save', (next) ->
-  if @isNew
-    @created = new Date()
-
-  context = {
-    user: @user
-    timestamp: @created
+  attributes: {
+    "user": { model: 'user' },
+    "status": {type: 'string', defaultsTo: "sent"}
+    "host_url": {type: 'string', defaultsTo: config.get('app').baseUrl},
+    "request_token": {type: 'string'},
   }
 
-  @request_token = jwt.encode(context, config.get("request_token_secret"))
-  next()
+  beforeCreate: (values, next) =>
+    context = {
+      user: values.user
+      timestamp: (new Date()).toISOString()
+    }
 
+    values.request_token = jwt.encode(context, config.get("request_token_secret"))
+    next()
+)
 
-DeviceTokenRequest.plugin schemaHelpers
-
-module.exports = mongoose.model 'device', Device
-module.exports.TokenRequest = mongoose.model 'device_token_request', DeviceTokenRequest
+module.exports = Device
+module.exports.TokenRequest = DeviceTokenRequest

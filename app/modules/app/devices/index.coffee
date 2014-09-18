@@ -1,16 +1,13 @@
-require 'mongoose-pagination'
-Model = require "./model"
-HTTPStatus = require "http-status"
-config = require('../../../config')
 async = require "async"
-BaseController = require("null/controller/base")
+_ = require 'underscore'
+orm = require "../../../lib/orm"
+BaseManager = require("null/models/base_manager")
 
 AuthToken = require("app/auth_token")
 
-_ = require 'underscore'
 
-class DeviceController extends BaseController
-  model: Model
+class DeviceController extends BaseManager
+  model_identifier: 'device'
 
   create: (params..., callback) =>
     [data, options] = params
@@ -24,7 +21,7 @@ class DeviceController extends BaseController
         return @_createDevice(data.data, token_request, callback) unless device
 
         auth_token_info =
-          user_id: device._id
+          user_id: device.id
           user_type: 'device'
 
         @_createAuthToken(auth_token_info, (error, access_token) =>
@@ -42,12 +39,12 @@ class DeviceController extends BaseController
       user: request_token.user
       token: data.token
 
-    BaseController::create.call(@, data, (err, res) =>
+    BaseManager::create.call(@, data, (err, res) =>
       return callback(err, null) if err
       return callback(null, null) unless res
 
       data =
-        user_id: res._id
+        user_id: res.id
         user_type: 'device'
 
       @_createAuthToken(data, (error, result) =>
@@ -75,12 +72,8 @@ class DeviceController extends BaseController
 
 
 
-
-class DeviceTokenRequestController extends BaseController
-  model: Model.TokenRequest
-
-
-
+class DeviceTokenRequestController extends BaseManager
+  model_identifier: 'device_token_request'
 
 
 module.exports = DeviceController

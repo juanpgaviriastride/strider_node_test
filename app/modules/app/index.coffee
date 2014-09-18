@@ -4,3 +4,7 @@ exports.models =
   Users: require "app/users/model"
   Locations: require "app/locations/model"
   Messages: require "app/messages/model"
+  Surgeries: require "app/surgeries/model"
+  Patients: require "app/patients/model"
+  Devices: require "app/devices/model"
+  DevicesTokenRequest: require("app/devices/model").TokenRequest

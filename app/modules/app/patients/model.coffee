@@ -1,52 +1,37 @@
 fs = require "fs"
-mongoose = require 'mongoose'
-Schema = mongoose.Schema
-ObjectId = Schema.ObjectId
-_ = require 'lodash'
-schemaHelpers = require 'null/schema-helpers'
-env = process.env.NODE_ENV || 'local'
 config = require('../../../config')
+Waterline = require("waterline")
 
-Patient = new Schema
-  "ssn":  {type: String, required: false},
-  "ehr": {
-    "ehr": {type: String, required: false},
-    "id": {type: String, required: false},
-  },
-  "name": {
-    "prefix": {type: String, required: false},
-    "first":  {type: String, required: false},
-    "middle": {type: String, required: false},
-    "last":  {type: String, required: false}
-  },
-  "dob":  {type: Date, required: false},
-  "profileUrl":  {type: String, required: false},
-  "contactInfo": {
-    "phone":{
-      "office":  {type: String, required: false}
-      "cell":  {type: String, required: false}
-    },
-    "email":{
-      "personal":  {type: String, required: false}
-      "work":  {type: String, required: false}
-    }
+Patient = Waterline.Collection.extend(
+  identity: 'patient'
+  connection: 'couchdb'
+
+  types: {
+    ehr: (ehr) ->
+      return true if ehr.ehr? and ehr.id?
+      return false
+    name: (name) ->
+      return true if name.prefix? or name.first? or name.middle? or name.last?
+      return false
+    contactInfo: (contactInfo) ->
+      return true if contactInfo.phone? or contactInfo.email?
+      return false
   }
 
-  "allergies":[{type: String, required: false}],
-  "currentMedications":[{type: String, required: false}],
-  "procedures":[{type: String, required: false}],
-  "currentLocation": { type: Schema.Types.ObjectId, ref: 'location' }
+  attributes: {
+    "ssn":  {type: 'string'},
+    "ehr": {type: 'json', ehr: true}
+    "name": {type: 'json', name: true}
 
-Patient.plugin schemaHelpers
+    "profileUrl":  {type: 'string'},
+    "contactInfo": {type: 'json', contactInfo: true}
+    "allergies": {type: 'array'},
+    "currentMedications":{type: 'array'},
+    "procedures": {type: 'array' },
 
-Patient.pre "save", (next) ->
-  if @isNew
-    @dob = new Date()
-
-  next()
+    "currentLocation": { model: 'location' },
+  }
+)
 
 
-
-
-
-module.exports = mongoose.model 'patient', Patient
+module.exports = Patient

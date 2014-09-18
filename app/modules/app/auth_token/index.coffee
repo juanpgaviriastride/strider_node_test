@@ -19,9 +19,10 @@ class AuthTokenController extends BaseManager
           return callback(error, result)
 
   verify: (token, callback) =>
-    @model.findOne().where(token: token).exec(error, result) ->
-      return callback(error, null) if error
-        callback(null, result)
+    @model.findOne().where(token: token).exec (error, result) ->
+      console.log "VERIFY: ", error, result
+      return callback(error, null) if error?
+      callback(null, result)
 
 
 module.exports = AuthTokenController

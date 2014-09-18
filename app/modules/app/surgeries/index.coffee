@@ -1,14 +1,9 @@
-require 'mongoose-pagination'
-Model = require "./model"
-HTTPStatus = require "http-status"
-config = require('../../../config')
-async = require "async"
-BaseController = require("null/controller/base")
-_ = require 'underscore'
+orm = require "../../../lib/orm"
+BaseManager = require("null/models/base_manager")
 
-class SurgeryController extends BaseController
-  model: Model
 
+class SurgeryController extends BaseManager
+  model_identifier: 'surgery'
 
 
 
