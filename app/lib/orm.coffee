@@ -12,8 +12,10 @@ class ORM
     collections = {}
     for k,model of App.models
       collections[k] = model # the model exports the collection
-    #for k,v of Null.modules
-    #  collections[k] = model
+
+    for k,model of Null.models
+     collections[k] = model
+
     return collections
 
   models: []

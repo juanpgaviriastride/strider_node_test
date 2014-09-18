@@ -4,12 +4,12 @@ async = require("async")
 
 _ = require 'underscore'
 
-BaseController = require("null/controller/base")
-Job = require "./model"
+orm = require "../../../lib/orm"
+BaseManager = require("null/models/base_manager")
 
 
-class JobController extends BaseController
-  model: Job
+class JobController extends BaseManager
+  model_identifier: 'job'
 
   dispatch: (id, callback) =>
     # Override this method to dispache services usign client lib of each service
@@ -19,7 +19,7 @@ class JobController extends BaseController
 
   completed: (id, response, callback) =>
     data =
-      _id: id
+      id: id
       status: 'complete'
       response: response
 
@@ -27,17 +27,17 @@ class JobController extends BaseController
 
   failed: (id, response, callback) =>
     data =
-      _id: id
+      id: id
       status: 'fail'
       response: response
 
     @updateOne(data, callback)
 
-class CronController extends BaseController
-  model: Job.Cron
+class CronController extends BaseManager
+  model_identifier: 'cron_job'
 
   exec_succeed: (id, job, callback) =>
-    @getOne({_id: id}, (err, res) =>
+    @getOne({id: id}, (err, res) =>
       res.exec_status = 'succeed'
       res.runs.push job
       @updateOne(res, callback)
@@ -45,28 +45,28 @@ class CronController extends BaseController
 
   exec_failed: (id, callback) =>
     data =
-      _id: id
+      id: id
       exec_status: 'fail'
 
     @updateOne(data, callback)
 
   resume: (id, callback) =>
     data =
-      _id: id
+      id: id
       status: 'active'
 
     @updateOne(data, callback)
 
   stoped: (id, callback) =>
     data =
-      _id: id
+      id: id
       status: 'stop'
 
     @updateOne(data, callback)
 
   failed: (id, response, callback) =>
     data =
-      _id: id
+      id: id
       status: 'fail'
       message: response
 

@@ -41,7 +41,7 @@ class BaseServiceServer
         data = JSON.parse(message)
 
         job = new Job()
-        job.updateOne {_id: data._id, status: 'progress'}, (err, result) =>
+        job.updateOne {id: data.id, status: 'progress'}, (err, result) =>
           @process(result)
     )
     @redisSubscribe(@service_queue)
