@@ -1,34 +1,36 @@
 fs = require "fs"
-mongoose = require 'mongoose'
-Schema = mongoose.Schema
-ObjectId = Schema.ObjectId
-_ = require 'lodash'
-schemaHelpers = require 'null/schema-helpers'
-env = process.env.NODE_ENV || 'local'
 config = require('../../../config')
+Waterline = require("waterline")
 
-Surgery = new Schema
-  "ssn":  {type: String, required: false},
-  "display_name": {type: String, required: false}
-  "time":{
-    "start": {type: Date, required: false},
-    "end": {type: String, required: false}
-  },
-  "patientId":{ type: Schema.Types.ObjectId, ref: 'patient' },
-  "teamIds":[
-    {
-      "role": {type: String, required: false},
-      "staffId": {type: String, required: false}
-    }
-  ],
-  "location": { type: Schema.Types.ObjectId, ref: 'location' },
-  "status": {type: String, required: false},
+Surgery = Waterline.Collection.extend(
+  identity: 'surgery'
+  connection: 'couchdb'
 
-Surgery.plugin schemaHelpers
+  types: {
+    time: (time) ->
+      return true if time.start? or time.end?
+      return false
+    team: (team) ->
+      console.log "Surgery team", team
+      return true
+      # TODO: validate team objects with this keys
+      # [
+      #   {
+      #     "role": {type: String, required: false},
+      #     "staffId": {type: String, required: false}
+      #   }
+      # ]
+  }
 
+  attributes: {
+    "ssn":  {type: 'string', required: false},
+    "display_name": {type: 'string', required: false}
+    "time": {type: 'json', time:true }
+    "patientId": { model: 'patient' },
+    "teamIds": {type: 'array', team: true },
+    "location": { model: 'location' },
+    "status": {type: 'string', required: false},
+  }
+)
 
-
-
-
-
-module.exports = mongoose.model 'surgery', Surgery
+module.exports = Surgery

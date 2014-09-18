@@ -61,7 +61,7 @@ passport.use(new BearerStrategy(
         switch token.user_type
           when "user"
             users = new Users()
-            users.getOne({_id: token.user_id}, (err, result) ->
+            users.getOne({id: token.user_id}, (err, result) ->
               return done(err, false, { message: 'Authentication fail'}) if err
               return done(null, false, { message: 'Authentication fail'}) unless result
 
@@ -69,7 +69,7 @@ passport.use(new BearerStrategy(
             )
           when "device"
             devices = new Devices()
-            devices.getOne({_id: token.user_id}, null, {user: []}, (err, result) ->
+            devices.getOne({id: token.user_id}, null, {user: []}, (err, result) ->
               return done(err, false, { message: 'Authentication fail'}) if err
               return done(null, false, { message: 'Authentication fail'}) unless result
 

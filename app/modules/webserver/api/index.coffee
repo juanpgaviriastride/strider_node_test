@@ -13,7 +13,7 @@ apiController.namespace("/api/v1", () ->
   UserResource = require("./controllers/users")
 
   # user list
-  apiController.get('/users', (req, res, next) ->
+  apiController.get('/users', auth.passport.authenticate('bearer', { session: false }), (req, res, next) ->
     new UserResource().list(req, res, next)
   )
 
