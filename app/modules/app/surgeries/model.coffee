@@ -23,6 +23,7 @@ Surgery = Waterline.Collection.extend(
   }
 
   attributes: {
+    id: { type: 'string', primaryKey: true, unique: true }
     "ssn":  {type: 'string', required: false},
     "display_name": {type: 'string', required: false}
     "time": {type: 'json', time:true }
