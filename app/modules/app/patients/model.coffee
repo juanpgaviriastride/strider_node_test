@@ -19,6 +19,7 @@ Patient = Waterline.Collection.extend(
   }
 
   attributes: {
+    id: { type: 'string', primaryKey: true, unique: true }
     "ssn":  {type: 'string'},
     "ehr": {type: 'json', ehr: true}
     "name": {type: 'json', name: true}

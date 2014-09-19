@@ -139,7 +139,7 @@ class BaseResource
         total: queryset.count
         page: @page
         limit: @limit
-        next_page: "#{@request.path}?page=#{parseInt(@page) + 1}&limit=#{parseInt(@limit)}&#{url_encode.encode(@params)}"
+        next_page: (if (((@page) * @limit) - queryset.count > 0) and (((@page) * @limit) - queryset.count > @limit) then null else "#{@request.path}?page=#{parseInt(@page) + 1}&limit=#{parseInt(@limit)}&#{url_encode.encode(@params)}")
         previous_page: (if @page > 1 then "#{@request.path}?page=#{parseInt(@page) - 1}&limit=#{parseInt(@limit)}&#{url_encode.encode(@params)}" else null)
       @response.json(response)
   ,
@@ -226,7 +226,7 @@ class BaseResource
       }, (err, res) ->
         return callback.call(that, err, res) if err
         #that.controller.getOne({_id: result._id}, (error, result) ->
-        that.get_object(result._id, (error, result) ->
+        that.get_object(result.id, (error, result) ->
           return callback.call(that, error, result) if error
           return callback.call(that, null, result) if typeof callback == "function"
         )

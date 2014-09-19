@@ -8,6 +8,7 @@ AuthToken = Waterline.Collection.extend(
   connection: 'couchdb'
 
   attributes:
+    id: { type: 'string', primaryKey: true, unique: true }
     token:       {type: 'string'}
     user_id:     {type: 'string', required: no}
     user_type:   {type: 'string'}

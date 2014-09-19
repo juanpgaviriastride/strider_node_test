@@ -91,8 +91,8 @@ class BaseManager
     #  queryset = @populateQuery(queryset, populate)
 
     if page and limit
-      count = @model.find(query)
-      queryset = queryset.paginate(page, limit)
+      count = @model.count(query)
+      queryset = queryset.paginate({page:page, limit: limit})
 
     if sort_field
       sort = {}
@@ -105,12 +105,12 @@ class BaseManager
     async.series({
       count: (cb) =>
         if count
-          #console.log "COUNT COUNT COUNT"
-          #console.log count
-          #count.count( (err, count) =>
-          #  cb(null, count)
-          #)
-          cb(null, null)
+          count.exec( (err, count) =>
+            console.log "COUNT COUNT COUNT"
+            console.log count
+            cb(null, count)
+          )
+          #cb(null, null)
         else
           cb(null, null)
       ,

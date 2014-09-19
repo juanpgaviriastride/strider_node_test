@@ -53,7 +53,7 @@
     "passport-http-bearer": "^1.0.1",
     "jwt-simple": "^0.2.0",
     "waterline": "^0.10.9",
-    "sails-couchdb-orm": "^0.10.3",
+    "sails-couchdb-orm": "nullindustries/sails-couchdb-orm",
     "colors": "^0.6.2"
   },
   "devDependencies": {
@@ -62,7 +62,7 @@
     "sinon": "~1.7.3",
     "mockery": "~1.4.0",
     "supertest": "0.8.3",
-    "precommit-hook": "juanpgaviria/precommit-hook",
+    "precommit-hook": "nullindustries/precommit-hook",
     "coffee-coverage": "*",
     "istanbul": "~0.2.7",
     "grunt-contrib-coffee": "^0.10.1",

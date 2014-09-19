@@ -15,6 +15,8 @@ User = Waterline.Collection.extend(
 
   attributes:{
 
+    id: { type: 'string', primaryKey: true, unique: true }
+
     username:        {type: 'string', required: yes, unique: yes}
     hashed_password: {type: 'string'}
     password:        () => @_password # Supporting old frameworks. TODO: Remove this

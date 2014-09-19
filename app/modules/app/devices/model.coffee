@@ -10,6 +10,7 @@ Device = Waterline.Collection.extend(
   connection: 'couchdb'
 
   attributes: {
+    id: { type: 'string', primaryKey: true, unique: true }
     "user": { model: 'user' },
     "token": {type: 'string'},
   }
@@ -29,6 +30,7 @@ DeviceTokenRequest = Waterline.Collection.extend(
   connection: 'couchdb'
 
   attributes: {
+    id: { type: 'string', primaryKey: true, unique: true }
     "user": { model: 'user' },
     "status": {type: 'string', defaultsTo: "sent"}
     "host_url": {type: 'string', defaultsTo: config.get('app').baseUrl},

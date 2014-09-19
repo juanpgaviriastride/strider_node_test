@@ -16,6 +16,7 @@ Location = Waterline.Collection.extend(
   }
 
   attributes:{
+    id: { type: 'string', primaryKey: true, unique: true }
     "display_name": {type: 'string', required: false}
     "geo": {type: 'json', point: true}
   }

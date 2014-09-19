@@ -7,6 +7,7 @@ Message = Waterline.Collection.extend(
   connection: 'couchdb'
 
   attributes: {
+    id: { type: 'string', primaryKey: true, unique: true }
     "text": {type: 'string', required: false}
     "files": {type: 'array' }
 
