@@ -226,7 +226,7 @@ class BaseResource
       }, (err, res) ->
         return callback.call(that, err, res) if err
         #that.controller.getOne({_id: result._id}, (error, result) ->
-        that.get_object(result._id, (error, result) ->
+        that.get_object(result.id, (error, result) ->
           return callback.call(that, error, result) if error
           return callback.call(that, null, result) if typeof callback == "function"
         )
