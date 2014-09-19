@@ -53,7 +53,7 @@
     "passport-http-bearer": "^1.0.1",
     "jwt-simple": "^0.2.0",
     "waterline": "^0.10.9",
-    "sails-couchdb-orm": "^0.10.3",
+    "sails-couchdb-orm": "juanpgaviria/sails-couchdb-orm",
     "colors": "^0.6.2"
   },
   "devDependencies": {
