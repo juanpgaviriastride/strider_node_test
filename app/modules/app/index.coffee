@@ -8,3 +8,4 @@ exports.models =
   Patients: require "app/patients/model"
   Devices: require "app/devices/model"
   DevicesTokenRequest: require("app/devices/model").TokenRequest
+  Contacts: require "app/contacts/model"

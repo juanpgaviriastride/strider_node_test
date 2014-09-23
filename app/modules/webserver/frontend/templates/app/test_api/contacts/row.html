@@ -1,0 +1,8 @@
+<td><%= model.id %></td>
+<td><%= model.escape('contact_username') %></td>
+<td><%= model.escape('contact_name') %></td>
+<td><%= moment(model.get('createdAt')).format("YYYY-MM-DD") %></td>
+<td>
+  <button class="btn btn-danger delete"><span class="glyphicon glyphicon-trash"></span></button>
+  <button class="btn btn-warning edit"><span class="glyphicon glyphicon-edit"></span></button>
+</td>
