@@ -24,15 +24,7 @@ app.set('view cache', false)
 
 # routers
 app.get '/', (req, res) ->
-  if req.isAuthenticated()
-    debug = (if req.query.debug then req.query.debug else config.get('debug'))
-    res.render "landing/index.html", {rootBase: '/', user: req.user, debug: debug, version: pkg.version}
-  else
-    #console.log "Redirect non auth user to login page"
-    #res.redirect "/login"
-    debug = (if req.query.debug then req.query.debug else config.get('debug'))
-    res.render "landing/index.html", {debug: debug}
-
+  res.redirect "/test-api"
 
 app.get '/test-api', (req, res) ->
   debug = (if req.query.debug then req.query.debug else config.get('debug'))
