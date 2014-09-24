@@ -13,6 +13,7 @@ window.App =
       Devices: {
         DevicesRequestToken: {}
       }
+      Contacts: {}
     }
     Helpers: {
       Users: {}
@@ -23,5 +24,6 @@ window.App =
       Devices: {
         DevicesRequestToken: {}
       }
+      Contacts: {}
     }
   }

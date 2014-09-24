@@ -14,7 +14,12 @@ prompt.start()
 
 prompt.get([
   {
-    name: 'full_name',
+    name: 'first_name',
+    required: true
+    type: 'string'
+  },
+  {
+    name: 'last_name',
     required: true
     type: 'string'
   },
