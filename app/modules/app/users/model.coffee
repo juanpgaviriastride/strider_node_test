@@ -31,6 +31,10 @@ User = Waterline.Collection.extend(
     first_name:  {type: 'string', required: no}
     last_name:   {type: 'string', required: no}
 
+    full_name: () ->
+      console.log "user this: ", @
+      return "#{@prefix_name} #{@first_name} #{@last_name}"
+
     dob:            () => @createdAt
     profileUrl:     {type: 'string', required: no}
     role:           {type: 'string', required: no}
