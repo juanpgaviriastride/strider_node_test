@@ -21,11 +21,9 @@ class App.Views.TestApi.Users.Form extends System.Views.Base
       "username": data.username,
       "password": data.password,
       "ssn":  data.ssn,
-      "name": {
-        "prefix": data.prefix_name,
-        "first":  data.first_name,
-        "last":  data.last_name
-      },
+      "prefix_name": data.prefix_name,
+      "first_name":  data.first_name,
+      "last_name":  data.last_name,
       "dob":  data.dob,
       "role":  data.role,
       "contactInfo": {

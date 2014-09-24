@@ -6,6 +6,7 @@ class App.Routers.TestApi extends System.Routers.Base
     'locations': 'locations'
     'messages': 'messages'
     'devices': 'devices'
+    'contacts': 'contacts'
 
   index: =>
     @selectNav('')
@@ -35,4 +36,9 @@ class App.Routers.TestApi extends System.Routers.Base
   devices: =>
     @selectNav('devices')
     app.current_view = new App.Views.TestApi.Devices.Index({el: "#main"})
+    app.current_view.render()
+
+  contacts: =>
+    @selectNav('contacts')
+    app.current_view = new App.Views.TestApi.Contacts.Index({el: "#main"})
     app.current_view.render()
