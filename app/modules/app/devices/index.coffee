@@ -52,7 +52,7 @@ class DeviceController extends BaseManager
         return callback(err, null) if error
         return callback(null, null) unless result
         res.access_token = result.token
-        device.host_url = token_request.host_url
+        res.host_url = token_request.host_url
 
         callback(null, res)
       )

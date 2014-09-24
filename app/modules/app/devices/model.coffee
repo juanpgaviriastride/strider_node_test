@@ -3,7 +3,7 @@ config = require('../../../config')
 Waterline = require("waterline")
 
 jwt = require "jwt-simple"
-
+crypto = require 'crypto'
 
 Device = Waterline.Collection.extend(
   identity: 'device'
@@ -43,7 +43,9 @@ DeviceTokenRequest = Waterline.Collection.extend(
       timestamp: (new Date()).toISOString()
     }
 
-    values.request_token = jwt.encode(context, config.get("request_token_secret"))
+    shasum = crypto.createHash('sha1')
+    shasum.update(jwt.encode(context, config.get("request_token_secret")))
+    values.request_token = shasum.digest('hex')
     next()
 )
 
