@@ -50,5 +50,10 @@ app.get '/jobs', (req, res) ->
     debug = (if req.query.debug then req.query.debug else config.get('debug'))
     res.render "login.html", {debug: debug}
 
+# stanza.io demo
+app.get '/test-xmpp', (req, res) ->
+  res.render "test-xmpp.html"
+
+
 app.get '/404', (req, res) ->
   res.render "404.html"
