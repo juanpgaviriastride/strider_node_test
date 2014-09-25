@@ -1,5 +1,5 @@
 
-xmpp = require("node-xmpp-server")
+xmpp = require("node-xmpp")
 argv = process.argv
 if argv.length < 6
   console.error "Usage: node send_message.js <my-jid> <my-password> " + "<server> <port> <my-text> <jid1> [jid2] ... [jidN]"
