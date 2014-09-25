@@ -284,4 +284,36 @@ apiController.namespace("/api/v1", () ->
   apiController.post('/auth/devices/request_token', (req, res, next) ->
     new DevicesResource.TokenRequestResource().create(req, res, next)
   )
+
+  ##
+  # Contacts controllers
+  ##
+
+
+  ContactsResource = require "./controllers/contacts"
+
+  # list of delivery messages
+  apiController.get('/contacts', (req, res, next) ->
+    new ContactsResource().list(req, res, next)
+  )
+
+  # detail of delivery messages
+  apiController.get('/contacts/:id', (req, res, next) ->
+    new ContactsResource().detail(req, res, next)
+  )
+
+  # create delivery messages
+  apiController.post('/contacts', (req, res, next) ->
+    new ContactsResource().create(req, res, next)
+  )
+
+  # update delivery messages
+  apiController.put('/contacts/:id', (req, res, next) ->
+    new ContactsResource().update(req, res, next)
+  )
+
+  # update delivery messages
+  apiController.del('/contacts/:id', (req, res, next) ->
+    new ContactsResource().delete(req, res, next)
+  )
 )

@@ -3,8 +3,7 @@
   "version": "1.0.9",
   "private": true,
   "scripts": {
-    "start": "ENV=production coffee app.coffee",
-    "test": "grunt test | tail -n+3 > test/coverage.html && open test/coverage.html"
+    "start": "ENV=production coffee app.coffee"
   },
   "config": {
     "precommit": {
