@@ -1,5 +1,5 @@
-class App.Views.TestApi.Contacts.Row extends System.Views.Base
-  template: JST['app/test_api/contacts/row.html']
+class App.Views.Contacts.Row extends System.Views.Base
+  template: JST['app/contacts/row.html']
   tagName: 'tr'
 
   initialize: (options) =>
@@ -7,7 +7,7 @@ class App.Views.TestApi.Contacts.Row extends System.Views.Base
     @listenToOnce @model, "destroy", @onDestroy
 
   events:
-    'click .delete': 'deleteItem'
+    'click [data-role=delete]': 'deleteItem'
 
   render: () =>
     super

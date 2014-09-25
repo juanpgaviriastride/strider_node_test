@@ -6,10 +6,10 @@ class App.Views.TestApi.Contacts.Index extends System.Views.Base
 
     @collection = new App.Collections.Contacts()
 
-    @form = new App.Views.TestApi.Contacts.Form
+    @form = new App.Views.Contacts.Form
       collection: @collection
 
-    @table = new App.Views.TestApi.Contacts.Table
+    @table = new App.Views.Contacts.Table
       collection: @collection
 
   render: () =>

@@ -24,8 +24,21 @@ class App.Initialize
   onLoad: =>
     # Setup routers
     @routers = []
-    @routers.push new App.Routers.Index
-    @routers.push new App.Routers.TestApi
+    @routers.push new App.Routers.Common
+
+    if window.rootBase == "/test-api"
+      @routers.push new App.Routers.TestApi
+    else
+      @routers.push new App.Routers.Index
+
+    # load the conversation list
+    #@conversations = new
+
+    # load new_mesage modal
+    # to show call app.new_meesage.show()
+    # to hide call app.new_meesage.hide()
+    @new_message = new App.Views.Chats.NewMessage({el: 'div[data-role=modal-container]'})
+
 
     @onLoaded()
 
