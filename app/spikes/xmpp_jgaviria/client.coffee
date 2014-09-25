@@ -8,7 +8,7 @@ if argv.length < 6
   console.error "Usage: node send_message.js <my-jid> " + "<my-password> <my-text> <jid1> [jid2] ... [jidN]"
   process.exit 1
 
-cl = new xmpp_client.Client(
+cl = new xmpp_client(
   jid: argv[2]
   password: argv[3]
 )
