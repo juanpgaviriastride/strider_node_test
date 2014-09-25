@@ -1,25 +1,21 @@
 class App.Routers.Index extends System.Routers.Base
   routes:
-    'logout': 'logout',
+    '': 'index',
+    'contacts': 'contacts'
 
-  logout: =>
-    console.log "LOGOUT"
-    $.ajax({
-      url: '/api/v1/logout'
-      type: 'get'
-      contentType: 'json'
-      success: (data) ->
-        $.cookies.del 'auth_token'
-        $.cookies.del 'user'
-        window.location = "/"
 
-      error: (xhr, error) ->
-        if xhr.status == 200
-          $.cookies.del 'auth_token'
-          $.cookies.del 'user'
+  index: =>
+    @selectNav('')
+    app.current_view = new App.Views.Chats.Index({el: "[data-role=main]"})
+    app.current_view.render()
 
-          window.location = "/"
-          return
-        console.log "Logoute error: ", xhr, error
-        alert('Error on logout')
-    })
+    # app.chats_open = new App.Views.Chats.List({el: "[data-role=chats]"})
+    # app.chats_open.render()
+
+  contacts: =>
+    @selectNav('contacts')
+    app.current_view = new App.Views.Contacts.Index({el: "[data-role=main]"})
+    app.current_view.render()
+
+    # app.chats_open = new App.Views.Chats.List({el: "[data-role=chats]"})
+    # app.chats_open.render()

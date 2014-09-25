@@ -4,6 +4,8 @@ window.App =
   Collections: {}
   Events: {}
   Views: {
+    Contacts: {}
+    Chats: {}
     TestApi: {
       Users: {}
       Patients: {}

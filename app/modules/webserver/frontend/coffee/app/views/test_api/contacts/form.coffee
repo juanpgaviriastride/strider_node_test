@@ -23,7 +23,6 @@ class App.Views.TestApi.Contacts.Form extends System.Views.Base
     contact =
       "contact_id":  data.contact_id
 
-    console.log "contaact data: ", contact
     @collection.create contact, {
       success: (model, response) =>
         console.log "Created", model, response
