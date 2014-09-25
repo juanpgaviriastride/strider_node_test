@@ -2,8 +2,7 @@ xmpp = require("simple-xmpp")
 xmpp.on "online", (data) ->
   console.log "Connected with JID: " + data.jid.user
   console.log "Yes, I'm connected!"
-
-  xmpp.send "me@162.209.94.221", "HEEEEEEEY"
+  xmpp.send "me@192.168.50.4", "HEEEEEEEY"
   return
 
 xmpp.on "chat", (from, message) ->
@@ -22,12 +21,12 @@ xmpp.on "subscribe", (from) ->
   return
 
 xmpp.connect
-  jid: "you@162.209.94.221"
+  jid: "admin@192.168.50.4"
   password: "123"
-  host: "162.209.94.221"
+  host: "192.168.50.4"
   port: 5222
 
-xmpp.subscribe "me@162.209.94.221"
+xmpp.subscribe "me@192.168.50.4"
 
 
 # check for incoming subscription requests
