@@ -20,7 +20,7 @@
 -- for the server. Note that you must create the accounts separately
 -- (see http://prosody.im/doc/creating_accounts for info)
 -- Example: admins = { "user1@example.com", "user2@example.net" }
-admins = {'juan@192.168.50.4' }
+admins = {'admin@192.168.50.4' }
 
 -- Enable use of libevent for better performance under high load
 -- For more information see: http://prosody.im/doc/libevent
@@ -122,7 +122,9 @@ s2s_require_encryption = false
 -- server please see http://prosody.im/doc/modules/mod_auth_internal_hashed
 -- for information about using the hashed backend.
 
-authentication = "internal_plain"
+authentication = "json_http"
+
+auth_json_http_url = "http://192.168.50.1:3000/api/v1/auth/local"
 
 -- Select the storage backend to use. By default Prosody uses flat files
 -- in its configured data directory, but it also supports more backends
