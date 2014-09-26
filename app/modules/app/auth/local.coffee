@@ -103,3 +103,8 @@ app.post '/auth/local', passport.authenticate('local'), (req, res, next) ->
     req.session.cookie.expires = false
     req.session.cookie.maxAge = 86400000*21
   res.json req.user
+
+
+app.get '/auth/token', passport.authenticate('bearer', { session: false }), (req, res, next) ->
+  console.log "post /auth/token auth token:", req.isAuthenticated()
+  res.json req.user
