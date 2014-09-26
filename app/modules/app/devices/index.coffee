@@ -29,6 +29,7 @@ class DeviceController extends BaseManager
           return callback(null, null) unless access_token
           device.access_token = access_token.token
           device.host_url = token_request.host_url
+          device.im_uri = token_request.im_uri
 
           callback(null, device)
         )
@@ -52,7 +53,8 @@ class DeviceController extends BaseManager
         return callback(err, null) if error
         return callback(null, null) unless result
         res.access_token = result.token
-        res.host_url = token_request.host_url
+        res.host_url = result.host_url
+        res.im_uri = result.im_uri
 
         callback(null, res)
       )
