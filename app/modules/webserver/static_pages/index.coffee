@@ -58,5 +58,9 @@ app.get '/jobs', (req, res) ->
     debug = (if req.query.debug then req.query.debug else config.get('debug'))
     res.render "login.html", {debug: debug}
 
+
+app.get '/test-theme', (req, res) ->
+  res.render "theme.html"
+
 app.get '/404', (req, res) ->
   res.render "404.html"

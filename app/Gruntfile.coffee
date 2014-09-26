@@ -160,8 +160,10 @@ module.exports = (grunt) ->
     concat:
       app_js:
         src: [
-          SRC_VENDOR + 'js/modernizr.custom.44139.js'
+          SRC_VENDOR + 'js/modernizr.custom.js'
           SRC_VENDOR + 'js/jquery-1.11.1.min.js'
+          SRC_VENDOR + 'js/jquery-ui-1.10.4.min.js'
+          SRC_VENDOR + 'js/jquery.mmenu.min.js'
           SRC_VENDOR + 'js/jquery.cookies.2.2.0.min.js'
           SRC_VENDOR + 'js/jquery.qrcode-0.10.1.min.js'
           SRC_VENDOR + 'js/underscore-min.js'
@@ -173,13 +175,18 @@ module.exports = (grunt) ->
           SRC_VENDOR + 'js/backbone_babysitter.js'
           SRC_VENDOR + 'js/backbone.wreqr.min.js'
           SRC_COMPILED + 'js/jst.js'
+          SRC_VENDOR + "js/plugins/bootstrap-editable.min.js"
+          SRC_VENDOR + "js/plugins/jquery.dataTables.min.js"
+          SRC_VENDOR + "js/plugins/!(core|core.min|bootstrap-editable.min|css-filters-polyfill|jquery.dataTables.min).js"
+          SRC_VENDOR + "js/plugins/core.js"
           '<%= coffee.app.dest %>'
         ]
         dest: SRC_PUBLIC + 'js/app.js'
       login_js:
         src:[
-          SRC_VENDOR + 'js/modernizr.custom.44139.js'
+          SRC_VENDOR + 'js/modernizr.custom.js'
           SRC_VENDOR + 'js/jquery-1.11.1.min.js'
+          SRC_VENDOR + 'js/jquery-ui-1.10.4.min.js'
           SRC_VENDOR + 'js/jquery.cookies.2.2.0.min.js'
           SRC_VENDOR + 'js/underscore-min.js'
           SRC_VENDOR + 'js/backbone-min.js'
@@ -192,8 +199,11 @@ module.exports = (grunt) ->
 
       app_css:
         src: [
+          SRC_VENDOR + 'css/jquery-ui-1.10.4.min.css'
           SRC_VENDOR + 'css/pnotify.custom.min.css'
           SRC_VENDOR + 'css/bootstrap.min.css'
+          SRC_VENDOR + 'css/bootstrap-responsive.css'
+          SRC_VENDOR + 'css/plugins/**/*.css'
           '<%= less.app.dest %>'
         ]
         dest: SRC_PUBLIC + 'css/app.css'
@@ -213,6 +223,47 @@ module.exports = (grunt) ->
         ]
         dest: SRC_PUBLIC + 'css/test_api.css'
 
+
+    copy:
+      main:
+        files: [
+          {
+            expand: true
+            cwd: SRC_VENDOR + 'images/'
+            src: ['**']
+            dest: SRC_PUBLIC + "images/"
+          }
+          {
+            expand: true
+            cwd: SRC_VENDOR + 'img/'
+            src: ['**']
+            dest: SRC_PUBLIC + "img/"
+          }
+          {
+            expand: true
+            cwd: SRC_VENDOR + 'fonts/'
+            src: ['**']
+            dest: SRC_PUBLIC + "fonts/"
+          }
+          {
+            expand: true
+            cwd: SRC_VENDOR + 'ico/'
+            src: ['**']
+            dest: SRC_PUBLIC + "ico/"
+          }
+          {
+            expand: true
+            cwd: SRC_VENDOR + 'js/plugins/flot/'
+            src: ['**']
+            dest: SRC_PUBLIC + "js/css-filters-polyfill/"
+          }
+          {
+            expand: true
+            cwd: SRC_VENDOR + "../"
+            src: ['favicon.ico']
+            dest: SRC_PUBLIC
+          }
+        ]
 
 
     # Watch for changes of files
@@ -244,6 +295,17 @@ module.exports = (grunt) ->
         tasks: [
           'less:app'
           'concat:app_css'
+        ]
+
+      images:
+        files: [
+          SRC_VENDOR + 'img/**'
+          SRC_VENDOR + 'images/**'
+          SRC_VENDOR + 'ico/**'
+          SRC_VENDOR + 'fonts/**'
+        ]
+        tasks: [
+          'copy:main'
         ]
 
       login_js:
@@ -342,8 +404,9 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-exec'
 
   grunt.loadNpmTasks 'grunt-bump'
+  grunt.loadNpmTasks 'grunt-contrib-copy'
 
-  grunt.registerTask 'default', ['coffee', 'jst', 'less', 'concat']
+  grunt.registerTask 'default', ['coffee', 'jst', 'less', 'concat', 'copy']
   grunt.registerTask 'production', ['coffee', 'jst', 'less', 'concat', "cssmin", 'uglify']
 
   grunt.registerTask 'test', ['exec:test']
