@@ -23,7 +23,7 @@ $.ajaxSetup({
 
 $(document).ready ->
   ## Backbone link navgiate
-  $('a.route').on 'click', (event) ->
+  $('[data-role=route]').on 'click', (event) ->
     event.preventDefault()
 
     $a = $(event.target)

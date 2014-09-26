@@ -22,9 +22,17 @@ app.set('view engine', 'html')
 app.set('views', "#{global.root}/modules/webserver/views")
 app.set('view cache', false)
 
-# routers
 app.get '/', (req, res) ->
-  res.redirect "/test-api"
+  debug = (if req.query.debug then req.query.debug else config.get('debug'))
+
+  if req.isAuthenticated()
+    debug = (if req.query.debug then req.query.debug else config.get('debug'))
+    res.render "index.html", {rootBase: '/', address: "https://#{config.get('app').host}:#{config.get('app').port}", debug: debug}
+  else
+    #console.log "Redirect non auth user to login page"
+    #res.redirect "/login"
+    debug = (if req.query.debug then req.query.debug else config.get('debug'))
+    res.render "login.html", {debug: debug}
 
 app.get '/test-api', (req, res) ->
   debug = (if req.query.debug then req.query.debug else config.get('debug'))
@@ -54,6 +62,9 @@ app.get '/jobs', (req, res) ->
 app.get '/test-xmpp', (req, res) ->
   res.render "test-xmpp.html"
 
+
+app.get '/test-theme', (req, res) ->
+  res.render "theme.html"
 
 app.get '/404', (req, res) ->
   res.render "404.html"
