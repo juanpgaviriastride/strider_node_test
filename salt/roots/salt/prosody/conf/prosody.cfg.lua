@@ -124,7 +124,8 @@ s2s_require_encryption = false
 
 authentication = "json_http"
 
-auth_json_http_url = "http://192.168.50.1:3000/api/v1/auth/local"
+auth_credentials_url = "http://192.168.50.1:3000/api/v1/auth/local/"
+auth_token_url = "http://192.168.50.1:3000/api/v1/auth/token/"
 
 -- Select the storage backend to use. By default Prosody uses flat files
 -- in its configured data directory, but it also supports more backends
