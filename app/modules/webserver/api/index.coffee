@@ -247,6 +247,53 @@ apiController.namespace("/api/v1", () ->
     new MessagesResource().delete(req, res, next)
   )
 
+  ##
+  # Assets controllers
+  ##
+
+  # TODO: put this junk somewhere better
+  assets_conn = () ->
+    nano = require 'nano'
+    conf = require '../../../config'
+    # connect to CouchDB via nano
+    schema = 'http'
+    auth = ''
+    host = conf.get('couchdb').host
+    port = conf.get('couchdb').port
+    nano([schema, '://', auth, host, ':', port, '/'].join('')).use('asset')
+
+
+  # create binary asset
+  apiController.post('/assets', (req, res, next) ->
+    fs = require 'fs'
+    uuid = require 'node-uuid'
+    assets = assets_conn()
+    # pipe saved file named 'asset' to couch
+    # TODO: interrogate asset to discover mime type, don't trust the client
+    unless req.files.asset?
+      res.status(500).send("{\"error\":\"Asset required\"}")
+      return
+    content_type = req.files.asset.headers['content-type']
+    doc_id = uuid.v1()
+    to_user_id = req.body.to
+    reader = fs.createReadStream(req.files.asset.path)
+    # TODO: deal with duplicate ids
+    reader.pipe(
+      assets.attachment.insert(doc_id, 'blob', null, content_type)
+    )
+    reader.on 'error', (err)->
+      res.status(500).send("{\"error\":\"#{err}\", \"id\":\"#{doc_id}\"}")
+    reader.on 'end', ->
+      # TODO: fire off a message to XMPP to_user_id
+      res.status(200).send("{\"status\":\"ok\", \"id\":\"#{doc_id}\"}")
+  )
+
+  apiController.get('/assets/:id', (req, res, next) ->
+    assets = assets_conn()
+    doc_id = req.params.id
+    assets.attachment.get(doc_id, 'blob').pipe(res)
+  )
+
 
   ##
   # Devices controllers

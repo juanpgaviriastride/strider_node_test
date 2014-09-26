@@ -52,13 +52,15 @@
     "passport-http-bearer": "^1.0.1",
     "jwt-simple": "^0.2.0",
     "waterline": "^0.10.9",
+    "nano": "~5.7.1",
     "sails-couchdb-orm": "nullindustries/sails-couchdb-orm",
     "colors": "^0.6.2",
     "node-xmpp-server": "^1.0.0-alpha5",
     "node-xmpp-component": "^1.0.0-alpha1",
     "node-xmpp-client": "^1.0.0-alpha7",
     "node-xmpp": "^1.0.0-alpha2",
-    "simple-xmpp": "^0.1.92"
+    "simple-xmpp": "^0.1.92",
+    "node-uuid": "^1.4.1"
   },
   "devDependencies": {
     "mocha": "*",
