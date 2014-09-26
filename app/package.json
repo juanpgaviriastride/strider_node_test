@@ -3,8 +3,7 @@
   "version": "1.0.9",
   "private": true,
   "scripts": {
-    "start": "ENV=production coffee app.coffee",
-    "test": "grunt test | tail -n+3 > test/coverage.html && open test/coverage.html"
+    "start": "ENV=production coffee app.coffee"
   },
   "config": {
     "precommit": {
@@ -54,7 +53,12 @@
     "jwt-simple": "^0.2.0",
     "waterline": "^0.10.9",
     "sails-couchdb-orm": "nullindustries/sails-couchdb-orm",
-    "colors": "^0.6.2"
+    "colors": "^0.6.2",
+    "node-xmpp-server": "^1.0.0-alpha5",
+    "node-xmpp-component": "^1.0.0-alpha1",
+    "node-xmpp-client": "^1.0.0-alpha7",
+    "node-xmpp": "^1.0.0-alpha2",
+    "simple-xmpp": "^0.1.92"
   },
   "devDependencies": {
     "mocha": "*",
