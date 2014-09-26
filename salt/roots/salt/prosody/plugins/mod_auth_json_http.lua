@@ -24,36 +24,74 @@ local ltn12 = require "ltn12";
 local util_sasl_new = require "util.sasl".new;
 
 
-local auth_url = module:get_option_string("auth_json_http_url", "127.0.0.1/api/v1/auth/local");
-log("debug", "auth_url: %s", auth_url);
+local auth_token_url = module:get_option_string("auth_token_url");
+local auth_credentials_url = module:get_option_string("auth_credentials_url");
 
-assert(auth_url, "HTTP URL is needed");
+assert(auth_token_url, "auth_token_url setting missing");
+assert(auth_credentials_url, "auth_credentials_url setting missing");
 
--- for 0.9
--- local provider = {};
+function auth(url, headers, body, method)
+   local headers = headers or {};
+   local body = body or "";
 
-provider = {
-	name = module.name:gsub("^auth_","");
-};
+   headers["Content-Type"] = "application/json";
+   headers["Content-Length"] = tostring(#body);
+   local respbody = {};
+
+   log("debug", "URL: %s", url);
+
+   local result, respcode, respheaders, respstatus = http.request{
+      method = method,
+      url = url,
+      headers = headers,
+      source = ltn12.source.string(body),
+      sink = ltn12.sink.table(respbody)
+   }
+
+
+   if type(respcode) == "number" and respcode >= 200 and respcode <= 299 then
+      return true;
+   else
+      log("debug", "HTTP authentication returned with code: %s", respcode);
+      return nil, "Unauthorized."
+   end
+end
+
+function auth_token(token)
+   local url = auth_token_url;
+   local headers = {
+      ["Authorization"] = "Bearer "..token;
+   };
+   local body = "";
+   local method = "GET";
+
+   return auth(url, headers, body, method);
+end
+
+function auth_credentials(username, password)
+   local url = auth_credentials_url;
+   local headers = {};
+   local body = json.encode({ username = username, password = password });
+   local method = "POST";
+
+   return auth(url, headers, body, method);
+end
+
+
+local provider = {};
+
+-- for 0.8
+--provider = {
+--	name = module.name:gsub("^auth_","");
+--};
+
 
 function provider.get_sasl_handler()
    local getpass_authentication_profile = {
       plain_test = function(sasl, username, password, realm)
-         local credentials = json.encode({ username = username, password = password });
-         local respbody = {};
-         local result, respcode, respheaders, respstatus = http.request{
-            method = "POST",
-            url = auth_url,
-            headers = {
-               ["Content-Type"] = "application/json",
-               ["Content-Length"] = tostring(#credentials)
-            },
-            source = ltn12.source.string(credentials),
-            sink = ltn12.sink.table(respbody)
-         }
-         log("debug", "respcode: %s", respcode);
-         return respcode == 200, true;
-      end,
+         local token = password;
+         return auth_token(token) or auth_credentials(username, password), true
+      end
    };
    return util_sasl_new(module.host, getpass_authentication_profile);
 end
@@ -85,7 +123,7 @@ function provider.user_exists(username)
    return true;
 end
 
+-- for 0.8
+--module:add_item("auth-provider", provider);
 
-module:add_item("auth-provider", provider);
--- for 0.9
--- module:provides("auth", provider)
+module:provides("auth", provider)

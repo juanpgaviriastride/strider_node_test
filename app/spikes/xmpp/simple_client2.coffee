@@ -21,7 +21,7 @@ xmpp.on "subscribe", (from) ->
 
 xmpp.connect
   jid: "me@192.168.50.4"
-  password: "123"
+  password: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzY29wZSI6WyJhcGkiXSwidXNlcl9pZCI6IjkyNDNlMzc3Nzk5NDA2NjQ5Mjk5MTU3NjE0MDMxZTE1IiwidXNlcl90eXBlIjoidXNlciJ9.4ARWYzDzKynCbHNsOLCYbJrepaJTnHQ_hlvW5ayqzko"
   host: "192.168.50.4"
   port: 5222
 
