@@ -1,8 +1,13 @@
 window.App =
   Routers: {}
-  Models: {}
-  Collections: {}
+  Models: {
+    XMPP: {}
+  }
+  Collections: {
+    XMPP: {}
+  }
   Events: {}
+  XMPP: {}
   Views: {
     Contacts: {}
     Chats: {}

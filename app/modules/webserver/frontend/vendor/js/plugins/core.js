@@ -475,3 +475,7 @@ function widthFunctions(e) {
 		$('.main').css('min-height',winHeight-footerHeight);
 	}
 }
+
+$(document).ready(function () {
+	widthFunctions()
+});

@@ -8,6 +8,8 @@ class App.Views.Helpers.Contacts.Select extends System.Views.Helpers.Select
 
   renderOption: (item) =>
     return {
-      value: item.id,
+      value: item.get('contact_username'),
+      data:
+        id: item.id
       text: "#{item.escape('contact_name')} (#{item.escape('contact_username')})"
     }

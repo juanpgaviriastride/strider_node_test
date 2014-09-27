@@ -26,6 +26,7 @@ class System.Views.Base extends Backbone.View
   remove: () =>
     @undelegateEvents()
     @unbind()
+    @__appendedViews.call('removeAll')
     @$el.html("")
   ,
   #
@@ -63,6 +64,28 @@ class System.Views.Base extends Backbone.View
 
   appendView: (view, destination = '') =>
     @__add view, destination
+
+  cleanForm: (element, exclude) =>
+    unless element
+      element = $("form", @$el)
+    unless exclude
+      exclude = []
+
+    form_elements = {}
+
+    _.each($("input", element), (input) =>
+      return if $(input).attr("id") in exclude
+      $(input).val('')
+    )
+    _.each($("select", element), (input) =>
+      return if $(input).attr("id") in exclude
+      $(input).val('')
+    )
+    _.each($("textarea", element), (input) =>
+      return if $(input).attr("id") in exclude
+      $(input).val('')
+    )
+
 
   getFormInputs: (element, exclude) =>
     unless element
@@ -153,3 +176,15 @@ _.extend System.Views.Base, Backbone.Events
 _.each ['find', 'addClass', 'attr', 'removeClass', 'fadeIn', 'fadeOut', 'effect', 'css', 'append', 'prepend', 'prop', 'is', 'blur'], (method) =>
   System.Views.Base::[method] = (args...) ->
     @$el[method].apply @$el, args
+
+
+class ProxyEvent
+  constructor: (view, name) ->
+    @name = name
+    @view = view
+    @stopped = no
+
+  isStopped: -> @stopped
+
+  stopPropagation: ->
+    @stopped = yes

@@ -77,9 +77,9 @@
     <div id="settings">
       <h1>Connection Settings</h1>
       <form id="loginInfo">
-        <label>JID: <input id="jid" type="text" name="jid" value="juan@192.168.50.4"/></label>
+        <label>JID: <input id="jid" type="text" name="jid" value="pepe@192.168.50.4"/></label>
         <label>Password: <input id="password" type="password" name="password" value="123"/></label>
-        <label>WebSocket/BOSH URL: <input id="url" type="text" name="url" value="http://192.168.50.4:5280/http-bind" /></label>
+        <label>WebSocket/BOSH URL: <input id="url" type="text" name="url" value="ws://192.168.50.4:5280/xmpp-websocket" /></label>
         <input id="connect" type="submit" value="Connect" />
       </form>
     </div>
@@ -134,7 +134,7 @@
             transports = ['bosh'];
         } else if (url.indexOf('ws') === 0) {
             wsURL = url;
-            transports = ['websocket'];
+            transports = ['old-websocket'];
         }
 
         client = XMPP.createClient({
