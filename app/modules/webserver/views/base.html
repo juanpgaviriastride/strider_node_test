@@ -12,12 +12,18 @@
   <script type="text/javascript" src="/js/app.js"></script>
   {%endblock%}
 </head>
-<body>
-  {%block main%}
+<body class="{%block bodyStyles%}{%endblock%}">
+  
+    {%block main%}
 
-  {%endblock%} <!-- /main -->
+    {%endblock%} <!-- /main -->
+
   <footer>
-    &copy; Context Surgery
+    <div class="row">
+      <div class="col-sm-5">
+        &copy; Context Surgery
+      </div>
+    </div>
   </footer>
   {%block inline_scripts%}
   <script type="text/javascript">
