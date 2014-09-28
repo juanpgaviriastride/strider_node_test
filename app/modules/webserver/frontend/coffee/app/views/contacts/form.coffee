@@ -31,5 +31,5 @@ class App.Views.Contacts.Form extends System.Views.Base
       wait: true
 
     }
-    
+
     app.xmpp.sendSubscription($('select[data-role=contact_id] option:selected', @$el).data('username'))

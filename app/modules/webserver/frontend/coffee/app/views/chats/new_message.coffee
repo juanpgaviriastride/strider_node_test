@@ -13,6 +13,7 @@ class App.Views.Chats.NewMessage extends System.Views.Base
 
   render: () =>
     super
+
     @contacts = new App.Views.Helpers.Contacts.Select({el: $('select[data-role=to]', @$el)})
     @
 
@@ -20,8 +21,6 @@ class App.Views.Chats.NewMessage extends System.Views.Base
   show: () ->
     @contacts.render()
     $('.modal', @$el).modal('show')
-
-
 
   hide: () ->
     $('.modal', @$el).modal('hide')

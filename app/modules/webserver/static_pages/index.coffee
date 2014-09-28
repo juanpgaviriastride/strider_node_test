@@ -35,6 +35,7 @@ app.get '/', (req, res) ->
       domain: "#{config.get('app').host}",
       debug: debug
     }
+
   else
     #console.log "Redirect non auth user to login page"
     #res.redirect "/login"

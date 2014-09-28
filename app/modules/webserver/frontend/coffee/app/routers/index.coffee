@@ -4,7 +4,6 @@ class App.Routers.Index extends System.Routers.Base
     'contacts': 'contacts'
     'messages/@:username': 'chat'
 
-
   index: =>
     @selectNav('')
     app.current_view = new App.Views.Chats.Index({el: "[data-role=main]"})
