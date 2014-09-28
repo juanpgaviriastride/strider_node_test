@@ -5,17 +5,24 @@ module.exports = {
   "app": {
     "baseUrl": "http://localhost:3000/"
     "host": "localhost",
-    "port": 3000
+    "port": 3000,
+    "im":
+      xmpp:
+        host: "162.209.94.221"
+        port: 5222
+      bosh:
+        host: "162.209.94.221"
+        port: 5280
   },
   "media_root": 'modules/webserver/public/userdata',
   "media_url": 'userdata',
   "mongo": {
-    "host": "192.168.50.4",
+    "host": "localhost",
     "port": 27017,
     "db": "context_surgery"
   },
   "redis": {
-    "host": "192.168.50.4",
+    "host": "localhost",
     "port": 6379,
     "options": {
       "auth": "adfbb423-a9af-4494-9ee0-418c707f4457"
@@ -27,10 +34,15 @@ module.exports = {
   }
   "elasticsearch": {
     "hosts": [{
-      host: "192.168.50.4",
+      host: "localhost",
       "port": 9200
     }]
     "index_name": "cs"
+  },
+  "couchdb": {
+    "database": "cs"
+    "host": "localhost",
+    "port": 5984
   },
   "google_maps": {
     "key": "AIzaSyDNls3JPEGa3uPSCjdPEzEvtkURk5PRWjc"

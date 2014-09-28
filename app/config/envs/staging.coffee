@@ -5,7 +5,14 @@ module.exports = {
   "app": {
     "baseUrl": "http://localhost:3000/"
     "host": "localhost",
-    "port": 3000
+    "port": 3000,
+    "im":
+      xmpp:
+        host: "162.209.94.221"
+        port: 5222
+      bosh:
+        host: "162.209.94.221"
+        port: 5280
   },
   "media_root": 'modules/webserver/public/userdata',
   "media_url": 'userdata',
@@ -33,7 +40,7 @@ module.exports = {
     "index_name": "cs_staging"
   },
   "couchdb": {
-    "database": "cs_dev"
+    "database": "cs_staging"
     "host": "162.209.94.221",
     "port": 5984
   },
