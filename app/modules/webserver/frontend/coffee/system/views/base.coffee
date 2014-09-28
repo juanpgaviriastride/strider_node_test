@@ -65,6 +65,9 @@ class System.Views.Base extends Backbone.View
   appendView: (view, destination = '') =>
     @__add view, destination
 
+  appendAfterView: (view, destination = '') =>
+    @__add view, destination, "after"
+
   cleanForm: (element, exclude) =>
     unless element
       element = $("form", @$el)

@@ -20,6 +20,7 @@ class App.XMPP.Client
 
     # manage subscirpts
     @xmpp.on "subscribe", @onSubscribe
+    @xmpp.on "subscribed", @onSubscribed
     @xmpp.on "message:sent", @onMessageSent
     @xmpp.on "chat", @onChat
 
@@ -54,7 +55,16 @@ class App.XMPP.Client
 
   acceptSubscription: (username) =>
     console.log "Accepeting subscirpt"
-    console.log "Sending subscription to be auto accepted"
+
+    jid = "#{username}@#{imConfig.host}"
+    @xmpp.acceptSubscription(jid)
+    @sendSubscription(username)
+
+  rejectSubscription: (username) =>
+    console.log "Rejecting subscirpt"
+
+    jid = "#{username}@#{imConfig.host}"
+    @xmpp.denySubscription(jid)
 
   sendMessage: (username, message) =>
     to = "#{username}@#{imConfig.host}"
@@ -69,6 +79,11 @@ class App.XMPP.Client
     # call when the user receive a subscibe
     console.log "Subscribe revice", data
     app.me.addContactRequest(data)
+
+  onSubscribed: (data) =>
+    console.log "Subscied to: ", data
+    @acceptSubscription(data.from.local)
+
 
   onChat: (msg) =>
     msg = msg.toJSON() if msg.toJSON?
