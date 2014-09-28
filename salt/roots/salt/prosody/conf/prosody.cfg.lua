@@ -20,15 +20,17 @@
 -- for the server. Note that you must create the accounts separately
 -- (see http://prosody.im/doc/creating_accounts for info)
 -- Example: admins = { "user1@example.com", "user2@example.net" }
-admins = {'admin@192.168.50.4' }
+admins = {"admin@192.168.50.4" }
 
 -- Enable use of libevent for better performance under high load
 -- For more information see: http://prosody.im/doc/libevent
-use_libevent = true;
+--use_libevent = true;
 
 -- This is the list of modules Prosody will load on startup.
 -- It looks for mod_modulename.lua in the plugins folder, so make sure that exists too.
 -- Documentation on modules can be found at: http://prosody.im/doc/modules
+plugin_paths = { "/etc/prosody/plugins"}
+
 modules_enabled = {
 
 	-- Generally required
@@ -41,45 +43,50 @@ modules_enabled = {
 	-- Not essential, but recommended
 		"private"; -- Private XML storage (for room bookmarks, etc.)
 		"vcard"; -- Allow users to set vCards
+
+	-- These are commented by default as they have a performance impact
 		--"privacy"; -- Support privacy lists
-		--"compression"; -- Stream compression
+		--"compression"; -- Stream compression (Debian: requires lua-zlib module to work)
 
 	-- Nice to have
-		"legacyauth"; -- Legacy authentication. Only used by some old clients and bots.
 		"version"; -- Replies to server version requests
 		"uptime"; -- Report how long server has been running
 		"time"; -- Let others know the time here on this server
 		"ping"; -- Replies to XMPP pings with pongs
 		"pep"; -- Enables users to publish their mood, activity, playing music and more
 		"register"; -- Allow users to register on this server using a client and change passwords
-		"adhoc"; -- Support for "ad-hoc commands" that can be executed with an XMPP client
 
 	-- Admin interfaces
 		"admin_adhoc"; -- Allows administration via an XMPP client that supports ad-hoc commands
 		--"admin_telnet"; -- Opens telnet console interface on localhost port 5582
 
-	-- Other specific functionality
+	-- HTTP modules
 		"bosh"; -- Enable BOSH clients, aka "Jabber over HTTP"
-		"httpserver"; -- Serve static files from a directory over HTTP
-		"groups"; -- Shared roster support
-		--"announce"; -- Send announcement to all online users
-		"welcome"; -- Welcome users who register accounts
-		"watchregistrations"; -- Alert admins of registrations
-		"motd"; -- Send a message to users when they log in
-	-- Debian: do not remove this module, or you lose syslog
-	-- support
+		"http_files"; -- Serve static files from a directory over HTTP
+
+	-- Other specific functionality
 		"posix"; -- POSIX functionality, sends server to background, enables syslog, etc.
-		"register_from_component";
+		"groups"; -- Shared roster support
+		"announce"; -- Send announcement to all online users
+		"welcome"; -- Welcome users who register accounts
+		--"watchregistrations"; -- Alert admins of registrations
+		--"motd"; -- Send a message to users when they log in
+		--"legacyauth"; -- Legacy authentication. Only used by some old clients and bots.
+		"websocket";
+		"carbons";
 };
 
--- These modules are auto-loaded, should you
--- (for some mad reason) want to disable
--- them then uncomment them below
+bosh_ports = { 5280 };
+cross_domain_bosh = true;
+cross_domain_websocket = true;
+consider_websocket_secure = true;
+
+-- These modules are auto-loaded, but should you want
+-- to disable them then uncomment them here:
 modules_disabled = {
-	-- "presence"; -- Route user/contact status information
-	-- "message"; -- Route messages
-	-- "iq"; -- Route info queries
 	-- "offline"; -- Store offline messages
+	-- "c2s"; -- Handle client connections
+	-- "s2s"; -- Handle server-to-server connections
 };
 
 -- Disable account creation by default, for security
@@ -101,19 +108,34 @@ pidfile = "/var/run/prosody/prosody.pid";
 
 -- These are the SSL/TLS-related settings. If you don't want
 -- to use SSL/TLS, you may comment or remove this
-ssl = {
-	key = "/etc/prosody/certs/localhost.key";
-	certificate = "/etc/prosody/certs/localhost.cert";
-}
+--ssl = {
+--	key = "/etc/prosody/certs/localhost.key";
+--	certificate = "/etc/prosody/certs/localhost.crt";
+--}
 
--- Only allow encrypted streams? Encryption is already used when
--- available. These options will cause Prosody to deny connections that
--- are not encrypted. Note that some servers do not support s2s
--- encryption or have it disabled, including gmail.com and Google Apps
--- domains.
+-- Force clients to use encrypted connections? This option will
+-- prevent clients from authenticating unless they are using encryption.
 
 c2s_require_encryption = false
-s2s_require_encryption = false
+
+-- Force certificate authentication for server-to-server connections?
+-- This provides ideal security, but requires servers you communicate
+-- with to support encryption AND present valid, trusted certificates.
+-- NOTE: Your version of LuaSec must support certificate verification!
+-- For more information see http://prosody.im/doc/s2s#security
+
+s2s_secure_auth = false
+
+-- Many servers don't support encryption or have invalid or self-signed
+-- certificates. You can list domains here that will not be required to
+-- authenticate using certificates. They will be authenticated using DNS.
+
+--s2s_insecure_domains = { "gmail.com" }
+
+-- Even if you leave s2s_secure_auth disabled, you can still require valid
+-- certificates for some domains by specifying a list here.
+
+--s2s_secure_domains = { "jabber.org" }
 
 -- Select the authentication backend to use. The 'internal' providers
 -- use Prosody's configured data storage to store the authentication data.
@@ -122,17 +144,19 @@ s2s_require_encryption = false
 -- server please see http://prosody.im/doc/modules/mod_auth_internal_hashed
 -- for information about using the hashed backend.
 
+-- authentication = "internal_plain"
 authentication = "json_http"
 
-auth_credentials_url = "http://192.168.50.1:3000/api/v1/auth/local/"
-auth_token_url = "http://192.168.50.1:3000/api/v1/auth/token/"
+auth_credentials_url = "{{ auth_credentials_url }}" --"http://192.168.50.1:3000/api/v1/auth/local"
+auth_token_url = "{{ auth_token_url }}"
 
 -- Select the storage backend to use. By default Prosody uses flat files
 -- in its configured data directory, but it also supports more backends
 -- through modules. An "sql" backend is included by default, but requires
 -- additional dependencies. See http://prosody.im/doc/storage for more info.
 
---storage = "sql" -- Default is "internal"
+--storage = "sql" -- Default is "internal" (Debian: "sql" requires one of the
+-- lua-dbi-sqlite3, lua-dbi-mysql or lua-dbi-postgresql packages to work)
 
 -- For the "sql" backend, you can uncomment *one* of the below to configure:
 --sql = { driver = "SQLite3", database = "prosody.sqlite" } -- Default. 'database' is the filename.
@@ -164,10 +188,10 @@ VirtualHost "192.168.50.4"
 	-- set in the global section (if any).
 	-- Note that old-style SSL on port 5223 only supports one certificate, and will always
 	-- use the global one.
-	-- ssl = {
+	--ssl = {
 	--	key = "/etc/prosody/certs/example.com.key";
 	--	certificate = "/etc/prosody/certs/example.com.crt";
-	-- }
+	--}
 
 ------ Components ------
 -- You can specify components to add hosts that provide special services,
@@ -175,10 +199,7 @@ VirtualHost "192.168.50.4"
 -- For more information on components, see http://prosody.im/doc/components
 
 ---Set up a MUC (multi-user chat) room server on conference.example.com:
---component_ports = { 8888 }
---component_interface = "192.168.50.4"
-Component "192.168.50.1"
-	component_secret = "123"
+--Component "conference.example.com" "muc"
 
 -- Set up a SOCKS5 bytestream proxy for server-proxied file transfers:
 --Component "proxy.example.com" "proxy65"

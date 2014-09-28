@@ -13,22 +13,17 @@
   {%endblock%}
 </head>
 <body class="{%block bodyStyles%}{%endblock%}">
-  
+
     {%block main%}
 
     {%endblock%} <!-- /main -->
 
-  <footer>
-    <div class="row">
-      <div class="col-sm-5">
-        &copy; Context Surgery
-      </div>
-    </div>
-  </footer>
   {%block inline_scripts%}
   <script type="text/javascript">
+    window.domain = "{{domain}}";
     window.address = "{{address}}";
     window.rootBase = "{{rootBase}}";
+    window.imConfig = {host: "{{imHost}}", port: "{{imPort}}"};
   </script>
   {%endblock%}
 </body>

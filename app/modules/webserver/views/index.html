@@ -14,7 +14,7 @@
       <div class="nav navbar-nav navbar-left">
         <a class="navbar-brand" href="index.html#"><span>Welcome to Context Surgery</span></a>
       </div>
-      
+
       <ul class="nav navbar-nav navbar-right visible-md visible-lg">
         <li class="dropdown visible-md visible-lg">
           <a href="index.html#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-envelope-letter"></i><span class="badge">4</span></a>
@@ -83,7 +83,7 @@
               <strong>Account</strong>
             </li>
             <li class="divider"></li>
-            <li class=""><a href="index.html#"><i class="fa fa-lock"></i> Logout</a></li>
+            <li class=""><a href="/logout" class="route" data-role="route"><i class="fa fa-lock"></i> Logout</a></li>
           </ul>
         </li>
       </ul>
@@ -101,10 +101,8 @@
         <div class="sidebar-menu">
           <ul class="nav nav-sidebar">
             <li><a href="/contacts" data-role="route">Contacts</a></li>
-            <li><a href="/" data-role="route">Chats
-              <ul class="nav nav-sidebar" data-role="chats">
-                <!-- backbone view -->
-              </ul>
+            <li data-role="roster">
+              <!-- backbone view -->
             </li>
           </ul>
         </div>
@@ -152,6 +150,7 @@
     <div data-role="modal-container">
 
     </div>
+
 {%endblock%}
 
 {%block inline_scripts%}

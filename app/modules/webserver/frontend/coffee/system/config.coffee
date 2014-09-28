@@ -23,7 +23,7 @@ $.ajaxSetup({
 
 $(document).ready ->
   ## Backbone link navgiate
-  $('[data-role=route]').on 'click', (event) ->
+  $( document ).on( "click", '[data-role=route]', (event) ->
     event.preventDefault()
 
     $a = $(event.target)
@@ -31,3 +31,4 @@ $(document).ready ->
       $a = $a.parent()
 
     Backbone.history.navigate("#{$a.attr('href')}", {trigger: true})
+  )

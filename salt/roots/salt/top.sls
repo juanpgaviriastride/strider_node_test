@@ -6,3 +6,4 @@ base:
     - redis
     - elasticsearch
     - couchdb
+    - prosody

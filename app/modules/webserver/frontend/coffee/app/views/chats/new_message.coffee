@@ -19,8 +19,8 @@ class App.Views.Chats.NewMessage extends System.Views.Base
 
 
   show: () ->
+    @contacts.render()
     $('.modal', @$el).modal('show')
-
 
   hide: () ->
     $('.modal', @$el).modal('hide')
@@ -35,12 +35,6 @@ class App.Views.Chats.NewMessage extends System.Views.Base
       "to":  data.to
       "message":  data.message
 
-    return console.log "Message to send: ", message
-    app.conversations.create message, {
-      success: (model, response) =>
-        console.log "Created", model, response
-      error: (model, response) =>
-        console.log "ERror", model, response
-      wait: true
+    console.log "Message to send: ", message
 
-    }
+    app.xmpp.sendMessage(data.to, data.message)

@@ -1,0 +1,10 @@
+<div class="author">
+  <img src="/img/avatar.jpg" alt="avatar">
+</div>
+<div class="header">
+  <strong><%= model.get('from').local || "me" %></strong>
+  <span class="location"> <i class="icon-clock"></i> <%= moment().format('MMM DD hh:mm a') %></span>
+</div>
+<div class="description">
+  <%= model.escape('body') %>
+</div>

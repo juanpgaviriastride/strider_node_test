@@ -5,7 +5,14 @@ module.exports = {
   "app": {
     "baseUrl": "http://localhost:3000/"
     "host": "localhost",
-    "port": 3000
+    "port": 3000,
+    "im":
+      xmpp:
+        host: "162.209.94.221"
+        port: 5222
+      bosh:
+        host: "162.209.94.221"
+        port: 5280
   },
   "media_root": 'modules/webserver/public/userdata',
   "media_url": 'userdata',
@@ -31,6 +38,11 @@ module.exports = {
       "port": 9200
     }]
     "index_name": "cs_integration"
+  },
+  "couchdb": {
+    "database": "cs_integration"
+    "host": "162.209.94.221",
+    "port": 5984
   },
   "google_maps": {
     "key": "AIzaSyDNls3JPEGa3uPSCjdPEzEvtkURk5PRWjc"
