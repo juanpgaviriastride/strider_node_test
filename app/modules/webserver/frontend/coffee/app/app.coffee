@@ -56,7 +56,7 @@ class App.Initialize
 
   loadXMPP: () =>
     # replace toke 123 for the aut_token when the prosody allowto auth with bearer token
-    token = (if $.cookies.get('xmpp_token') then "#{$.cookies.get('xmpp_token')}" else "123")
+    token = (if $.cookies.get('auth_token') then "#{$.cookies.get('auth_token')}" else "123")
     @xmpp = new App.XMPP.Client({username: $.cookies.get('user').username, token: token})
 
 $(document).ready ->
