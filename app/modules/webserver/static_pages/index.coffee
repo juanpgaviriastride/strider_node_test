@@ -29,10 +29,10 @@ app.get '/', (req, res) ->
     debug = (if req.query.debug then req.query.debug else config.get('debug'))
     res.render "index.html", {
       rootBase: '/',
-      address: "https://#{config.get('app').host}:#{config.get('app').port}",
+      address: config.get('app').baseUrl,
       imHost: "#{config.get('app').im?.bosh?.host}",
       imPort: "#{config.get('app').im?.bosh?.port}",
-      domain: "#{config.get('app').host}",
+      domain: config.get('app').host,
       debug: debug
     }
 
@@ -47,7 +47,14 @@ app.get '/test-api', (req, res) ->
 
   if req.isAuthenticated()
     debug = (if req.query.debug then req.query.debug else config.get('debug'))
-    res.render "test_api.html", {rootBase: '/test-api', address: "https://#{config.get('app').host}:#{config.get('app').port}", debug: debug}
+    res.render "test_api.html", {
+      rootBase: '/test-api',
+      address: config.get('app').baseUrl,
+      imHost: "#{config.get('app').im?.bosh?.host}",
+      imPort: "#{config.get('app').im?.bosh?.port}",
+      domain: config.get('app').host,
+      debug: debug
+    }
   else
     #console.log "Redirect non auth user to login page"
     #res.redirect "/login"
