@@ -74,5 +74,8 @@ app.get '/test-xmpp', (req, res) ->
 app.get '/test-theme', (req, res) ->
   res.render "theme.html"
 
+app.get '/test-theme/:page', (req, res) ->
+  res.render "theme/#{req.params.page}"
+
 app.get '/404', (req, res) ->
   res.render "404.html"
