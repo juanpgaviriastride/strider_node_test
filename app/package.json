@@ -60,7 +60,8 @@
     "node-xmpp-client": "^1.0.0-alpha7",
     "node-xmpp": "^1.0.0-alpha2",
     "simple-xmpp": "^0.1.92",
-    "node-uuid": "^1.4.1"
+    "node-uuid": "^1.4.1",
+    "grunt-bump": "0.0.13"
   },
   "devDependencies": {
     "mocha": "*",

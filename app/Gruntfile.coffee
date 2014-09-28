@@ -206,7 +206,7 @@ module.exports = (grunt) ->
           SRC_VENDOR + 'css/pnotify.custom.min.css'
           SRC_VENDOR + 'css/bootstrap.min.css'
           SRC_VENDOR + 'css/bootstrap-responsive.css'
-          SRC_VENDOR + 'css/plugins/**/*.css'
+          SRC_VENDOR + 'css/plugins/**/!(print).css'
           '<%= less.app.dest %>'
         ]
         dest: SRC_PUBLIC + 'css/app.css'
