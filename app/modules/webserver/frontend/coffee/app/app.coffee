@@ -36,6 +36,7 @@ class App.Initialize
 
     # load meModel
     @me = new App.Models.Me($.cookies.get('user'))
+    @me_info = new App.Views.Me.Info({el: '[data-role="me-info"]',model: @me})
     # load the conversation list
     #@conversations = new
 
