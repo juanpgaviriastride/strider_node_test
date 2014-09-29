@@ -44,6 +44,9 @@ class App.Initialize
     # to hide call app.new_meesage.hide()
     #@new_message = new App.Views.Chats.NewMessage({el: 'div[data-role=modal-container]'})
 
+    # load contact invitations on the top right menu dropdown
+    @invitations = new App.Views.Contacts.Invitations({el: 'ul[data-role=check-invitations]'})
+
     # load roster
     @roster = new App.Views.Chats.Roster({el: '[data-role=roster]'})
 

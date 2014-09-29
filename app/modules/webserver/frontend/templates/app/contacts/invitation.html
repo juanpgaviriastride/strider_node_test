@@ -1,0 +1,10 @@
+<a href="" data-role="contact-info">
+  <img class="avatar" src="/img/avatar.jpg">
+  <div><%= model.get('from').local %>
+  </div>
+  <small><%= moment().from(moment().subtract('m', 1)) %></small>
+</a>
+<div class="invitation-actions">
+  <a href="" class="glyphicons remove gray pull-left" data-role="reject"></a>
+  <a href="" class="glyphicons ok gray pull-right" data-role="accept"></a>
+</div>
