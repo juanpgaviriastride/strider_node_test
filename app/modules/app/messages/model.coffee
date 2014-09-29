@@ -8,10 +8,13 @@ Message = Waterline.Collection.extend(
 
   attributes: {
     id: { type: 'string', primaryKey: true, unique: true }
-    "text": {type: 'string', required: false}
-    "asset_ids": {type: 'array' }
-    "from_user_id": {type: 'string' }
-    "to_user_id": {type: 'string' }
+    "body": { type: 'string', required: false}
+    "type": { type: 'string' }
+    "from": { type: 'string' }
+    "to": { type: 'string' }
+    "from_jid": { type: 'string' }
+    "to_jid": { type: 'string' }
+    "timestamp": { type: 'date' }
   }
 )
 
