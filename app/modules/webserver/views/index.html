@@ -12,7 +12,7 @@
   <!-- =========================================== navbar begins =========================================== -->
     <div class="navbar" role="navigation">
       <div class="navbar-header">
-	   <a class="navbar-brand" href="index.html#" data-role="route"><img src="/favicon.ico" style="margin-top: -8px;"> <span>Context Surgery</span></a>
+	   <a class="navbar-brand" href="/" data-role="route"><img src="/favicon.ico" style="margin-top: -8px;"> <span>Context Surgery</span></a>
 	  </div>
       <ul class="nav navbar-nav navbar-actions navbar-left">
 				<li class="visible-md visible-lg"><a id="main-menu-toggle"><i class="fa fa-bars"></i></a></li>
@@ -27,7 +27,7 @@
             <i class="icon-users"></i>
             <span class="badge" data-role="pending-invitations-count"></span>
           </a>
-          <ul class="dropdown-menu" data-role="check-invitations">
+          <ul class="dropdown-menu container contacts" data-role="check-invitations">
             <!-- backbone views -->
           </ul>
         </li>
@@ -54,14 +54,14 @@
 
         <div class="sidebar-menu">
           <ul class="nav nav-sidebar">
-            <li data-href="contacts"><a href="/contacts" data-role="route">Contacts</a></li>
+            <!-- <li data-href="contacts"><a href="/contacts" data-role="route">Contacts</a></li> -->
             <li data-role="roster" data-href="">
               <!-- backbone view -->
             </li>
           </ul>
         </div>
       </div>
-      <div class="sidebar-footer">
+      <!-- hiding this for the demo as it is not populated by real data yet. <div class="sidebar-footer">
         <ul class="sidebar-actions">
           <li class="action">
             <div class="btn-group dropup">
@@ -88,12 +88,12 @@
         </ul>
         <ul class="sidebar-terms">
           &nbsp;
-          <!-- <li><a href="index.html#">Terms</a></li>
+           <li><a href="index.html#">Terms</a></li>
           <li><a href="index.html#">Privacy</a></li>
           <li><a href="index.html#">Help</a></li>
-          <li><a href="index.html#">About</a></li> -->
+          <li><a href="index.html#">About</a></li> 
         </ul>
-      </div>
+      </div> -->
     </div>
     <!-- =========================================== sidebar ends =========================================== -->
     <!-- =========================================== main begins =========================================== -->
@@ -101,6 +101,14 @@
       <!-- backbone views -->
     </div>
     <!-- =========================================== main end =========================================== -->
+    <footer>
+      <div class="row">
+        <div class="col-sm-5">
+          © 2014 context surgery by context aware.
+        </div>
+      </div>
+    </footer>
+    
     <div data-role="modal-container">
 
     </div>
