@@ -1,1 +1,8 @@
-<span data-role="chat"><i class="fa fa-circle green"></i><span class="text"> <%= model.escape('local') %></span></span>
+<span data-role="chat">
+  <% if(model.get("subscription") == "both"){ %>
+    <i class="fa fa-circle green"></i>
+  <% }else{ %>
+    <i class="fa fa-circle gray"></i>
+  <% } %>
+  <span class="text"> <%= model.escape('local') %></span>
+</span>

@@ -34,7 +34,6 @@ DeviceTokenRequest = Waterline.Collection.extend(
     "user": { model: 'user' },
     "status": {type: 'string', defaultsTo: "sent"}
     "host_url": {type: 'string', defaultsTo: config.get('app').baseUrl},
-    "im_uri": {type: 'string'},
     "request_token": {type: 'string'},
   }
 
@@ -47,7 +46,6 @@ DeviceTokenRequest = Waterline.Collection.extend(
     shasum = crypto.createHash('sha1')
     shasum.update(jwt.encode(context, config.get("request_token_secret")))
     values.request_token = shasum.digest('hex')
-    values.im_uri = "xmpp:#{values.user}@#{config.get('app').im?.xmpp.host}:#{config.get('app').im?.xmpp.port}"
     next()
 )
 
