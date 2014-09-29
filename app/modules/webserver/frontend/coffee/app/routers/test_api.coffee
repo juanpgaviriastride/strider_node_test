@@ -10,35 +10,28 @@ class App.Routers.TestApi extends System.Routers.Base
 
   index: =>
     @selectNav('')
-    app.current_view = new App.Views.TestApi.Users.Index({el: "#main"})
-    app.current_view.render()
+    app.loadPage App.Views.TestApi.Users.Index, {el: "[data-role=main]"}
 
   patients: =>
     @selectNav('patients')
-    app.current_view = new App.Views.TestApi.Patients.Index({el: "#main"})
-    app.current_view.render()
+    app.loadPage App.Views.TestApi.Patients.Index, {el: "[data-role=main]"}
 
   surgeries: =>
     @selectNav('surgeries')
-    app.current_view = new App.Views.TestApi.Surgeries.Index({el: "#main"})
-    app.current_view.render()
+    app.loadPage App.Views.TestApi.Surgeries.Index, {el: "[data-role=main]"}
 
   locations: =>
     @selectNav('locations')
-    app.current_view = new App.Views.TestApi.Locations.Index({el: "#main"})
-    app.current_view.render()
+    app.loadPage App.Views.TestApi.Locations.Index, {el: "[data-role=main]"}
 
   messages: =>
     @selectNav('messages')
-    app.current_view = new App.Views.TestApi.Messages.Index({el: "#main"})
-    app.current_view.render()
+    app.loadPage App.Views.TestApi.Messages.Index, {el: "[data-role=main]"}
 
   devices: =>
     @selectNav('devices')
-    app.current_view = new App.Views.TestApi.Devices.Index({el: "#main"})
-    app.current_view.render()
+    app.loadPage App.Views.TestApi.Devices.Index, {el: "[data-role=main]"}
 
   contacts: =>
     @selectNav('contacts')
-    app.current_view = new App.Views.TestApi.Contacts.Index({el: "#main"})
-    app.current_view.render()
+    app.loadPage App.Views.TestApi.Contacts.Index, {el: "[data-role=main]"}

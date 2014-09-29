@@ -62,6 +62,11 @@ class App.Initialize
     token = (if $.cookies.get('auth_token') then "#{$.cookies.get('auth_token')}" else "123")
     @xmpp = new App.XMPP.Client({username: $.cookies.get('user').username, token: token})
 
+  loadPage: (view_class, options) =>
+    app.current_view.remove() if app.current_view?
+    app.current_view = new view_class options
+    app.current_view.render()
+
 $(document).ready ->
   window.app = new App.Initialize
     debug: 3
