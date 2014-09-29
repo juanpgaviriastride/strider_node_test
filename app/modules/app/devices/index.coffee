@@ -2,8 +2,10 @@ async = require "async"
 _ = require 'underscore'
 orm = require "../../../lib/orm"
 BaseManager = require("null/models/base_manager")
+config = require('../../../config')
 
 AuthToken = require("app/auth_token")
+User = require("app/users")
 
 
 class DeviceController extends BaseManager
@@ -13,7 +15,7 @@ class DeviceController extends BaseManager
     [data, options] = params
 
     token_request = new DeviceTokenRequestController()
-    token_request.getOne {request_token: data.token_request}, (err, token_request) =>
+    token_request.model.findOne().where({request_token: data.token_request}).populate('user').exec (err, token_request) =>
       return callback(err, null) if err
       return callback(null, null) unless token_request
       @_getDeviceBySerial(data.data, (err, device) =>
@@ -29,7 +31,7 @@ class DeviceController extends BaseManager
           return callback(null, null) unless access_token
           device.access_token = access_token.token
           device.host_url = token_request.host_url
-          device.im_uri = token_request.im_uri
+          device.im_uri = "xmpp:#{token_request.user.username}@#{config.get('app').im?.xmpp.host}:#{config.get('app').im?.xmpp.port}"
 
           callback(null, device)
         )
@@ -54,9 +56,9 @@ class DeviceController extends BaseManager
         return callback(null, null) unless result
         res.access_token = result.token
         res.host_url = result.host_url
-        res.im_uri = result.im_uri
-
-        callback(null, res)
+        User.getOne {id: result.user_id}, (err, user) =>
+          res.im_uri = "xmpp:#{user.username}@#{config.get('app').im?.xmpp.host}:#{config.get('app').im?.xmpp.port}"
+          callback(null, res)
       )
     )
 
