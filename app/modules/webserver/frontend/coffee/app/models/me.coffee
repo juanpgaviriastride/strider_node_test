@@ -12,10 +12,6 @@ class App.Models.Me extends Backbone.Model
     @request_sent = new App.Collections.XMPP.RequestsSent()
 
 
-    # roster item type to
-    ## TODO
-
-
     @messages = new App.Collections.XMPP.Messages()
 
     @roster_items = new App.Collections.XMPP.RosterItems()
@@ -33,6 +29,7 @@ class App.Models.Me extends Backbone.Model
     return @contact.findWhere({ jid: jid})
 
   addMessage: (msg) =>
+    msg.timestamp = moment().toISOString()
     message = new App.Models.XMPP.Message(msg, {parse:true})
     @messages.add(message)
 

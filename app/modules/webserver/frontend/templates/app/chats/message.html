@@ -3,7 +3,7 @@
 </div>
 <div class="header">
   <strong><%= model.get('from').local || "me" %></strong>
-  <span class="location"> <i class="icon-clock"></i> <%= moment().format('MMM DD hh:mm a') %></span>
+  <span class="location"> <i class="icon-clock"></i> <%= moment(model.get('timestamp')).format('MMM DD hh:mm a') %></span>
 </div>
 <div class="description">
   <%= model.escape('body') %>

@@ -5,6 +5,8 @@ class App.Views.Chats.Roster extends System.Views.Base
     super
 
     @listenTo app.me.contacts, 'add', @addOne
+    @listenTo app.me.messages, 'add', @newMessage
+
     @render()
 
     @on "contact:selected", @onContactSelected
@@ -21,6 +23,15 @@ class App.Views.Chats.Roster extends System.Views.Base
   onContactSelected: (item) =>
     @__appendedViews.call("unselect")
     item.view.select()
+
+  newMessage: (item) =>
+    if item.get('from')?.local == app.current_chat_with or  item.get('from')?.bare == app.me.jid
+      return
+    else
+      contact = app.me.contacts.findWhere {id: item.get('from')?.bare }
+      roster_item = @__appendedViews.findByModel contact
+      roster_item.addMessage(item)
+
 
 
 class App.Views.Chats.RosterItem extends System.Views.Base
@@ -45,10 +56,22 @@ class App.Views.Chats.RosterItem extends System.Views.Base
     @$el.addClass('active')
 
   unselect: () =>
-    @$el.addClass('active')
+    @$el.removeClass('active')
+
+  addMessage: (item) =>
+    $unread = $('[data-role="unread-messages"]', @$el)
+
+    unread_messages = parseInt $unread.html()
+    $unread.html unread_messages + 1
+
+    $unread.show()
 
   openChat: (event) =>
     event.preventDefault()
+    $unread = $('[data-role="unread-messages"]', @$el)
+    $unread.hide()
+    $unread.html('0')
+
     @fire('contact:selected', @)
     console.log "Opeingn chat with #{@model.get('local')}"
     Backbone.history.navigate "/messages/@#{@model.get('local')}", {trigger: true}

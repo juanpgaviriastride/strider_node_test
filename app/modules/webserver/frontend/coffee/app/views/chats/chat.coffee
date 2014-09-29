@@ -21,11 +21,20 @@ class App.Views.Chats.Chat extends System.Views.Base
     super
 
     $('#message', @$el).flextarea({minRows: 2, maxRows: 8})
+
+    @addAll()
+
     @
+
+  addAll: =>
+    old_messages = app.me.messages.filter((item) =>
+      return item.get('from')?.local == app.current_chat_with or (item.get('from')?.bare == app.me.jid and item.get('to')?.local == app.current_chat_with)
+    )
+    _.each old_messages, @addOne
 
   addOne: (item) =>
     console.log "Message arrive: ", item.toJSON()
-    if item.get('from')?.local == app.current_chat_with or  item.get('from')?.bare == app.me.jid
+    if item.get('from')?.local == app.current_chat_with or (item.get('from')?.bare == app.me.jid and item.get('to')?.local == app.current_chat_with)
       item_view = new App.Views.Chats.Message({model: item})
       @appendView item_view.render(), '[data-role=messages-list]'
 
