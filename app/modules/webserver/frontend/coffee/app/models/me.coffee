@@ -12,10 +12,6 @@ class App.Models.Me extends Backbone.Model
     @request_sent = new App.Collections.XMPP.RequestsSent()
 
 
-    # roster item type to
-    ## TODO
-
-
     @messages = new App.Collections.XMPP.Messages()
 
     @roster_items = new App.Collections.XMPP.RosterItems()
@@ -33,7 +29,19 @@ class App.Models.Me extends Backbone.Model
     return @contact.findWhere({ jid: jid})
 
   addMessage: (msg) =>
-    message = new App.Models.XMPP.Message(msg, {parse:true})
+    #delete msg.id
+    msg.timestamp = moment().toISOString() unless msg.timestamp?
+    message = new App.Models.XMPP.Message(msg, {parse:true, merge:true})
+    if message.get('from') == app.me.jid
+      message.save( {}, {
+      #message.sync("create", message, {
+        success: (model, response) =>
+          console.log "MESSAGE SAVED"
+        error: (model, respinse) =>
+          console.log "ERROR SAVING MESSAGE"
+
+      })
+    message.save
     @messages.add(message)
 
   checkContactRequestSent: (username) =>

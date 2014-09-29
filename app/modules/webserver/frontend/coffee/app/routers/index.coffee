@@ -6,22 +6,31 @@ class App.Routers.Index extends System.Routers.Base
 
   index: =>
     @selectNav('')
-    app.current_view = new App.Views.Chats.Index({el: "[data-role=main]"})
-    app.current_view.render()
-
-    # app.chats_open = new App.Views.Chats.List({el: "[data-role=chats]"})
-    # app.chats_open.render()
+    $a = $("<a>")
+    $a.attr('href', "")
+    $a.data('role', 'route')
+    $a.html("Chats")
+    $('[data-role="breadcrum"]').html($a)
+    app.loadPage App.Views.Chats.Index, {el: "[data-role=main]"}
 
   contacts: =>
     @selectNav('contacts')
-    app.current_view = new App.Views.Contacts.Index({el: "[data-role=main]"})
-    app.current_view.render()
 
-    # app.chats_open = new App.Views.Chats.List({el: "[data-role=chats]"})
-    # app.chats_open.render()
+    $a = $("<a>")
+    $a.attr('href', "")
+    $a.data('role', 'route')
+    $a.html("Contacts")
+    $('[data-role="breadcrum"]').html($a)
 
+    app.loadPage App.Views.Contacts.Index, {el: "[data-role=main]"}
 
   chat: (username) =>
     app.current_chat_with = username[0]
-    app.current_view = new App.Views.Chats.Chat({el: "[data-role=main]", username: username[0]})
-    app.current_view.render()
+
+    $a = $("<a>")
+    $a.attr('href', "")
+    $a.data('role', 'route')
+    $a.html("@#{app.current_chat_with}")
+    $('[data-role="breadcrum"]').html($a)
+
+    app.loadPage App.Views.Chats.Chat, {el: "[data-role=main]", username: username[0]}

@@ -1,9 +1,9 @@
 <div class="author">
-  <img src="/img/avatar.jpg" alt="avatar">
+  <img src="http://www.gravatar.com/avatar/<%= MD5(model.get('from') || app.me.jid) %>" alt="avatar">
 </div>
 <div class="header">
-  <strong><%= model.get('from').local || "me" %></strong>
-  <span class="location"> <i class="icon-clock"></i> <%= moment().format('MMM DD hh:mm a') %></span>
+  <strong><%= model.get('from').split('@')[0] %></strong>
+  <span class="location"> <i class="icon-clock"></i> <%= moment(model.get('timestamp')).format('MMM DD hh:mm a') %></span>
 </div>
 <div class="description">
   <%= model.escape('body') %>

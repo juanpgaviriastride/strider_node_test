@@ -12,8 +12,8 @@
   <!-- =========================================== navbar begins =========================================== -->
     <div class="navbar" role="navigation">
       <div class="navbar-header">
-	   <a class="navbar-brand" href="index.html#" data-role="route"><img src="/favicon.ico" style="margin-top: -8px;"> <span>Context Surgery</span></a>
-	  </div>
+				<a class="navbar-brand" href="" data-role="route"><img src="/favicon.ico" style="margin-top: -8px;"> <span>Context Surgery</span></a>
+			</div>
       <ul class="nav navbar-nav navbar-actions navbar-left">
 				<li class="visible-md visible-lg"><a id="main-menu-toggle"><i class="fa fa-bars"></i></a></li>
 				<li class="visible-xs visible-sm"><a id="sidebar-menu"><i class="fa fa-bars"></i></a></li>
@@ -21,6 +21,11 @@
       <!-- <form class="navbar-form navbar-left" data-role="breadcrum"> -->
         <!-- Backbone router populate this -->
       <!-- </form> -->
+      <form class="navbar-form navbar-left breadcrum" data-role="breadcrum">
+				<i class="fa fa-search"></i>
+				<input type="text" class="form-control" placeholder="Are you looking for something ?">
+			</form>
+
       <ul class="nav navbar-nav navbar-right visible-md visible-lg">
         <li class="dropdown visible-md visible-lg">
           <a href="index.html#" class="dropdown-toggle" data-toggle="dropdown">
@@ -54,8 +59,12 @@
 
         <div class="sidebar-menu">
           <ul class="nav nav-sidebar">
+<<<<<<< HEAD
+            <li data-role="roster">
+=======
             <li data-href="contacts"><a href="/contacts" data-role="route">Contacts</a></li>
             <li data-role="roster" data-href="">
+>>>>>>> 8ea358fc1a9971fd9088e97e356f9941e711f987
               <!-- backbone view -->
             </li>
           </ul>

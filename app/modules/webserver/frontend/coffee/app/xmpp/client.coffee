@@ -92,11 +92,9 @@ class App.XMPP.Client
 
   onChat: (msg) =>
     msg = msg.toJSON() if msg.toJSON?
-    console.log "MESSAGE: ", msg
     app.me.addMessage(msg)
 
 
   onMessageSent: (data) =>
-    console.log "MESSAGE SENT: ", data
     data.from.bare = app.me.jid
     app.me.addMessage(data)

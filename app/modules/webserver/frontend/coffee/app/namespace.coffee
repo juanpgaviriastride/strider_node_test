@@ -9,6 +9,7 @@ window.App =
   Events: {}
   XMPP: {}
   Views: {
+    Me: {}
     Contacts: {}
     Chats: {}
     TestApi: {

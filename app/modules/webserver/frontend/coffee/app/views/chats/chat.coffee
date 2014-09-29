@@ -6,11 +6,29 @@ class App.Views.Chats.Chat extends System.Views.Base
   initialize: (options) =>
     super
 
-    @listenTo app.me.messages, 'add', @addOne
+    @fetched = false
+    @old_messages = new App.Collections.XMPP.Messages()
 
+    @listenTo app.me.messages, 'add', (item)=>
+      if item.get('from')?.split('@')[0] == app.current_chat_with or (item.get('from') == app.me.jid and item.get('to').split('@')[0] == app.current_chat_with)
+        @old_messages.add(item)
+        @addOne(item, false) if @fetched
+
+
+    @old_messages.fetch({
+      data:
+        to: app.me.get("username")
+        from: app.current_chat_with
+        conversation: true
+
+      success: (collection, response) =>
+        @addAll()
+      error: (collection, response) =>
+        @addAll()
+    })
     @on "contact:selected", @onContactSelected
-    @render()
 
+    @render()
     @
 
   events:
@@ -23,11 +41,25 @@ class App.Views.Chats.Chat extends System.Views.Base
     $('#message', @$el).flextarea({minRows: 2, maxRows: 8})
     @
 
-  addOne: (item) =>
-    console.log "Message arrive: ", item.toJSON()
-    if item.get('from')?.local == app.current_chat_with or  item.get('from')?.bare == app.me.jid
+  addAll: =>
+    # @old_messages.add(app.me.messages.filter((item) =>
+    #   return item.get('from')?.split('@')[0] == app.current_chat_with or (item.get('from') == app.me.jid and item.get('to')?.split('@')[0] == app.current_chat_with)
+    # ))
+    # @old_messages.sort()
+    @fetched = true
+    @old_messages.each (msg) =>
+      @addOne(msg, true)
+
+    $('body').scrollTop($('body').prop("scrollHeight"))
+
+  addOne: (item, all = false) =>
+    if item.get('from')?.split('@')[0] == app.current_chat_with or (item.get('from') == app.me.jid and item.get('to').split('@')[0] == app.current_chat_with)
       item_view = new App.Views.Chats.Message({model: item})
       @appendView item_view.render(), '[data-role=messages-list]'
+
+      # scroll on message but no when loading history
+      unless all
+        $('body').animate({ scrollTop: $('body')[0].scrollHeight}, 1000)
 
   getCaret: () =>
     el = $('#message', @$el)

@@ -36,6 +36,7 @@ class App.Initialize
 
     # load meModel
     @me = new App.Models.Me($.cookies.get('user'))
+    @me_info = new App.Views.Me.Info({el: '[data-role="me-info"]',model: @me})
     # load the conversation list
     #@conversations = new
 
@@ -61,6 +62,11 @@ class App.Initialize
     # replace toke 123 for the aut_token when the prosody allowto auth with bearer token
     token = (if $.cookies.get('auth_token') then "#{$.cookies.get('auth_token')}" else "123")
     @xmpp = new App.XMPP.Client({username: $.cookies.get('user').username, token: token})
+
+  loadPage: (view_class, options) =>
+    app.current_view.remove() if app.current_view?
+    app.current_view = new view_class options
+    app.current_view.render()
 
 $(document).ready ->
   window.app = new App.Initialize
