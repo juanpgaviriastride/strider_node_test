@@ -9,12 +9,12 @@ Message = Waterline.Collection.extend(
   attributes: {
     id: { type: 'string', primaryKey: true, unique: true }
     "body": { type: 'string', required: false}
-    "type": { type: 'string' }
+    "type": { type: 'string', defaultsTo: "normal" }
     "from": { type: 'string' }
     "to": { type: 'string' }
     "from_jid": { type: 'string' }
     "to_jid": { type: 'string' }
-    "timestamp": { type: 'date' }
+    "timestamp": { type: 'datetime' }
   }
 )
 
