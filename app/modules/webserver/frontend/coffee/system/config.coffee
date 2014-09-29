@@ -25,7 +25,6 @@ $(document).ready ->
   ## Backbone link navgiate
   $( document ).on( "click", '[data-role=route]', (event) ->
     event.preventDefault()
-
     $a = $(event.target)
     while not $a.is 'a'
       $a = $a.parent()

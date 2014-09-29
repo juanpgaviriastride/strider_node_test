@@ -17,6 +17,7 @@ class System.Views.Base extends Backbone.View
     return @
   ,
   removeAll: () =>
+    @stopListening()
     @undelegateEvents()
     @unbind()
     @$el.remove()
@@ -24,6 +25,7 @@ class System.Views.Base extends Backbone.View
   ,
 
   remove: () =>
+    @stopListening()
     @undelegateEvents()
     @unbind()
     @__appendedViews.call('removeAll')

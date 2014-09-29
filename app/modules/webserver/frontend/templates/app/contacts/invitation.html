@@ -1,5 +1,5 @@
 <a href="" data-role="contact-info">
-  <img class="avatar" src="/img/avatar.jpg">
+  <img class="avatar" src="http://www.gravatar.com/avatar/<%= MD5(model.get('from').bare) %>">
   <div><%= model.get('from').local %>
   </div>
   <small><%= moment().from(moment().subtract('m', 1)) %></small>

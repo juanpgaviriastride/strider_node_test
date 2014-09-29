@@ -16,13 +16,26 @@ class App.Views.Contacts.Invitations extends System.Views.Base
     app.me.contact_request @addOne
 
   addOne: (item) =>
+    $unread = $('[data-role="pending-invitations-count"]')
+    unread_messages = (if $unread.html() == "" then 0 else parseInt($unread.html()))
+    $unread.html unread_messages + 1
+
     @find('[data-role="invitation-list"]').show()
     item_view = new App.Views.Contacts.Invitation({model: item})
     @appendAfterView item_view.render(), '[data-role="invitation-list"]'
 
   removeOne: (item) =>
-    @find('[data-role="invitation-list"]').hide() if app.me.contact_request.length == 0
-    console.log "invitation removed"
+    $unread = $('[data-role="pending-invitations-count"]')
+
+    if app.me.contact_request.length == 0
+      @find('[data-role="invitation-list"]').hide()
+      $unread.html ''
+    else
+      unread_messages = (if parseInt($unread.html()) == 1 then '' else parseInt($unread.html()) )
+      if unread_messages == ''
+        $unread.html ''
+      else
+        $unread.html unread_messages - 1
 
 
 

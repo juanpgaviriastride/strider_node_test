@@ -11,15 +11,26 @@
 {%block main%}
   <!-- =========================================== navbar begins =========================================== -->
     <div class="navbar" role="navigation">
-      <div class="nav navbar-nav navbar-left">
-        <a class="navbar-brand" href="index.html#"><span>Context Surgery</span></a>
-      </div>
+      <div class="navbar-header">
+				<a class="navbar-brand" href="" data-role="route"><img src="/favicon.ico" style="margin-top: -8px;"> <span>Context Surgery</span></a>
+			</div>
+      <ul class="nav navbar-nav navbar-actions navbar-left">
+				<li class="visible-md visible-lg"><a id="main-menu-toggle"><i class="fa fa-bars"></i></a></li>
+				<li class="visible-xs visible-sm"><a id="sidebar-menu"><i class="fa fa-bars"></i></a></li>
+			</ul>
+      <!-- <form class="navbar-form navbar-left" data-role="breadcrum"> -->
+        <!-- Backbone router populate this -->
+      <!-- </form> -->
+      <form class="navbar-form navbar-left breadcrum" data-role="breadcrum">
+				<i class="fa fa-search"></i>
+				<input type="text" class="form-control" placeholder="Are you looking for something ?">
+			</form>
 
       <ul class="nav navbar-nav navbar-right visible-md visible-lg">
         <li class="dropdown visible-md visible-lg">
           <a href="index.html#" class="dropdown-toggle" data-toggle="dropdown">
             <i class="icon-users"></i>
-            <span class="badge"></span>
+            <span class="badge" data-role="pending-invitations-count"></span>
           </a>
           <ul class="dropdown-menu" data-role="check-invitations">
             <!-- backbone views -->
@@ -42,15 +53,14 @@
     <!-- =========================================== sidebar end =========================================== -->
     <div class="sidebar">
       <div class="sidebar-collapse">
-        <div class="sidebar-header">
-          <h2>John Doe</h2>
-          <h3>john@doe.com <a href="index.html#"><i class="fa fa-chevron-down"></i></a></h3>
+        <div class="sidebar-header" data-role="me-info">
+          <!-- backbone view -->
         </div>
 
         <div class="sidebar-menu">
           <ul class="nav nav-sidebar">
-            <li><a href="/contacts" data-role="route">Contacts</a></li>
-            <li data-role="roster">
+            <li data-href="contacts"><a href="/contacts" data-role="route">Contacts</a></li>
+            <li data-role="roster" data-href="">
               <!-- backbone view -->
             </li>
           </ul>

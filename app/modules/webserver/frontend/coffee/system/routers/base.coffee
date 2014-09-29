@@ -7,8 +7,8 @@ class System.Routers.Base extends Backbone.Router
     cb(args)
 
   deselectNav: () =>
-    $("*[data-href]").removeClass('active')
+    $("*[data-href]").removeClass('opened')
 
   selectNav: (href) =>
     @deselectNav()
-    $("*[data-href='#{href}']").addClass('active')
+    $("*[data-href='#{href}']").addClass('opened')
