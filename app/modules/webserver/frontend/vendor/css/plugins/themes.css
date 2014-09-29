@@ -194,7 +194,7 @@ body.elegant .navbar .navbar-nav li .dropdown-menu li.divider {
   background-color: #e8ecee;
 }
 body.elegant .navbar .navbar-nav li .dropdown-menu li a {
-  background-color: white !important;
+  background-color: white;
 }
 body.elegant .navbar .navbar-nav li .dropdown-menu li a:hover {
   background-color: #edf1f2 !important;
@@ -1657,7 +1657,7 @@ body.sky .navbar .navbar-nav li .dropdown-menu li.divider {
   background-color: #f5f5f5;
 }
 body.sky .navbar .navbar-nav li .dropdown-menu li a {
-  background-color: white !important;
+  background-color: white;
 }
 body.sky .navbar .navbar-nav li .dropdown-menu li a:hover {
   background-color: #f6f6f6 !important;
