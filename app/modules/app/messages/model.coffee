@@ -15,6 +15,7 @@ Message = Waterline.Collection.extend(
     "from_jid": { type: 'string' }
     "to_jid": { type: 'string' }
     "timestamp": { type: 'datetime' }
+    "participants": {type: 'string'}
   }
 )
 
