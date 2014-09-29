@@ -30,13 +30,19 @@ class App.Views.Chats.Chat extends System.Views.Base
     old_messages = app.me.messages.filter((item) =>
       return item.get('from')?.local == app.current_chat_with or (item.get('from')?.bare == app.me.jid and item.get('to')?.local == app.current_chat_with)
     )
-    _.each old_messages, @addOne
+    _.each old_messages, (msg) =>
+      @addOne(msg, old_messages, {}, true)
 
-  addOne: (item) =>
-    console.log "Message arrive: ", item.toJSON()
+    $('body').scrollTop($('body').prop("scrollHeight"))
+
+  addOne: (item, collection, opt, all = false) =>
     if item.get('from')?.local == app.current_chat_with or (item.get('from')?.bare == app.me.jid and item.get('to')?.local == app.current_chat_with)
       item_view = new App.Views.Chats.Message({model: item})
       @appendView item_view.render(), '[data-role=messages-list]'
+
+      # scroll on message but no when loading history
+      unless all
+        $('body').animate({ scrollTop: $('body')[0].scrollHeight}, 1000)
 
   getCaret: () =>
     el = $('#message', @$el)
