@@ -1,5 +1,5 @@
 <div class="author">
-  <img src="/img/avatar.jpg" alt="avatar">
+  <img src="http://www.gravatar.com/avatar/<%= MD5(model.get('from').bare || app.me.jid) %>" alt="avatar">
 </div>
 <div class="header">
   <strong><%= model.get('from').local || "me" %></strong>
