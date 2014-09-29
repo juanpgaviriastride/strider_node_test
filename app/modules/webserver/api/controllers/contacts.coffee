@@ -6,7 +6,7 @@ class ContactResource extends BaseResource
   populate: {}
 
   list: (req, res, next) =>
-    req.query.user = req.user.id
+    req.query.user ||= req.user?.id
     super
 
   create: (req, res, next) =>
