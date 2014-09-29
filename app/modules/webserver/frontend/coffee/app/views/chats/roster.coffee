@@ -11,7 +11,6 @@ class App.Views.Chats.Roster extends System.Views.Base
 
     @
 
-
   render: () =>
     super
 
@@ -30,6 +29,7 @@ class App.Views.Chats.RosterItem extends System.Views.Base
 
   initialize: (options) =>
     super
+    @listenTo @model, "change", @render
 
 
   events:

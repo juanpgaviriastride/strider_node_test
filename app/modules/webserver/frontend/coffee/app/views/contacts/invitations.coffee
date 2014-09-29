@@ -54,8 +54,7 @@ class App.Views.Contacts.Invitation extends System.Views.Base
     event.preventDefault()
     event.stopPropagation()
 
-    console.log "Accepting invitation"
-    app.xmpp.acceptSubscription(@model.get('from').local)
+    app.xmpp.acceptSubscription(@model.get('from').local, @model.get('from'), 'from')
     @$el.slideUp( () =>
       app.me.contact_request.remove @model
     )
@@ -64,8 +63,7 @@ class App.Views.Contacts.Invitation extends System.Views.Base
     event.preventDefault()
     event.stopPropagation()
 
-    console.log "Rejecting invitation"
-    app.xmpp.rejectSubscription()
+    app.xmpp.rejectSubscription(@model.get('from').local)
     @$el.slideUp( () =>
       app.me.contact_request.remove @model
     )

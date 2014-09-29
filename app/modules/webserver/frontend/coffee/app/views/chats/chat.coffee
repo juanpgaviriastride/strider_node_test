@@ -79,7 +79,6 @@ class App.Views.Chats.Message extends System.Views.Base
     @
 
   render: () =>
-    console.log "model: ", @model.toJSON()
     super
     @
 

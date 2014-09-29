@@ -15,9 +15,6 @@ class App.Models.Me extends Backbone.Model
     # roster item type to
     ## TODO
 
-    # roster item type from
-    ## TODO
-
 
     @messages = new App.Collections.XMPP.Messages()
 
@@ -25,7 +22,12 @@ class App.Models.Me extends Backbone.Model
 
 
   addContact: (contact) =>
-    @contacts.add(contact)
+    contact = new App.Models.XMPP.Contact(contact, {parse: true})
+    @contacts.add contact, {merge: true}
+
+  addRequestSent: (contact) =>
+    request_sent = new App.Collections.XMPP.RequestsSent(contact)
+    @request_sent.add request_sent
 
   getContact: (jid) =>
     return @contact.findWhere({ jid: jid})
@@ -33,6 +35,13 @@ class App.Models.Me extends Backbone.Model
   addMessage: (msg) =>
     message = new App.Models.XMPP.Message(msg, {parse:true})
     @messages.add(message)
+
+  checkContactRequestSent: (username) =>
+    already_sent = @roster_items.find( (item) =>
+      return item.get('subscription') == "to" and item.get('jid').local == username
+    )
+    return already_sent if already_sent?
+    return false
 
   addContactRequest: (contact_request) =>
     contactRequest = new App.Models.XMPP.ContactRequest(contact_request, {parse:true})
@@ -44,14 +53,20 @@ class App.Models.Me extends Backbone.Model
     @roster_items.each (item) =>
       switch item.get("subscription")
         when "none"
-          request_sent = new App.Models.XMPP.RequestSent(item.get('jid'))
-          @request_sent.add request_sent
+          @addRequestSent item.get('jid')
+          return
         when "to"
+          @addRequestSent item.get('jid')
           return
         when "from"
+          data = item.get('jid')
+          data.subscription = "from"
+          @addContact data
           return
         when "both"
-          contact = new App.Models.XMPP.Contact(item.get('jid'))
-          @contacts.add contact
+          data = item.get('jid')
+          data.subscription = "both"
+          @addContact data
+          return
         else
           return
