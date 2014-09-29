@@ -6,11 +6,29 @@ class App.Views.Chats.Chat extends System.Views.Base
   initialize: (options) =>
     super
 
-    @listenTo app.me.messages, 'add', @addOne
+    @fetched = false
+    @old_messages = new App.Collections.XMPP.Messages()
 
+    @listenTo app.me.messages, 'add', (item)=>
+      if item.get('from')?.split('@')[0] == app.current_chat_with or (item.get('from') == app.me.jid and item.get('to').split('@')[0] == app.current_chat_with)
+        @old_messages.add(item)
+        @addOne(item, false) if @fetched
+
+
+    @old_messages.fetch({
+      data:
+        to: app.me.get("username")
+        from: app.current_chat_with
+        conversation: true
+
+      success: (collection, response) =>
+        @addAll()
+      error: (collection, response) =>
+        @addAll()
+    })
     @on "contact:selected", @onContactSelected
-    @render()
 
+    @render()
     @
 
   events:
@@ -21,22 +39,21 @@ class App.Views.Chats.Chat extends System.Views.Base
     super
 
     $('#message', @$el).flextarea({minRows: 2, maxRows: 8})
-
-    @addAll()
-
     @
 
   addAll: =>
-    old_messages = app.me.messages.filter((item) =>
-      return item.get('from')?.local == app.current_chat_with or (item.get('from')?.bare == app.me.jid and item.get('to')?.local == app.current_chat_with)
-    )
-    _.each old_messages, (msg) =>
-      @addOne(msg, old_messages, {}, true)
+    # @old_messages.add(app.me.messages.filter((item) =>
+    #   return item.get('from')?.split('@')[0] == app.current_chat_with or (item.get('from') == app.me.jid and item.get('to')?.split('@')[0] == app.current_chat_with)
+    # ))
+    # @old_messages.sort()
+    @fetched = true
+    @old_messages.each (msg) =>
+      @addOne(msg, true)
 
     $('body').scrollTop($('body').prop("scrollHeight"))
 
-  addOne: (item, collection, opt, all = false) =>
-    if item.get('from')?.local == app.current_chat_with or (item.get('from')?.bare == app.me.jid and item.get('to')?.local == app.current_chat_with)
+  addOne: (item, all = false) =>
+    if item.get('from')?.split('@')[0] == app.current_chat_with or (item.get('from') == app.me.jid and item.get('to').split('@')[0] == app.current_chat_with)
       item_view = new App.Views.Chats.Message({model: item})
       @appendView item_view.render(), '[data-role=messages-list]'
 

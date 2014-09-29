@@ -25,10 +25,10 @@ class App.Views.Chats.Roster extends System.Views.Base
     item.view.select()
 
   newMessage: (item) =>
-    if item.get('from')?.local == app.current_chat_with or  item.get('from')?.bare == app.me.jid
+    if item.get('from')?.split('@')[0] == app.current_chat_with or item.get('from') == app.me.jid
       return
     else
-      contact = app.me.contacts.findWhere {id: item.get('from')?.bare }
+      contact = app.me.contacts.findWhere {id: item.get('from') }
       roster_item = @__appendedViews.findByModel contact
       roster_item.addMessage(item)
 
@@ -73,5 +73,4 @@ class App.Views.Chats.RosterItem extends System.Views.Base
     $unread.html('0')
 
     @fire('contact:selected', @)
-    console.log "Opeingn chat with #{@model.get('local')}"
     Backbone.history.navigate "/messages/@#{@model.get('local')}", {trigger: true}
