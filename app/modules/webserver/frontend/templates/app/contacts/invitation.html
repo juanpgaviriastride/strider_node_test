@@ -1,12 +1,31 @@
 <li class="contact">
-  <a href="" data-role="contact-info">
-    <img class="avatar" src="http://www.gravatar.com/avatar/<%= MD5(model.get('from').bare) %>">
-    <div><%= model.get('from').local %>
+  <div class="row">
+    <div class="col-sm-12 text-right">
+      <small><%= moment().from(moment().subtract('m', 1)) %></small>
     </div>
-    <small><%= moment().from(moment().subtract('m', 1)) %></small>
-  </a>
-  <div class="invitation-actions">
-    <a href="" class="glyphicons remove gray pull-left" data-role="reject"></a>
-    <a href="" class="glyphicons ok gray pull-right" data-role="accept"></a>
+  </div>
+  <div class="row">
+    <div class="col-sm-2">
+      <a href="" data-role="contact-info">
+        <img class="avatar" src="http://www.gravatar.com/avatar/<%= MD5(model.get('from').bare) %>">
+      </a>
+    </div>
+    <div class="col-sm-6 row-sm">
+      <div>
+        <a href="" data-role="contact-info">
+          <span class="name"><%= model.get('from').local %></span>
+        </a>
+      </div>
+      <!-- <div>
+        <span class="place"><i class="fa fa-map-marker"></i> Place of Work</span>
+      </div>
+      <div>
+        <span class="job"><i class="fa fa-briefcase"></i> Role</span>
+      </div>  -->
+    </div>
+    <div class="col-sm-3 text-right invitation-actions">
+      <button class="btn"><a href="" class="text-muted glyphicons remove" data-role="reject"></a></button>
+      <button class="btn"><a href="" class="text-success glyphicons ok" data-role="accept"></a></button>
+    </div>
   </div>
 </li>
