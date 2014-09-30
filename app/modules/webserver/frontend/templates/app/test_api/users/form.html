@@ -18,7 +18,7 @@
         <!-- PANE 1 - INITIATE USER -->
         <div class="tab-pane active" id="tabInitial">
           <div class="row"><h2 class="sub-header col-md-12">Create New User</h2></div>
-          <form class="form-horizontal" role="form">
+          <form class="signup-form form-horizontal" role="form">
             <div class="row">
               <div class="form-group col-md-4">
                 <label class="control-label sr-only" for="name-first">First Name</label>
@@ -32,7 +32,7 @@
                 <label class="control-label sr-only" for="name-prefix">Prefix</label>
                 <select class="form-control" name="name-prefix" id="name-prefix">
                   <option value="" disabled selected>Select Prefix</option>
-                  <option value=""></option>
+                  <option value=""></option>  
                   <option value="Dr">Dr</option>
                   <option value="Rn">Rn</option>
                   <option value="Prof">Prof</option>
@@ -55,6 +55,7 @@
         <!-- END PANE 1 -->
         <!-- PANE 2 - Basic Info -->
         <div class="tab-pane" id="tabBasic">
+          <div class="row"><h2 class="sub-header col-md-12">&&nbsp;</h2></div>
           <div class="form-group">
             <label for="info-SSN">Social Security Number</label>
             <input type="text" class="form-control" id="info-SSN" placeholder="Enter user's ssn">
@@ -89,7 +90,7 @@
         
         <input type="button" class="btn btn-default button-previous disabled" name="prev" value="Prev">
         <input type="button" class="btn btn-info button-next" name="next" value="Next" style="display: inline-block;">
-        <input type="button" class="btn btn-primary button-finish" name="finish" value="Finish" style="display: none;">
+        <input type="submit" class="btn btn-primary button-finish" name="finish" value="Finish" style="display: none;">
       </div>  
       <!-- END TAB CONTENT -->
     </div>
