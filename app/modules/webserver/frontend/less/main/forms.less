@@ -6,15 +6,15 @@
 }
 
 .form-control {
- 	border: 1px solid @border;
- 	.border-radius(2px);
+ 	border: 2px solid @border;
+ 	.border-radius(4px);
 	color: @mainText;
 	.box-shadow;
 }
 
 .form-control-feedback {
 	color: @border;
-	
+
 	&.fa {
 		line-height: 34px;
 	}
@@ -44,9 +44,9 @@ fieldset[disabled] .form-control {
   	background-color: @main;
 }
 
-.has-success {	
+.has-success {
 	@color: @success;
-	
+
 	.help-block,
 	.control-label,
 	.radio,
@@ -55,32 +55,32 @@ fieldset[disabled] .form-control {
 	.checkbox-inline {
 		color: @color;
 	}
-	
+
 	.form-control {
 		border-color: @color;
 	  	.box-shadow;
-		
+
 		&:focus {
 			border-color: darken(@color,10%);
 			.box-shadow;
-		}		
+		}
 	}
-		
+
 	.input-group-addon {
 		color: @color;
 		background-color: lighten(@color,20%);
 		border-color: @color;
 	}
-	
+
 	.form-control-feedback {
 		color: @color;
 	}
 
 }
 
-.has-warning {	
+.has-warning {
 	@color: @warning;
-	
+
 	.help-block,
 	.control-label,
 	.radio,
@@ -89,32 +89,32 @@ fieldset[disabled] .form-control {
 	.checkbox-inline {
 		color: @color;
 	}
-	
+
 	.form-control {
 		border-color: @color;
 	  	.box-shadow;
-		
+
 		&:focus {
 			border-color: darken(@color,10%);
 			.box-shadow;
-		}		
+		}
 	}
-		
+
 	.input-group-addon {
 		color: @color;
 		background-color: lighten(@color,20%);
 		border-color: @color;
 	}
-	
+
 	.form-control-feedback {
 		color: @color;
 	}
 
 }
 
-.has-error {	
+.has-error {
 	@color: @danger;
-	
+
 	.help-block,
 	.control-label,
 	.radio,
@@ -123,23 +123,23 @@ fieldset[disabled] .form-control {
 	.checkbox-inline {
 		color: @color;
 	}
-	
+
 	.form-control {
 		border-color: @color;
 	  	.box-shadow;
-		
+
 		&:focus {
 			border-color: darken(@color,10%);
 			.box-shadow;
-		}		
+		}
 	}
-		
+
 	.input-group-addon {
 		color: @color;
 		background-color: lighten(@color,20%);
 		border-color: @color;
 	}
-	
+
 	.form-control-feedback {
 		color: @color;
 	}
@@ -150,12 +150,17 @@ fieldset[disabled] .form-control {
   color: darken(@main,20%);
 }
 
+textarea.form-control {
+  padding: 9px 30px 9px 8px !important;
+  resize: none;
+}
+
 .input-group-addon {
   	color: darken(@main,20%);
   	background-color: @heading;
   	border: 1px solid @border;
   	.border-radius(2px);
-	
+
 	i {
 		width: 14px;
 		text-align: center;
@@ -165,7 +170,7 @@ fieldset[disabled] .form-control {
 select {
 	background: @heading url("../img/select.png") no-repeat!important;
 	background-size: 24px 20px !important;
-	background-position:right center !important;     
+	background-position:right center !important;
     .border-radius(2px) !important;
 	border: 1px solid @border !important;
     color:#888;
@@ -205,7 +210,7 @@ select.input-sm {
     right: 5px;
     top: 4px;
     background: @heading;
-	border: none; 
+	border: none;
 }
 
 .select2-container-active .select2-choice,
@@ -252,22 +257,22 @@ select.input-sm {
 
 .select2-container-multi .select2-choices .select2-search-field input {
 	color: @mainText;
-} 
+}
 
 @-moz-document url-prefix() {
-	
+
 	select {
 		text-indent: 0.01px;
 		text-overflow: '';
 		-moz-appearance:none;
 	}
-	
+
  	select.input-lg {
 		padding: 10px 11px;
 	}
 	select.input-sm {
 		padding: 6px 12px;
-	}	
+	}
 }
 
 select::-ms-expand {
@@ -289,11 +294,11 @@ select::-ms-expand {
 	max-height: 250px;
 	height: 250px;
 	background-color: white;
-	border-collapse: separate; 
+	border-collapse: separate;
 	border: 1px solid @border;
-	padding: 4px; 
+	padding: 4px;
 	.box-sizing(content-box);
-	.border-radius(2px); 
+	.border-radius(2px);
 	overflow: scroll;
 	outline: none;
 	margin-top: 20px;
