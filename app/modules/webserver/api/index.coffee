@@ -276,24 +276,40 @@ apiController.namespace("/api/v1", () ->
     content_type = req.files.asset.headers['content-type']
     doc_id = uuid.v1()
     to_user_id = req.body.to
-    reader = fs.createReadStream(req.files.asset.path)
     # TODO: deal with duplicate ids
-    reader.pipe(
-      assets.attachment.insert(doc_id, 'blob', null, content_type)
-    )
-    reader.on 'error', (err)->
-      res.status(500).send("{\"error\":\"#{err}\", \"id\":\"#{doc_id}\"}")
-    reader.on 'end', ->
-      # TODO: fire off a message to XMPP to_user_id
-      res.status(200).send("{\"status\":\"ok\", \"id\":\"#{doc_id}\"}")
+    asset_doc = 
+      content_type: content_type
+    fs.readFile req.files.asset.path, (err, data) ->
+      return res.status(500).send("{\"error\":\"#{err}\", \"id\":\"#{doc_id}\"}") if err
+      assets.multipart.insert asset_doc, [{name: 'blob', data: data, content_type: content_type}], doc_id, (err, body)->
+        res.status(200).send("{\"id\":\"#{doc_id}\", \"content_type\":\"#{content_type}\"}")
   )
 
   apiController.get('/assets/:id', (req, res, next) ->
     assets = assets_conn()
     doc_id = req.params.id
-    assets.attachment.get(doc_id, 'blob').pipe(res)
+    if req.headers.range
+      stream = assets.attachment.get(doc_id, 'blob', {Range: req.headers.range})
+      stream.on 'response', (response)->
+        start = req.headers.range.replace(/bytes=/, "").split("-")[0]
+        clend = response.headers['content-length'];
+        res.writeHead 206, {
+          'ETag': response.headers.etag,
+          'Content-Range': "bytes #{start}-#{(clend - 1)}/#{clend}",
+          'Accept-Ranges': 'bytes'
+          'Content-Length': clend - start
+          'Content-Type': response.headers['content-type']
+        }
+    else
+      stream = assets.attachment.get(doc_id, 'blob')
+    stream.pipe(res)
+    stream.on 'error', (err)->
+      res.end()
+      # next()
+    stream.on 'end', ()->
+      res.end()
+      # next()
   )
-
 
   ##
   # Devices controllers
