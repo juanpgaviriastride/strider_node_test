@@ -31,6 +31,7 @@ class App.Models.Me extends Backbone.Model
   addMessage: (msg) =>
     #delete msg.id
     msg.timestamp = moment().toISOString() unless msg.timestamp?
+    msg.body = msg.$body
     message = new App.Models.XMPP.Message(msg, {parse:true, merge:true})
     if message.get('from') == app.me.jid
       message.save( {}, {

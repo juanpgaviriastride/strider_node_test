@@ -43,10 +43,6 @@ class App.Views.Chats.Chat extends System.Views.Base
     @
 
   addAll: =>
-    # @old_messages.add(app.me.messages.filter((item) =>
-    #   return item.get('from')?.split('@')[0] == app.current_chat_with or (item.get('from') == app.me.jid and item.get('to')?.split('@')[0] == app.current_chat_with)
-    # ))
-    # @old_messages.sort()
     @fetched = true
     @old_messages.each (msg) =>
       @addOne(msg, true)
@@ -110,7 +106,10 @@ class App.Views.Chats.Chat extends System.Views.Base
     #data.message = data.message.replace "\n", "</br>"
     return if data.message == "\n"
 
-    app.xmpp.sendMessage( app.current_chat_with, data.message)
+    body =
+      text: data.message
+
+    app.xmpp.sendMessage( app.current_chat_with, body)
     @cleanForm( $(@form) )
     $("#message").val("")
     @setCaretToPos($("#message", @$el), 1)
@@ -139,10 +138,24 @@ class App.Views.Chats.Message extends System.Views.Base
 
   render: () =>
     super
+    if @model.get("body")?.object?
+      mime = JSON.parse @model.get("body")?.object
+      if mime.content_type?
+        content_type = mime.content_type
+        if content_type.match "^image/"
+          @mime = new App.Views.Chats.MessageImage({model: new Backbone.Model(mime)})
+
+        else if content_type.match "^video/"
+          @mime = new App.Views.Chats.MessageVideo({model: new Backbone.Model(mime)})
+
+        @appendView @mime.render(), '[data-role="messange-mime"]'
     @
 
   getContext: =>
-    return {model: @model}
+    text = @model.escape("body") if typeof @model.get("body") == "string"
+    text = @model.get("body").text if @model.get("body")?.text?
+
+    return {model: @model, text: text}
 
 
 class App.Views.Chats.UploadFile extends System.Views.Base
@@ -152,6 +165,9 @@ class App.Views.Chats.UploadFile extends System.Views.Base
 
   initialize: (options) =>
     super
+
+    @files = new Backbone.Collection()
+
     @
 
   events:
@@ -166,7 +182,24 @@ class App.Views.Chats.UploadFile extends System.Views.Base
 
   show: () ->
     $('.modal', @$el).modal('show')
-    $(".dropzone", @$el).dropzone({ url: "/api/v1/assets", paramName: 'asset' })
+    @dropzone = new Dropzone($(".dropzone", @$el).get(0), {
+      url: "/api/v1/assets",
+      paramName: 'asset',
+      addRemoveLinks: false,
+      acceptedFiles: "image/*, video/*"
+    })
+    @dropzone.on "success", @onUploadSuccess
+    @dropzone.on "error", @onUploadError
+
+  onUploadSuccess: (file, response) =>
+    console.log "UPloaded: ", file, response
+    data =
+      response : response
+      file: file
+    @files.add data
+
+  onUploadError: (file, response) =>
+    console.log "error: ", response
 
   hide: () ->
     $('.modal', @$el).modal('hide')
@@ -174,12 +207,42 @@ class App.Views.Chats.UploadFile extends System.Views.Base
   saveModel: (e) ->
     e.preventDefault()
 
-    data = @getFormInputs $(@form)
+    @files.each (file) =>
+      body =
+        "text":  "File #{file.get('file').name}"
+        "object": JSON.stringify file.get('response')
 
-    message =
-      "to":  data.to
-      "message":  data.message
-
-    console.log "Message to send: ", message
+      console.log "Message to send: ", body
+      app.xmpp.sendMessage( app.current_chat_with, body)
 
     @hide()
+
+
+class App.Views.Chats.MessageImage extends System.Views.Base
+  template: JST['app/chats/mimes/image.html']
+
+  initialize: (options) =>
+    super
+    @
+
+  render: () =>
+    super
+    @
+
+  getContext: =>
+    return {src: @model.get('url'), max_width: 800, max_height: 1000}
+
+
+class App.Views.Chats.MessageVideo extends System.Views.Base
+  template: JST['app/chats/mimes/video.html']
+
+  initialize: (options) =>
+    super
+    @
+
+  render: () =>
+    super
+    @
+
+  getContext: =>
+    return {src: @model.get('url'), content_type: @model.get('content_type'), max_width: 800, max_height: 1000}

@@ -8,7 +8,7 @@ Message = Waterline.Collection.extend(
 
   attributes: {
     id: { type: 'string', primaryKey: true, unique: true }
-    "body": { type: 'string', required: false}
+    "body": { type: 'json', required: false}
     "type": { type: 'string', defaultsTo: "normal" }
     "from": { type: 'string' }
     "to": { type: 'string' }

@@ -22,25 +22,10 @@ class App.XMPP.Client
     @xmpp.on "subscribe", @onSubscribe
     @xmpp.on "subscribed", @onSubscribed
     @xmpp.on "message:sent", @onMessageSent
+    @xmpp.on "message:error", @onMessageError
     @xmpp.on "chat", @onChat
 
     @connect()
-
-  onSessionStarted: () =>
-    console.log "session started"
-    @connected  = true
-    @xmpp.enableCarbons (err) =>
-      console.log "Server does not support carbons"  if err
-      return
-
-    @xmpp.getRoster (err, resp) =>
-      console.log "ROSTER: ", resp
-      app.me.loadRoster(resp)
-      @xmpp.updateCaps()
-      @xmpp.sendPresence caps: @xmpp.disco.caps
-      return
-
-    return
 
   # Methods
   connect: () =>
@@ -78,6 +63,22 @@ class App.XMPP.Client
 
 
   # Events
+  onSessionStarted: () =>
+    console.log "session started"
+    @connected  = true
+    @xmpp.enableCarbons (err) =>
+      console.log "Server does not support carbons"  if err
+      return
+
+    @xmpp.getRoster (err, resp) =>
+      console.log "ROSTER: ", resp
+      app.me.loadRoster(resp)
+      @xmpp.updateCaps()
+      @xmpp.sendPresence caps: @xmpp.disco.caps
+      return
+
+    return
+
   onSubscribe: (data) =>
     # call when the user receive a subscibe
     if app.me.checkContactRequestSent(data.from.local)
@@ -98,3 +99,6 @@ class App.XMPP.Client
   onMessageSent: (data) =>
     data.from.bare = app.me.jid
     app.me.addMessage(data)
+
+  onMessageError: (data) =>
+    console.log "Message error: ", data
