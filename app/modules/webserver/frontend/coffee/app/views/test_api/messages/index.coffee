@@ -15,7 +15,7 @@ class App.Views.TestApi.Messages.Index extends System.Views.Base
   render: () =>
     super
 
-    @appendView @form.render(), '.create-form'
+    # @appendView @form.render(), '.create-form'
     @appendView @table.render(), '.list'
 
     @collection.fetch()
