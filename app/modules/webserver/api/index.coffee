@@ -279,8 +279,8 @@ apiController.namespace("/api/v1", () ->
     # TODO: deal with duplicate ids
     asset_doc =
       content_type: content_type
-      author: req.user.full_name()
-      author_id: req.user.id
+      author: req.user?.full_name()
+      author_id: req.user?.id
       caption: req.files.asset.name
       description: req.body.description
       createdAt: (new Date()).toISOString()
