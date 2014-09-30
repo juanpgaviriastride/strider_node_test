@@ -88,7 +88,7 @@ class System.Views.Base extends Backbone.View
     )
     _.each($("textarea", element), (input) =>
       return if $(input).attr("id") in exclude
-      $(input).val('')
+      $(input).val("")
     )
 
 

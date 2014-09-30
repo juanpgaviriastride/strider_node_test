@@ -270,9 +270,11 @@ apiController.namespace("/api/v1", () ->
     assets = assets_conn()
     # pipe saved file named 'asset' to couch
     # TODO: interrogate asset to discover mime type, don't trust the client
+
     unless req.files.asset?
       res.status(500).send("{\"error\":\"Asset required\"}")
       return
+
     content_type = req.files.asset.headers['content-type']
     doc_id = uuid.v1()
     to_user_id = req.body.to
@@ -281,7 +283,7 @@ apiController.namespace("/api/v1", () ->
     reader.pipe(
       assets.attachment.insert(doc_id, 'blob', null, content_type)
     )
-    reader.on 'error', (err)->
+    reader.on 'error', (err) ->
       res.status(500).send("{\"error\":\"#{err}\", \"id\":\"#{doc_id}\"}")
     reader.on 'end', ->
       # TODO: fire off a message to XMPP to_user_id

@@ -33,12 +33,13 @@ class App.Views.Chats.Chat extends System.Views.Base
 
   events:
     'keyup #message': 'onKeyPress'
+    'click [data-role="upload-file"]': 'onUploadFile'
 
 
   render: () =>
     super
 
-    $('#message', @$el).flextarea({minRows: 2, maxRows: 8})
+    $('#message', @$el).flextarea({minHeight: 40, maxHeight: 120})
     @
 
   addAll: =>
@@ -74,7 +75,23 @@ class App.Views.Chats.Chat extends System.Views.Base
       re.moveToBookmark r.getBookmark()
       rc.setEndPoint "EndToStart", re
       return rc.text.length
-  0
+    return 0
+
+  setSelectionRange: (input, selectionStart, selectionEnd) ->
+    if input.setSelectionRange
+      input.focus()
+      input.setSelectionRange selectionStart, selectionEnd
+    else if input.createTextRange
+      range = input.createTextRange()
+      range.collapse true
+      range.moveEnd "character", selectionEnd
+      range.moveStart "character", selectionStart
+      range.select()
+    return
+
+  setCaretToPos: (input, pos) ->
+    @setSelectionRange input, pos, pos
+    return
 
   onKeyPress: (event) =>
     $el = $('#message', @$el)
@@ -89,15 +106,25 @@ class App.Views.Chats.Chat extends System.Views.Base
 
   sendMessage: (e) =>
     data = @getFormInputs( $(@form))
-    console.log "data: ", data
-    #form = _.clone( data)
+    console.log "messages: ", data.message
+    #data.message = data.message.replace "\n", "</br>"
+    return if data.message == "\n"
 
     app.xmpp.sendMessage( app.current_chat_with, data.message)
     @cleanForm( $(@form) )
+    $("#message").val("")
+    @setCaretToPos($("#message", @$el), 1)
 
   onContactSelected: (item) =>
     @__appendedViews.call("unselect")
     item.view.select()
+
+
+  onUploadFile: (event) =>
+    event.preventDefault()
+    modal = new App.Views.Chats.UploadFile()
+    @appendView modal.render(), "[data-role=modals]"
+
 
 
 
@@ -116,3 +143,43 @@ class App.Views.Chats.Message extends System.Views.Base
 
   getContext: =>
     return {model: @model}
+
+
+class App.Views.Chats.UploadFile extends System.Views.Base
+  template: JST['app/chats/upload_file.html']
+
+  form: '[data-role="new-message-form"]'
+
+  initialize: (options) =>
+    super
+    @
+
+  events:
+    'click [data-role=upload]': 'saveModel'
+    'click [data-role=close]': 'hide'
+
+  render: () =>
+    super
+    $('.modal', @$el).on 'hidden.bs.modal', @remove
+    @show()
+    @
+
+  show: () ->
+    $('.modal', @$el).modal('show')
+    $(".dropzone", @$el).dropzone({ url: "/api/v1/assets", paramName: 'asset' })
+
+  hide: () ->
+    $('.modal', @$el).modal('hide')
+
+  saveModel: (e) ->
+    e.preventDefault()
+
+    data = @getFormInputs $(@form)
+
+    message =
+      "to":  data.to
+      "message":  data.message
+
+    console.log "Message to send: ", message
+
+    @hide()

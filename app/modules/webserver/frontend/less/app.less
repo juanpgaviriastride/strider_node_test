@@ -39,9 +39,33 @@
   bottom: -9px;
   background: #e4e5e6;
   padding-top: 10px;
-  z-index: 999999999;
+  z-index: 999;
   margin-right: 14px;
   position: fixed;
+
+  a.extras {
+    padding-left: 22px;
+    top: -12px;
+  }
+
+  a.extras-option {
+    padding-left: 45px;
+    line-height: 2;
+    &:before {
+      top: 5px;
+      padding-left: 12px;
+    }
+    &:hover {
+      line-height: 2;
+    }
+  }
+
+  .form {
+    textarea.form-control {
+      padding: 9px 30px 9px 8px !important;
+    }
+  }
+
 }
 
 .message-list {
