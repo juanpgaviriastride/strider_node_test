@@ -379,4 +379,11 @@ apiController.namespace("/api/v1", () ->
   apiController.del('/contacts/:id', (req, res, next) ->
     new ContactsResource().delete(req, res, next)
   )
+  # Oembed
+  oembed = require('connect-oembed')
+  OembedResource = require "./controllers/oembed"
+
+  apiController.get('/oembed', oembed (req, res, next) ->
+    new OembedResource().detail(req, res, next)
+  )
 )
