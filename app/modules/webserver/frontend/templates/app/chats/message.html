@@ -6,5 +6,8 @@
   <span class="location"> <i class="icon-clock"></i> <%= moment(model.get('timestamp')).format('MMM DD hh:mm a') %></span>
 </div>
 <div class="description">
-  <%= model.escape('body') %>
+  <%= text %>
+  <div class="row" data-role="messange-mime">
+    <!-- backbone views -->
+  </div>
 </div>

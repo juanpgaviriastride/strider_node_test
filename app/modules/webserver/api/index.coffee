@@ -1,5 +1,6 @@
 express = require "express"
 require('express-namespace')
+conf = require '../../../config'
 
 auth = require("app/auth")
 
@@ -254,7 +255,6 @@ apiController.namespace("/api/v1", () ->
   # TODO: put this junk somewhere better
   assets_conn = () ->
     nano = require 'nano'
-    conf = require '../../../config'
     # connect to CouchDB via nano
     schema = 'http'
     auth = ''
@@ -277,29 +277,51 @@ apiController.namespace("/api/v1", () ->
     doc_id = uuid.v1()
     to_user_id = req.body.to
     # TODO: deal with duplicate ids
-    asset_doc = 
+    asset_doc =
       content_type: content_type
+      author: req.user.full_name()
+      author_id: req.user.id
+      caption: req.files.asset.name
+      description: req.body.description
+      createdAt: (new Date()).toISOString()
+
     fs.readFile req.files.asset.path, (err, data) ->
       return res.status(500).send("{\"error\":\"#{err}\", \"id\":\"#{doc_id}\"}") if err
       assets.multipart.insert asset_doc, [{name: 'blob', data: data, content_type: content_type}], doc_id, (err, body)->
-        res.status(200).send("{\"id\":\"#{doc_id}\", \"content_type\":\"#{content_type}\"}")
+        res.status(200).json({
+          "id": doc_id,
+          "content_type": content_type
+          "url": "http://#{conf.get('app').host}:#{conf.get('app').port}/api/v1/assets/#{doc_id}"
+        })
   )
 
   apiController.get('/assets/:id', (req, res, next) ->
     assets = assets_conn()
     doc_id = req.params.id
     if req.headers.range
-      stream = assets.attachment.get(doc_id, 'blob', {Range: req.headers.range})
+      stream = assets.attachment.get(doc_id, 'blob', null, {Range: req.headers.range})
       stream.on 'response', (response)->
-        start = req.headers.range.replace(/bytes=/, "").split("-")[0]
-        clend = response.headers['content-length'];
-        res.writeHead 206, {
+        start = parseInt(req.headers.range.replace(/bytes=/, "").split("-")[0])
+        clend = parseInt (req.headers.range.replace(/bytes=/, "").split("-")[1])
+
+        headers = {
           'ETag': response.headers.etag,
-          'Content-Range': "bytes #{start}-#{(clend - 1)}/#{clend}",
-          'Accept-Ranges': 'bytes'
-          'Content-Length': clend - start
+          'Accept-Ranges': response.headers['accept-ranges']
+          'Content-Length': response.headers['content-length']
           'Content-Type': response.headers['content-type']
         }
+        if start == 0 and isNaN(clend)
+          headers['Content-Range'] = "bytes 0-#{parseInt(response.headers['content-length']) - 1 }/#{response.headers['content-length']}"
+        else if start > 0 and isNaN(clend)
+          headers['Content-Range'] = "bytes #{start}-#{start + parseInt(response.headers['content-length']) - 1 }/#{start + parseInt(response.headers['content-length'])}"
+        else
+          headers['Content-Range'] = response.headers['content-range']
+        #
+        # console.log "Res start - end", start, clend
+        # console.log "headers req:", req.headers.range
+        # console.log "couch res:", response.headers
+        # console.log "hedaers res:", headers
+        res.writeHead 206, headers
     else
       stream = assets.attachment.get(doc_id, 'blob')
     stream.pipe(res)
@@ -378,5 +400,12 @@ apiController.namespace("/api/v1", () ->
   # update delivery messages
   apiController.del('/contacts/:id', (req, res, next) ->
     new ContactsResource().delete(req, res, next)
+  )
+  # Oembed
+  oembed = require('connect-oembed')
+  OembedResource = require "./controllers/oembed"
+
+  apiController.get('/oembed', oembed (req, res, next) ->
+    new OembedResource().detail(req, res, next)
   )
 )

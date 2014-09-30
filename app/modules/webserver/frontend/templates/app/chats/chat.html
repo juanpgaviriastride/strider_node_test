@@ -10,12 +10,20 @@
     <form role="form" data-role="new-message-form">
       <div class="form-group">
         <div class="controls">
-          <div class="input-prepend input-group">
-            <span class="input-group-addon">@</span>
-            <textarea  class="form-control" id="message" placeholder=""></textarea>
+          <div class="input-prepend input-group dropup">
+            <span class="input-group-addon dropdown-toggle" data-toggle="dropdown"><a class="glyphicons upload gray extras" data-role="extras"></a></span>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#" class="glyphicons file gray extras-option" data-role="upload-file"> <strong>Upload files</strong></a></li>
+            </ul>
+            <textarea  class="form-control" id="message" placeholder="" rows="1"></textarea>
           </div>
         </div>
       </div>
     </form>
   </div>
+</div>
+
+
+<div class="" data-role="modals">
+<!-- backbone views with modal -->
 </div>

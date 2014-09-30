@@ -61,7 +61,8 @@
     "node-xmpp": "^1.0.0-alpha2",
     "simple-xmpp": "^0.1.92",
     "node-uuid": "^1.4.1",
-    "grunt-bump": "0.0.13"
+    "grunt-bump": "0.0.13",
+    "connect-oembed": "0.0.2"
   },
   "devDependencies": {
     "mocha": "*",
