@@ -3,7 +3,7 @@ module.exports = {
   "auth_token_secret": "8SAvCBIR1XV2DL6Aay4bvF1P1RUBWTLb3YJBU8ER",
   "request_token_secret": "90AvTZIR1XV2D%6Aay4bvF1P1RUBWTLb3YJBU1TY",
   "app": {
-    "baseUrl": "http://localhost:3000/"
+    "baseUrl": "http://162.209.94.221/"
     "host": "localhost",
     "port": 3000,
     "im":
