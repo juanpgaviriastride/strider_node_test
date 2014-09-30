@@ -214,7 +214,7 @@ module.exports = (grunt) ->
 
       login_css:
         src: [
-          SRC_VENDOR + 'css/bootstrap.min.css',
+          SRC_VENDOR + 'css/bootstrap.min.css'
           SRC_VENDOR + 'css/plugins/font-awesome.css'
           SRC_VENDOR + 'css/plugins/style.css'
           '<%= less.login.dest %>'
@@ -222,10 +222,7 @@ module.exports = (grunt) ->
         dest: SRC_PUBLIC + 'css/login.css'
 
       test_api_css:
-        src: [
-          SRC_VENDOR + 'css/bootstrap.min.css',
-          '<%= less.test_api.dest %>'
-        ]
+        src: '<%= less.test_api.dest %>'
         dest: SRC_PUBLIC + 'css/test_api.css'
 
 

@@ -9,9 +9,9 @@ class App.Routers.Index extends System.Routers.Base
     $a = $("<a>")
     $a.attr('href', "")
     $a.data('role', 'route')
-    $a.html("Chats")
+    $a.html("Contacts")
     $('[data-role="breadcrum"]').html($a)
-    app.loadPage App.Views.Chats.Index, {el: "[data-role=main]"}
+    app.loadPage App.Views.Contacts.Index, {el: "[data-role=main]"}
 
   contacts: =>
     @selectNav('contacts')

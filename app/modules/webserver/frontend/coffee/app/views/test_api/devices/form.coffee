@@ -22,7 +22,7 @@ class App.Views.TestApi.Devices.Form extends System.Views.Base
   renderQR: (request_token) =>
     console.log "generating qrcode"
 
-    @find('.toggle').removeClass('hide')
+    # @find('.toggle').removeClass('hide')
     @find('.qr-code').html("")
     register_url = "#{request_token.get('host_url')}#{(new App.Collections.Devices()).url}/token/#{request_token.get('request_token')}"
     @find('.qr-code').qrcode(
@@ -34,7 +34,7 @@ class App.Views.TestApi.Devices.Form extends System.Views.Base
     @find('.qr-code-url').val(register_url)
 
   saveModel: (e) ->
-    @find('.toggle').addClass('hide')
+    # @find('.toggle').addClass('hide')
     e.preventDefault()
 
     data = @getFormInputs $(@form, @$el)
