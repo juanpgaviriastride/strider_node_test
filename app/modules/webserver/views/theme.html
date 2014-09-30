@@ -19,7 +19,7 @@
     <!-- =========================================== navbar begins =========================================== -->
     <div class="navbar" role="navigation">
       <div class="navbar-header">
-        <a class="navbar-brand" href="index.html#"><i class="icon-rocket"></i> <span>Real Admin</span></a>
+        <a class="navbar-brand" href="test.html"><i class="icon-rocket"></i> <span>Real Admin</span></a>
       </div>
       <ul class="nav navbar-nav navbar-actions navbar-left">
         <li class="visible-md visible-lg"><a href="index.html#" id="main-menu-toggle"><i class="fa fa-bars"></i></a></li>
@@ -42,66 +42,94 @@
             <li><a href="index.html#"><img src="/ico/flags/Poland.png" style="height:18px; margin-top:-2px;"> Polish</a></li>
               </ul>
             </li>
-        <li class="dropdown visible-md visible-lg">
-              <a href="index.html#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-envelope-letter"></i><span class="badge">4</span></a>
-              <ul class="dropdown-menu">
-            <li class="dropdown-menu-header">
-              <strong>Messages</strong>
-              <div class="progress thin">
-                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                  <span class="sr-only">40% Complete (success)</span>
-                </div>
-              </div>
-            </li>
-            <li class="avatar">
-              <a href="index.html#">
-                <img class="avatar" src="/img/avatar.jpg">
-                <div>New message</div>
-                <small>1 minute ago</small>
-                <span class="label label-info">NEW</span>
-              </a>
-            </li>
-            <li class="avatar">
-              <a href="index.html#">
-                <img class="avatar" src="/img/avatar.jpg">
-                <div>New message</div>
-                <small>1 minute ago</small>
-                <span class="label label-info">NEW</span>
-              </a>
-            </li>
-            <li class="avatar">
-              <a href="index.html#">
-                <img class="avatar" src="/img/avatar.jpg">
-                <div>New message</div>
-                <small>1 minute ago</small>
-              </a>
-            </li>
-            <li class="avatar">
-              <a href="index.html#">
-                <img class="avatar" src="/img/avatar.jpg">
-                <div>New message</div>
-                <small>1 minute ago</small>
-              </a>
-            </li>
-            <li class="avatar">
-              <a href="index.html#">
-                <img class="avatar" src="/img/avatar.jpg">
-                <div>New message</div>
-                <small>1 minute ago</small>
-              </a>
-            </li>
-            <li class="avatar">
-              <a href="index.html#">
-                <img class="avatar" src="/img/avatar.jpg">
-                <div>New message</div>
-                <small>1 minute ago</small>
-              </a>
-            </li>
-            <li class="dropdown-menu-footer text-center">
-              <a href="index.html#">View all messages</a>
-            </li>
+  
+            <!-- =========================================== contacts dropdown begins =========================================== -->
+            <li class="dropdown visible-md visible-lg">
+              <a href="index.html#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-users"></i><span class="badge">4</span></a>
+              <ul class="dropdown-menu container contacts">
+                <li class="dropdown-menu-header">
+                  <strong>Pending Contacts</strong>
+                </li>
+                <li class="contact">
+                  <div class="row">
+                    <div class="col-sm-12 text-right">
+                      <small>1 minute ago</small>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-2"><img class="avatar" src="/img/user.png"></div>
+                    <div class="col-sm-7 row-sm">
+                      <div>
+                        <span class="name">First name</span>
+                        <span class="name">Last name</span>
+                      </div>
+                      <div>
+                        <span class="place"><i class="fa fa-map-marker"></i> Place of Work</span>
+                      </div>
+                      <div>
+                        <span class="job"><i class="fa fa-briefcase"></i> Role</span>
+                      </div> 
+                    </div>
+                    <div class="col-sm-3">
+                      <button class="btn"><a href="" class="text-muted glyphicons remove" data-role="reject"></a></button>
+                      <button class="btn"><a href="" class="text-success glyphicons ok" data-role="accept"></a></button>
+                    </div>
+                  </div>
+                </li>
+                <li class="divider"></li>
+                <li class="dropdown-menu-header">
+                  <strong>Recent Contacts</strong>
+                </li>
+                <li class="contact">
+                  <div class="row">
+                    <div class="col-sm-12 text-right">
+                      <small>10 minutes ago</small>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-2"><img class="avatar" src="/img/user.png"></div>
+                    <div class="col-sm-9 row-sm">
+                      <div>
+                        <span class="name">First name</span>
+                        <span class="name">Last name</span>
+                      </div>
+                      <div>
+                        <small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ac dui porta diam sodales tincidunt non sit amet tellus. Aliquam.</small>
+                      </div> 
+                    </div>
+                    <div class="col-sm-1">
+                      <button class="btn btn-warning btn-xs icon pull-right"><span class="glyphicons message_out icon"></span></button>
+                    </div>
+                  </div>
+                </li>
+                <li class="contact">
+                  <div class="row">
+                    <div class="col-sm-12 text-right">
+                      <small>1 hour ago</small>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-2"><img class="avatar" src="/img/user.png"></div>
+                    <div class="col-sm-9 row-sm">
+                      <div>
+                        <span class="name">First name</span>
+                        <span class="name">Last name</span>
+                      </div>
+                      <div>
+                        <small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ac dui porta diam sodales tincidunt non sit amet tellus. Aliquam.</small>
+                      </div> 
+                    </div>
+                    <div class="col-sm-1"><button class="btn btn-warning btn-xs icon pull-right"><span class="glyphicons message_out icon"></span></button></div>
+                  </div>
+                </li>
+                <li class="divider"></li>
+                <li class="dropdown-menu-header">
+                  <a href="/contacts"><strong>View All </strong><span class="halflings chevron-right"></span></a>
+                </li>
               </ul>
             </li>
+            <!-- =========================================== contacts dropdown end =========================================== -->
+
         <li><a href="index.html#"><i class="icon-speech"></i></a></li>
         <li class="dropdown visible-md visible-lg">
               <a href="index.html#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-settings"></i><span class="badge">!</span></a>
@@ -348,6 +376,7 @@
 
     <!-- =========================================== main begins =========================================== -->
     <div class="main">
+    
       <ul class="statistics">
         <li>
           <i class="icon-users"></i>

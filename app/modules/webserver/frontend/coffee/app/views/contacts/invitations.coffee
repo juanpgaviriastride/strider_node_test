@@ -20,7 +20,7 @@ class App.Views.Contacts.Invitations extends System.Views.Base
     unread_messages = (if $unread.html() == "" then 0 else parseInt($unread.html()))
     $unread.html unread_messages + 1
 
-    @find('[data-role="invitation-list"]').show()
+    @find('[data-role="invitation-list-none"]').hide()
     item_view = new App.Views.Contacts.Invitation({model: item})
     @appendAfterView item_view.render(), '[data-role="invitation-list"]'
 
@@ -28,7 +28,7 @@ class App.Views.Contacts.Invitations extends System.Views.Base
     $unread = $('[data-role="pending-invitations-count"]')
 
     if app.me.contact_request.length == 0
-      @find('[data-role="invitation-list"]').hide()
+      @find('[data-role="invitation-list-none"]').show()
       $unread.html ''
     else
       unread_messages = (if parseInt($unread.html()) == 1 then '' else parseInt($unread.html()) )
@@ -42,7 +42,7 @@ class App.Views.Contacts.Invitations extends System.Views.Base
 class App.Views.Contacts.Invitation extends System.Views.Base
   template: JST['app/contacts/invitation.html']
   tagName: 'li'
-  className: "avatar"
+  className: "contact"
 
   events:
     "click a[data-role=contact-info]": "onClick"

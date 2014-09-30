@@ -12,27 +12,22 @@
   <!-- =========================================== navbar begins =========================================== -->
     <div class="navbar" role="navigation">
       <div class="navbar-header">
-				<a class="navbar-brand" href="" data-role="route"><img src="/favicon.ico" style="margin-top: -8px;"> <span>Context Surgery</span></a>
-			</div>
+	   <a class="navbar-brand" href="/" data-role="route"><img src="/favicon.ico" style="margin-top: -8px;"> <span>Context Surgery</span></a>
+	  </div>
       <ul class="nav navbar-nav navbar-actions navbar-left">
 				<li class="visible-md visible-lg"><a id="main-menu-toggle"><i class="fa fa-bars"></i></a></li>
 				<li class="visible-xs visible-sm"><a id="sidebar-menu"><i class="fa fa-bars"></i></a></li>
 			</ul>
-      <!-- <form class="navbar-form navbar-left" data-role="breadcrum"> -->
+     <form class="navbar-form navbar-left breadcrum" data-role="breadcrum">
         <!-- Backbone router populate this -->
-      <!-- </form> -->
-      <form class="navbar-form navbar-left breadcrum" data-role="breadcrum">
-				<i class="fa fa-search"></i>
-				<input type="text" class="form-control" placeholder="Are you looking for something ?">
-			</form>
-
+      </form>
       <ul class="nav navbar-nav navbar-right visible-md visible-lg">
         <li class="dropdown visible-md visible-lg">
           <a href="index.html#" class="dropdown-toggle" data-toggle="dropdown">
             <i class="icon-users"></i>
             <span class="badge" data-role="pending-invitations-count"></span>
           </a>
-          <ul class="dropdown-menu" data-role="check-invitations">
+          <ul class="dropdown-menu container contacts" data-role="check-invitations">
             <!-- backbone views -->
           </ul>
         </li>
@@ -59,14 +54,14 @@
 
         <div class="sidebar-menu">
           <ul class="nav nav-sidebar">
-            <li data-href="contacts"><a href="/contacts" data-role="route">Contacts</a></li>
+            <!-- <li data-href="contacts"><a href="/contacts" data-role="route">Contacts</a></li> -->
             <li data-role="roster" data-href="">
               <!-- backbone view -->
             </li>
           </ul>
         </div>
       </div>
-      <div class="sidebar-footer">
+      <!-- hiding this for the demo as it is not populated by real data yet. <div class="sidebar-footer">
         <ul class="sidebar-actions">
           <li class="action">
             <div class="btn-group dropup">
@@ -93,12 +88,12 @@
         </ul>
         <ul class="sidebar-terms">
           &nbsp;
-          <!-- <li><a href="index.html#">Terms</a></li>
+           <li><a href="index.html#">Terms</a></li>
           <li><a href="index.html#">Privacy</a></li>
           <li><a href="index.html#">Help</a></li>
-          <li><a href="index.html#">About</a></li> -->
+          <li><a href="index.html#">About</a></li> 
         </ul>
-      </div>
+      </div> -->
     </div>
     <!-- =========================================== sidebar ends =========================================== -->
     <!-- =========================================== main begins =========================================== -->
@@ -106,6 +101,14 @@
       <!-- backbone views -->
     </div>
     <!-- =========================================== main end =========================================== -->
+    <footer>
+      <div class="row">
+        <div class="col-sm-5">
+          © 2014 context surgery by context aware.
+        </div>
+      </div>
+    </footer>
+    
     <div data-role="modal-container">
 
     </div>

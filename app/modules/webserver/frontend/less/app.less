@@ -1,5 +1,6 @@
 @import "add-ons";
 @import "style";
+@import "csstyles/typography.less";
 
 .navbar-brand :first-child:not(i) {
   padding-left: 15px;
@@ -30,8 +31,11 @@
   color: yellow;
 }
 
-.glyphicons.gray:before {
-  color: #ccc;
+.text-muted.remove:hover {
+  color: lighten(@danger, 5%);
+}
+.text-success.ok:hover {
+  color: darken(@success, 20%);
 }
 
 .new-message-input {
@@ -73,6 +77,117 @@
   padding-bottom: 50px;
   height: 100%;
 }
+
+.dropdown-menu-header {
+  a {
+    strong {
+      padding-right: 10px;
+    }
+    span {
+      display: inline;
+    }
+  }
+}
+
+// 
+// Directly OVERWRITING STYLES FROM TEMPLATE
+//
+.container.contacts{
+  max-width: 500px;
+}
+
+.navbar{
+  .navbar-nav{
+    li {
+      .dropdown-menu {
+        li.contact {
+          padding-bottom: 15px;
+          overflow: hidden;
+          
+          button {
+            background: transparent;
+          }
+
+          a {
+            background-color: transparent;
+          }
+
+          img {
+            height: 40px;
+            width: 40px;
+            margin-top: 3px;
+            margin-right: 15px;
+            -webkit-border-radius: 50em;
+            -moz-border-radius: 50em;
+            border-radius: 50em;
+          }
+          .row:first-child {
+            line-height: 20px;
+          }
+        }
+      }
+    }
+  }
+}
+
+a.image{
+  display: block;
+}
+
+.row-sm {
+  div{
+    height: 20px;
+    max-height: 20px;
+    line-height: 20px;
+  }
+}
+.sidebar {
+  ul.nav.nav-sidebar {
+   li {
+      ul {
+        padding: 0;
+
+        li {
+          margin: 0;
+          padding: 5px 5px 5px 25px;
+          &.active, 
+          &:hover,
+          &.opened {
+            background: lighten(@sidebar,10%);
+            color: white;
+            border-left: 3px solid transparent;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}
+
+// .glyphicons {
+//   display: inline-block;
+//   position: relative;
+//   padding-left: inherit;
+//   color: inherit;
+//   text-decoration: none; 
+// }
+
+// .glyphicons:before {
+//   position: relative;
+//   left: auto;
+//   top: 3px;
+//   display: inline-block;
+//   margin: auto;
+//   font: 24px/1em 'Glyphicons Regular';
+//   font-style: normal;
+//   font-weight: normal;
+//   color: auto;
+//   -webkit-font-smoothing: antialiased;
+// }
+
+// 
+// ADD TO EXISTING STYLES FROM TEMPLATE
+// 
 
 .invitation-actions {
   position: absolute;

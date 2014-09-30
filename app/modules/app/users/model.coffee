@@ -33,7 +33,8 @@ User = Waterline.Collection.extend(
 
     full_name: () ->
       console.log "user this: ", @
-      return "#{@prefix_name} #{@first_name} #{@last_name}"
+      blank = (str) -> if str? then str else ''
+      return "#{blank(@prefix_name)} #{blank(@first_name)} #{@last_name}".replace /^\s+|\s+$/g, ""
 
     dob:            () => @createdAt
     profileUrl:     {type: 'string', required: no}
