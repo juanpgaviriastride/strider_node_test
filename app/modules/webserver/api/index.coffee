@@ -291,7 +291,7 @@ apiController.namespace("/api/v1", () ->
         res.status(200).json({
           "id": doc_id,
           "content_type": content_type
-          "url": "http://#{conf.get('app').baseUrl}api/v1/assets/#{doc_id}"
+          "url": "#{conf.get('app').baseUrl}api/v1/assets/#{doc_id}"
         })
   )
 
