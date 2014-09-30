@@ -16,11 +16,19 @@ class App.Views.TestApi.Devices.Index extends System.Views.Base
     @table = new App.Views.TestApi.Devices.Table
       collection: @collection
 
+  events:
+    "click .manual-registration": "showManualRegistrationForm"
+
   render: () =>
     super
 
     @appendView @form.render(), '.create-form'
-    # @appendView @switch_auth.render(), '.auth-with-device'
+    @appendView @switch_auth.render(), '.auth-with-device'
     @appendView @table.render(), '.list'
 
     @collection.fetch()
+
+  showManualRegistrationForm: (event) =>
+    event.preventDefault()
+    @find('.auth-with-device').removeClass("hide")
+    @find('.device-form').removeClass("hide")

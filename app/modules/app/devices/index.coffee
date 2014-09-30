@@ -19,30 +19,35 @@ class DeviceController extends BaseManager
       return callback(err, null) if err
       return callback(null, null) unless token_request
       @_getDeviceBySerial(data.data, (err, device) =>
+        console.log "GetDEvices :" , err, device
         return callback(err, null) if err
-        return @_createDevice(data.data, token_request, callback) unless device
+        return @_createDevice(data.data, token_request, token_request.user, callback) unless device
 
         auth_token_info =
           user_id: device.id
           user_type: 'device'
 
-        @_createAuthToken(auth_token_info, (error, access_token) =>
-          return callback(err, null) if error
-          return callback(null, null) unless access_token
-          device.access_token = access_token.token
-          device.host_url = token_request.host_url
-          device.im_uri = "xmpp:#{token_request.user.username}@#{config.get('app').im?.xmpp.host}:#{config.get('app').im?.xmpp.port}"
-
-          callback(null, device)
+        @updateOne({id: device.id, user: token_request.user.id}, (err, device) =>
+          console.log "===================== UPDATE =========", err, device
+          @_createAuthToken(auth_token_info, (error, access_token) =>
+            return callback(err, null) if error
+            return callback(null, null) unless access_token
+            device.access_token = access_token.token
+            device.host_url = token_request.host_url
+            device.im_uri = "xmpp:#{token_request.user.username}@#{config.get('app').im?.xmpp.host}:#{config.get('app').im?.xmpp.port}"
+            console.log "DEVICE to RETURN: ", device
+            callback(null, device)
+          )
         )
       )
 
 
-  _createDevice: (data, request_token, callback) =>
+  _createDevice: (data, request_token, real_user, callback) =>
     data =
       user: request_token.user
       token: data.token
 
+    console.log "Create deveice: ", real_user
     BaseManager::create.call(@, data, (err, res) =>
       return callback(err, null) if err
       return callback(null, null) unless res
@@ -56,8 +61,9 @@ class DeviceController extends BaseManager
         return callback(null, null) unless result
         res.access_token = result.token
         res.host_url = result.host_url
-        new User().getOne {id: result.user_id}, (err, user) =>
-          res.im_uri = "xmpp:#{user.username}@#{config.get('app').im?.xmpp.host}:#{config.get('app').im?.xmpp.port}"
+        (new User()).getOne {id: real_user.id}, (err, user) =>
+          console.log "ERROR: ", err,user
+          #res.im_uri = "xmpp:#{user.username}@#{config.get('app').im?.xmpp.host}:#{config.get('app').im?.xmpp.port}"
           callback(null, res)
       )
     )

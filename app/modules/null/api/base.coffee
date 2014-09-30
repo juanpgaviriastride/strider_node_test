@@ -163,8 +163,11 @@ class BaseResource
 
         that.get_object(result.id, (err, item) ->
           return callback.call(that, error, result) if err
-
-          removed_fields = _.omit(result.toJSON(), (value, key, object) =>
+          try
+            object_created = result.toJSON()
+          catch
+            object_created = result
+          removed_fields = _.omit(object_created, (value, key, object) =>
             for field in that._fields
               normailize_field = (if field.search('-') == 0 then field.replace(/^-/, '') else null)
               if key == normailize_field

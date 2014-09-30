@@ -14,28 +14,28 @@ apiController.namespace("/api/v1", () ->
   UserResource = require("./controllers/users")
 
   # user list
-  apiController.get('/users', (req, res, next) ->
+  apiController.get('/users', auth.passport.authenticate('bearer', { session: false }), (req, res, next) ->
     new UserResource().list(req, res, next)
   )
 
 
   # user detail
-  apiController.get('/users/:id', (req, res, next) ->
+  apiController.get('/users/:id', auth.passport.authenticate('bearer', { session: false }), (req, res, next) ->
     new UserResource().detail(req, res, next)
   )
 
   # create new user
-  apiController.post('/users', (req, res, next) ->
+  apiController.post('/users', auth.passport.authenticate('bearer', { session: false }), (req, res, next) ->
     new UserResource().create(req, res, next)
   )
 
   # update new user
-  apiController.put('/users/:id', (req, res, next) ->
+  apiController.put('/users/:id', auth.passport.authenticate('bearer', { session: false }), (req, res, next) ->
     new UserResource().update(req, res, next)
   )
 
   # delete new user
-  apiController.del('/users/:id', (req, res, next) ->
+  apiController.del('/users/:id', auth.passport.authenticate('bearer', { session: false }), (req, res, next) ->
     new UserResource().delete(req, res, next)
   )
 
@@ -126,27 +126,27 @@ apiController.namespace("/api/v1", () ->
   PatientsResource = require "./controllers/patients"
 
   # list of delivery patietns
-  apiController.get('/patients', (req, res, next) ->
+  apiController.get('/patients', auth.passport.authenticate('bearer', { session: false }), (req, res, next) ->
     new PatientsResource().list(req, res, next)
   )
 
   # detail of delivery patietns
-  apiController.get('/patients/:id', (req, res, next) ->
+  apiController.get('/patients/:id', auth.passport.authenticate('bearer', { session: false }), (req, res, next) ->
     new PatientsResource().detail(req, res, next)
   )
 
   # create delivery patietns
-  apiController.post('/patients', (req, res, next) ->
+  apiController.post('/patients', auth.passport.authenticate('bearer', { session: false }), (req, res, next) ->
     new PatientsResource().create(req, res, next)
   )
 
   # update delivery patietns
-  apiController.put('/patients/:id', (req, res, next) ->
+  apiController.put('/patients/:id', auth.passport.authenticate('bearer', { session: false }), (req, res, next) ->
     new PatientsResource().update(req, res, next)
   )
 
   # update delivery patietns
-  apiController.del('/patients/:id', (req, res, next) ->
+  apiController.del('/patients/:id', auth.passport.authenticate('bearer', { session: false }), (req, res, next) ->
     new PatientsResource().delete(req, res, next)
   )
 
@@ -158,27 +158,27 @@ apiController.namespace("/api/v1", () ->
   SurgeriesResource = require "./controllers/surgeries"
 
   # list of delivery surgeries
-  apiController.get('/surgeries', (req, res, next) ->
+  apiController.get('/surgeries', auth.passport.authenticate('bearer', { session: false }), (req, res, next) ->
     new SurgeriesResource().list(req, res, next)
   )
 
   # detail of delivery surgeries
-  apiController.get('/surgeries/:id', (req, res, next) ->
+  apiController.get('/surgeries/:id', auth.passport.authenticate('bearer', { session: false }), (req, res, next) ->
     new SurgeriesResource().detail(req, res, next)
   )
 
   # create delivery surgeries
-  apiController.post('/surgeries', (req, res, next) ->
+  apiController.post('/surgeries', auth.passport.authenticate('bearer', { session: false }), (req, res, next) ->
     new SurgeriesResource().create(req, res, next)
   )
 
   # update delivery surgeries
-  apiController.put('/surgeries/:id', (req, res, next) ->
+  apiController.put('/surgeries/:id', auth.passport.authenticate('bearer', { session: false }), (req, res, next) ->
     new SurgeriesResource().update(req, res, next)
   )
 
   # update delivery surgeries
-  apiController.del('/surgeries/:id', (req, res, next) ->
+  apiController.del('/surgeries/:id', auth.passport.authenticate('bearer', { session: false }), (req, res, next) ->
     new SurgeriesResource().delete(req, res, next)
   )
 
@@ -191,27 +191,27 @@ apiController.namespace("/api/v1", () ->
   LocationsResource = require "./controllers/locations"
 
   # list of delivery locations
-  apiController.get('/locations', (req, res, next) ->
+  apiController.get('/locations', auth.passport.authenticate('bearer', { session: false }), (req, res, next) ->
     new LocationsResource().list(req, res, next)
   )
 
   # detail of delivery locations
-  apiController.get('/locations/:id', (req, res, next) ->
+  apiController.get('/locations/:id', auth.passport.authenticate('bearer', { session: false }), (req, res, next) ->
     new LocationsResource().detail(req, res, next)
   )
 
   # create delivery locations
-  apiController.post('/locations', (req, res, next) ->
+  apiController.post('/locations', auth.passport.authenticate('bearer', { session: false }), (req, res, next) ->
     new LocationsResource().create(req, res, next)
   )
 
   # update delivery locations
-  apiController.put('/locations/:id', (req, res, next) ->
+  apiController.put('/locations/:id', auth.passport.authenticate('bearer', { session: false }), (req, res, next) ->
     new LocationsResource().update(req, res, next)
   )
 
   # update delivery locations
-  apiController.del('/locations/:id', (req, res, next) ->
+  apiController.del('/locations/:id', auth.passport.authenticate('bearer', { session: false }), (req, res, next) ->
     new LocationsResource().delete(req, res, next)
   )
 
@@ -224,27 +224,27 @@ apiController.namespace("/api/v1", () ->
   MessagesResource = require "./controllers/messages"
 
   # list of delivery messages
-  apiController.get('/messages', (req, res, next) ->
+  apiController.get('/messages', auth.passport.authenticate('bearer', { session: false }), (req, res, next) ->
     new MessagesResource().list(req, res, next)
   )
 
   # detail of delivery messages
-  apiController.get('/messages/:id', (req, res, next) ->
+  apiController.get('/messages/:id', auth.passport.authenticate('bearer', { session: false }), (req, res, next) ->
     new MessagesResource().detail(req, res, next)
   )
 
   # create delivery messages
-  apiController.post('/messages', (req, res, next) ->
+  apiController.post('/messages', auth.passport.authenticate('bearer', { session: false }), (req, res, next) ->
     new MessagesResource().create(req, res, next)
   )
 
   # update delivery messages
-  apiController.put('/messages/:id', (req, res, next) ->
+  apiController.put('/messages/:id', auth.passport.authenticate('bearer', { session: false }), (req, res, next) ->
     new MessagesResource().update(req, res, next)
   )
 
   # update delivery messages
-  apiController.del('/messages/:id', (req, res, next) ->
+  apiController.del('/messages/:id', auth.passport.authenticate('bearer', { session: false }), (req, res, next) ->
     new MessagesResource().delete(req, res, next)
   )
 
@@ -340,33 +340,33 @@ apiController.namespace("/api/v1", () ->
   DevicesResource = require "./controllers/devices"
 
   # list of delivery messages
-  apiController.get('/devices', (req, res, next) ->
+  apiController.get('/devices', auth.passport.authenticate('bearer', { session: false }), (req, res, next) ->
     new DevicesResource().list(req, res, next)
   )
 
   # detail of delivery messages
-  apiController.get('/devices/:id', (req, res, next) ->
+  apiController.get('/devices/:id', auth.passport.authenticate('bearer', { session: false }), (req, res, next) ->
     new DevicesResource().detail(req, res, next)
   )
 
   # create delivery messages
-  apiController.post('/devices/token/:request_token', (req, res, next) ->
+  apiController.post('/devices/token/:request_token', auth.passport.authenticate('bearer', { session: false }), (req, res, next) ->
     new DevicesResource().create(req, res, next)
   )
 
   # update delivery messages
-  apiController.put('/devices/:id', (req, res, next) ->
+  apiController.put('/devices/:id', auth.passport.authenticate('bearer', { session: false }), (req, res, next) ->
     new DevicesResource().update(req, res, next)
   )
 
   # update delivery messages
-  apiController.del('/devices/:id', (req, res, next) ->
+  apiController.del('/devices/:id', auth.passport.authenticate('bearer', { session: false }), (req, res, next) ->
     new DevicesResource().delete(req, res, next)
   )
 
   ## Device request token
   # create delivery messages
-  apiController.post('/auth/devices/request_token', (req, res, next) ->
+  apiController.post('/auth/devices/request_token', auth.passport.authenticate('bearer', { session: false }), (req, res, next) ->
     new DevicesResource.TokenRequestResource().create(req, res, next)
   )
 
@@ -378,27 +378,27 @@ apiController.namespace("/api/v1", () ->
   ContactsResource = require "./controllers/contacts"
 
   # list of delivery messages
-  apiController.get('/contacts', (req, res, next) ->
+  apiController.get('/contacts', auth.passport.authenticate('bearer', { session: false }), (req, res, next) ->
     new ContactsResource().list(req, res, next)
   )
 
   # detail of delivery messages
-  apiController.get('/contacts/:id', (req, res, next) ->
+  apiController.get('/contacts/:id', auth.passport.authenticate('bearer', { session: false }), (req, res, next) ->
     new ContactsResource().detail(req, res, next)
   )
 
   # create delivery messages
-  apiController.post('/contacts', (req, res, next) ->
+  apiController.post('/contacts', auth.passport.authenticate('bearer', { session: false }), (req, res, next) ->
     new ContactsResource().create(req, res, next)
   )
 
   # update delivery messages
-  apiController.put('/contacts/:id', (req, res, next) ->
+  apiController.put('/contacts/:id', auth.passport.authenticate('bearer', { session: false }), (req, res, next) ->
     new ContactsResource().update(req, res, next)
   )
 
   # update delivery messages
-  apiController.del('/contacts/:id', (req, res, next) ->
+  apiController.del('/contacts/:id', auth.passport.authenticate('bearer', { session: false }), (req, res, next) ->
     new ContactsResource().delete(req, res, next)
   )
   # Oembed

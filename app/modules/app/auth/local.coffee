@@ -69,7 +69,8 @@ passport.use(new BearerStrategy(
             )
           when "device"
             devices = new Devices()
-            devices.getOne({id: token.user_id}, null, {user: []}, (err, result) ->
+            devices.model.findOne().where({id: token.user_id}).populate('user').exec( (err, result) ->
+            #devices.getOne({id: token.user_id}, null, {user: []}, (err, result) ->
               return done(err, false, { message: 'Authentication fail'}) if err
               return done(null, false, { message: 'Authentication fail'}) unless result
 
