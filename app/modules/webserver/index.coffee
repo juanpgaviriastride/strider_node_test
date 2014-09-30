@@ -8,8 +8,6 @@ RedisStore = require('connect-redis')(express)
 
 
 redis = require("../../lib/redis")
-# WIP: mongoose is being replaced by a waterline couchdb adapter
-#db = require("../../lib/db")
 
 
 # Mailer
