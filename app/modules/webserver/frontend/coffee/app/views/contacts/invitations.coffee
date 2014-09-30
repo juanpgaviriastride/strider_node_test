@@ -42,7 +42,7 @@ class App.Views.Contacts.Invitations extends System.Views.Base
 class App.Views.Contacts.Invitation extends System.Views.Base
   template: JST['app/contacts/invitation.html']
   tagName: 'li'
-  className: "avatar"
+  className: "contact"
 
   events:
     "click a[data-role=contact-info]": "onClick"

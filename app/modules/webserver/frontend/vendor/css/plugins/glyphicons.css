@@ -16,7 +16,6 @@
   display: inline-block;
   position: relative;
   padding-left: 48px;
-  color: #1d1d1b;
   text-decoration: none;
   *display: inline;
   *zoom: 1;
@@ -31,7 +30,6 @@
   font: 24px/1em 'Glyphicons Regular';
   font-style: normal;
   font-weight: normal;
-  color: #1d1d1b;
   *display: inline;
   *zoom: 1;
   vertical-align: middle;

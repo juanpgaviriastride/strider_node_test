@@ -31,8 +31,11 @@
   color: yellow;
 }
 
-.glyphicons.gray:before {
-  color: #ccc;
+.text-muted.remove:hover {
+  color: lighten(@danger, 5%);
+}
+.text-success.ok:hover {
+  color: darken(@success, 20%);
 }
 
 .new-message-input {
@@ -76,6 +79,15 @@
         li.contact {
           padding-bottom: 15px;
           overflow: hidden;
+          
+          button {
+            background: transparent;
+          }
+
+          a {
+            background-color: transparent;
+          }
+
           img {
             height: 40px;
             width: 40px;
@@ -85,33 +97,19 @@
             -moz-border-radius: 50em;
             border-radius: 50em;
           }
-          button {
-            margin-top: 15px;
-          }
-          .glyphicons {
-            color: #fff;
-            width: 100%;
-            height: 100%;
-            padding: 0;
-            top: 0;
-            left: 0;
-            &:before{
-              color: #fff;
-              position: relative;
-              vertical-align: initial;
-              margin: 0;
-              font-size: 14px;
-              line-height: 1em;
-            }
-          }
-          .row:last-child{
-            padding-bottom: 15px;
+          .row:first-child {
+            line-height: 20px;
           }
         }
       }
     }
   }
 }
+
+a.image{
+  display: block;
+}
+
 .row-sm {
   div{
     height: 20px;

@@ -56,7 +56,7 @@ class DeviceController extends BaseManager
         return callback(null, null) unless result
         res.access_token = result.token
         res.host_url = result.host_url
-        User.getOne {id: result.user_id}, (err, user) =>
+        new User().getOne {id: result.user_id}, (err, user) =>
           res.im_uri = "xmpp:#{user.username}@#{config.get('app').im?.xmpp.host}:#{config.get('app').im?.xmpp.port}"
           callback(null, res)
       )
