@@ -47,4 +47,8 @@ module.exports = {
   "google_maps": {
     "key": "AIzaSyDNls3JPEGa3uPSCjdPEzEvtkURk5PRWjc"
   },
+  "papertrail": {
+    "host": 'logs2.papertrailapp.com',
+    "port": 16368
+  }
 }
