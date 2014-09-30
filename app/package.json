@@ -65,6 +65,7 @@
     "connect-oembed": "0.0.2",
     "winston-papertrail": "^0.1.4",
     "winston": "^0.8.0"
+    "method-override": "^2.2.0"
   },
   "devDependencies": {
     "mocha": "*",

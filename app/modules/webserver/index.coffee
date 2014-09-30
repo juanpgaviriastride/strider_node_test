@@ -5,7 +5,7 @@ fs = require("fs")
 path = require("path")
 config = require("../../config")
 RedisStore = require('connect-redis')(express)
-
+methodOverride = require('method-override')
 
 redis = require("../../lib/redis")
 # WIP: mongoose is being replaced by a waterline couchdb adapter
@@ -34,48 +34,45 @@ sessionConf =
     pass: config.get('redis').options.auth
 
 
-app.configure ->
-  #app.use express.favicon(path.join __dirname, './public/favicon.ico')
-  app.use express.logger("dev")
-  app.use express.bodyParser({limit: '50mb', keepExtensions: true, uploadDir: path.join(global.root, config.get('media_root'))})
-  app.use express.urlencoded()
-  app.use express.json()
-  app.use express.methodOverride()
-  app.use cookieParser
-  app.use express.session(sessionConf)
 
-  parseDebug = () ->
-    return (req, res, next) ->
-      if req.query.debug?
-        if req.query.debug == "false"
-          req.query.debug = no
-        else if req.query.debug == "true"
-          req.query.debug = yes
-      next()
+#app.use express.favicon(path.join __dirname, './public/favicon.ico')
+app.use express.logger("dev")
+#app.use express.bodyParser({limit: '50mb', keepExtensions: true, uploadDir: path.join(global.root, config.get('media_root'))})
+app.use express.urlencoded()
+app.use express.json()
+app.use methodOverride()
+app.use cookieParser
+app.use express.session(sessionConf)
 
-  app.use(parseDebug())
+parseDebug = () ->
+  return (req, res, next) ->
+    if req.query.debug?
+      if req.query.debug == "false"
+        req.query.debug = no
+      else if req.query.debug == "true"
+        req.query.debug = yes
+    next()
 
-  app.use app.router
-  app.use express.static(path.join(__dirname, "public"))
+app.use(parseDebug())
 
-  # mount applications
-  app.use require "app/auth/passport_setup"
-  app.use '/api/v1', require("app/auth")
-  app.use require "./static_pages"
-  app.use require "./api"
+app.use app.router
+app.use express.static(path.join(__dirname, "public"))
 
-
+# mount applications
+app.use require "app/auth/passport_setup"
+app.use '/api/v1', require("app/auth")
+app.use require "./static_pages"
+app.use require "./api"
 
 # express app configuration for dev env
-app.configure "development", ->
-  app.use express.errorHandler(
+if app.get('env') == "development"
+  app.use express.errorHandler
     dumpExceptions: false
     showStack: false
-  )
 
 # express app configurarion for pro env
-app.configure "production", ->
-  app.use express.errorHandler()
+app.get('env') == "production"
+app.use express.errorHandler()
 
 
 # *******************************************************
