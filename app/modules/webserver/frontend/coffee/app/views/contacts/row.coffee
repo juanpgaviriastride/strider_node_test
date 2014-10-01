@@ -17,8 +17,12 @@ class App.Views.Contacts.Row extends System.Views.Base
 
   deleteItem: (event) =>
     event.preventDefault()
+    @fire 'contact:confirm_delete'
+
+  showDeleteModal: () =>
+    $('.delete-modal', @$el).modal('show')
     @model.destroy()
 
   onDestroy: () =>
-    @removeAll()
-    alert('item deleted')
+    @$el.slideUp 'slow', () =>
+      @removeAll()

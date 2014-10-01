@@ -1,4 +1,4 @@
-class App.Views.Contacts.Row extends System.Views.Base
+class App.Views.TestApi.Contacts.Row extends System.Views.Base
   template: JST['app/contacts/row.html']
   tagName: 'tr'
 
