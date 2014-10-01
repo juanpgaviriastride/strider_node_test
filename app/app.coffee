@@ -2,6 +2,9 @@ express = require "express"
 http = require "http"
 path = require "path"
 fs = require "fs"
+logger = require "null/logger"
+
+logger.debug "Context surgery app."
 
 async = require "async"
 
