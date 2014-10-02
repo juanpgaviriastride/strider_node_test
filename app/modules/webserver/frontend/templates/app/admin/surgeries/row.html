@@ -1,0 +1,13 @@
+<td><%= model.id %></td>
+<td><%= model.escape('ssn') %></td>
+<td><%= model.escape('display_name') %></td>
+<td><%= model.escape('status') %></td>
+<td><%= moment(model.get('time').start).format('YYYY/MM/DD hh:mm a') %></td>
+<td><%= moment(model.get('time').end).format('YYYY/MM/DD hh:mm a') %></td>
+<td><%= model.escape('patientId')%></td>
+<td><%= model.escape('location')%></td>
+<td><%= model.escape('team')%></td>
+<td>
+  <button class="btn btn-danger delete"><span class="glyphicon glyphicon-trash"></span></button>
+  <button class="btn btn-warning edit"><span class="glyphicon glyphicon-edit"></span></button>
+</td>

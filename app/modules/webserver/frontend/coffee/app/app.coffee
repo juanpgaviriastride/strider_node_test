@@ -26,10 +26,13 @@ class App.Initialize
     @routers = []
     @routers.push new App.Routers.Common
 
-    if window.rootBase == "/test-api"
-      @routers.push new App.Routers.TestApi
-    else
-      @routers.push new App.Routers.Index
+    switch window.rootBase
+      when "/test-api"
+        @routers.push new App.Routers.TestApi
+      when "/admin"
+        @routers.push new App.Routers.Admin
+      else
+        @routers.push new App.Routers.Index
 
     # evetns
     @events = new App.Events.Events()

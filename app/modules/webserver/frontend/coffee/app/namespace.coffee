@@ -9,6 +9,17 @@ window.App =
   Events: {}
   XMPP: {}
   Views: {
+    Admin: {
+      Users: {}
+      Patients: {}
+      Surgeries: {}
+      Locations: {}
+      Messages: {}
+      Devices: {
+        DevicesRequestToken: {}
+      }
+      Contacts: {}
+    }
     Common: {}
     Me: {}
     Contacts: {}
