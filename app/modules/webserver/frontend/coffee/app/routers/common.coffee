@@ -1,4 +1,4 @@
-class App.Routers.Common extends System.Routers.Base
+class App.Routers.Common extends Null.Routers.Base
   routes:
     'logout': 'logout',
 

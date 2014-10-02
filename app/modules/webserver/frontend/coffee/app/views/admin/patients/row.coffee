@@ -1,4 +1,4 @@
-class App.Views.Admin.Patients.Row extends System.Views.Base
+class App.Views.Admin.Patients.Row extends Null.Views.Base
   template: JST['app/test_api/patients/row.html']
   tagName: 'tr'
 

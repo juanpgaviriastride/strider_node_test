@@ -1,4 +1,4 @@
-window.System =
+window.Null =
   Routers: {}
   Models: {}
   Collections: {}

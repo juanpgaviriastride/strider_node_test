@@ -1,5 +1,5 @@
-class System.Views.Helpers.Select extends System.Views.Base
-  template: JST['sytem/helpers/select.html']
+class Null.Views.Helpers.Select extends Null.Views.Base
+  template: JST['null/helpers/select.html']
 
   initialize: (options) =>
     # need collection and renderOption

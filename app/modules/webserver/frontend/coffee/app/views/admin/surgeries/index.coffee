@@ -1,4 +1,4 @@
-class App.Views.Admin.Surgeries.Index extends System.Views.Base
+class App.Views.Admin.Surgeries.Index extends Null.Views.Base
   template: JST['app/admin/surgeries/index.html']
 
   initialize: (options) =>

@@ -1,4 +1,4 @@
-class App.Views.TestApi.Users.Form extends System.Views.Base
+class App.Views.TestApi.Users.Form extends Null.Views.Base
   template: JST['app/test_api/users/form.html']
 
   form: '.signup-form'
@@ -53,23 +53,23 @@ class App.Views.TestApi.Users.Form extends System.Views.Base
 #     'previousSelector': '.button-previous'
 
 #     onNext: (tab, navigation, index) ->
-    
+
 #     hasError = (id) ->
 #       $(id).parent().parent().addClass('has-error')
 #       bugs = 1
 
 #       if index is 1
 #         bugs = 0
-        
+
 #         hasError('#email-w1') unless isEmail($('#email-w1').val())
 
 #         hasError('#password-w1') unless $('#password-w1').val()
-        
+
 #         false if bugs == 1
 
 #       if index is 2
 #         bugs = 0
-        
+
 #         hasError('#name-w1') unless $('#name-w1').val()
 #         hasError('#ccnumber-w1') unless $('#ccnumber-w1').val()
 #         hasError('#cvv-w1') unless $('#cvv-w1').val()
@@ -81,7 +81,7 @@ class App.Views.TestApi.Users.Form extends System.Views.Base
 #       $total = navigation.find('li').length
 #       $current = index+1
 #       $percent = ($current/$total) * 100
-      
+
 #       showFinishBtn = ->
 #         $('#wizard1').find('.button-next').hide()
 #         $('#wizard1').find('.button-finish').show()
@@ -92,10 +92,10 @@ class App.Views.TestApi.Users.Form extends System.Views.Base
 
 #       $('#wizard1').find('.progress-bar').css ->
 #         width:$percent+'%'
-    
+
 #       $('#wizard1 > .steps li').each = (index) ->
 #         $(this).removeClass('complete')
 #         index += 1
 #         $(this).addClass('complete') if index < $current
-    
+
 #       if $current >= $total then showFinishBtn else hideFinishBtn

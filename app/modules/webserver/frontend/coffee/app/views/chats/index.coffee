@@ -1,4 +1,4 @@
-class App.Views.Chats.Index extends System.Views.Base
+class App.Views.Chats.Index extends Null.Views.Base
   template: JST['app/chats/index.html']
 
   events:

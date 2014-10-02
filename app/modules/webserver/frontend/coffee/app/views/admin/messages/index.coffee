@@ -1,4 +1,4 @@
-class App.Views.Admin.Messages.Index extends System.Views.Base
+class App.Views.Admin.Messages.Index extends Null.Views.Base
   template: JST['app/admin/messages/index.html']
 
   initialize: (options) =>

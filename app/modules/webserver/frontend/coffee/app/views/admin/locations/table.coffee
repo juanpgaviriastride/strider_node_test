@@ -1,4 +1,4 @@
-class App.Views.Admin.Locations.Table extends System.Views.Base
+class App.Views.Admin.Locations.Table extends Null.Views.Base
   template: JST['app/admin/locations/table.html']
 
   initialize: (options) =>

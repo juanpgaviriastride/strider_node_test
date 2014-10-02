@@ -1,4 +1,4 @@
-class App.Views.TestApi.Messages.Table extends System.Views.Base
+class App.Views.TestApi.Messages.Table extends Null.Views.Base
   template: JST['app/test_api/messages/table.html']
 
   initialize: (options) =>

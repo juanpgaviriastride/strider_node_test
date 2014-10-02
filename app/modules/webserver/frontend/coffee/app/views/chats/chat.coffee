@@ -1,4 +1,4 @@
-class App.Views.Chats.Chat extends System.Views.Base
+class App.Views.Chats.Chat extends Null.Views.Base
   template: JST['app/chats/chat.html']
 
   form: '[data-role="new-message-form"]'
@@ -128,7 +128,7 @@ class App.Views.Chats.Chat extends System.Views.Base
 
 
 
-class App.Views.Chats.Message extends System.Views.Base
+class App.Views.Chats.Message extends Null.Views.Base
   template: JST['app/chats/message.html']
   tagName: 'li'
 
@@ -158,7 +158,7 @@ class App.Views.Chats.Message extends System.Views.Base
     return {model: @model, text: text}
 
 
-class App.Views.Chats.UploadFile extends System.Views.Base
+class App.Views.Chats.UploadFile extends Null.Views.Base
   template: JST['app/chats/upload_file.html']
 
   form: '[data-role="new-message-form"]'
@@ -218,7 +218,7 @@ class App.Views.Chats.UploadFile extends System.Views.Base
     @hide()
 
 
-class App.Views.Chats.MessageImage extends System.Views.Base
+class App.Views.Chats.MessageImage extends Null.Views.Base
   template: JST['app/chats/mimes/image.html']
 
   initialize: (options) =>
@@ -233,7 +233,7 @@ class App.Views.Chats.MessageImage extends System.Views.Base
     return {src: @model.get('url'), max_width: 800, max_height: 1000}
 
 
-class App.Views.Chats.MessageVideo extends System.Views.Base
+class App.Views.Chats.MessageVideo extends Null.Views.Base
   template: JST['app/chats/mimes/video.html']
 
   initialize: (options) =>

@@ -1,4 +1,4 @@
-class App.Views.Helpers.Contacts.Select extends System.Views.Helpers.Select
+class App.Views.Helpers.Contacts.Select extends Null.Views.Helpers.Select
 
   initialize: (options) =>
     @collection = new App.Collections.Contacts()

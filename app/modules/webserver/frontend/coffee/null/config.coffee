@@ -1,4 +1,4 @@
-System.Sync = (method, model, options) ->
+Null.Sync = (method, model, options) ->
   token = $.cookies.get('auth_token')
   if token
     options.dataType = "json"

@@ -1,4 +1,4 @@
-class App.Views.Helpers.Locations.Select extends System.Views.Helpers.Select
+class App.Views.Helpers.Locations.Select extends Null.Views.Helpers.Select
 
   initialize: (options) =>
     @collection = new App.Collections.Locations()

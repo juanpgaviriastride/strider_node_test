@@ -1,4 +1,4 @@
-class App.Routers.TestApi extends System.Routers.Base
+class App.Routers.TestApi extends Null.Routers.Base
   routes:
     '': 'index',
     'patients': 'patients'

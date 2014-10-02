@@ -1,5 +1,5 @@
-class System.Collections.Base extends Backbone.Collection
-  sync: System.Sync
+class Null.Collections.Base extends Backbone.Collection
+  sync: Null.Sync
   parse: (results) ->
     @page = parseInt(results.page)
     @limit = parseInt(results.limit)

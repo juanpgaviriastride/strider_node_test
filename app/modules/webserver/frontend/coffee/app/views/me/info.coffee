@@ -1,4 +1,4 @@
-class App.Views.Me.Info extends System.Views.Base
+class App.Views.Me.Info extends Null.Views.Base
   template: JST['app/me/info.html']
 
   initialize: (options) =>

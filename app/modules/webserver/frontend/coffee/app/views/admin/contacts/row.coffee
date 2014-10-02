@@ -1,4 +1,4 @@
-class App.Views.Admin.Contacts.Row extends System.Views.Base
+class App.Views.Admin.Contacts.Row extends Null.Views.Base
   template: JST['app/admin/row.html']
   tagName: 'tr'
 

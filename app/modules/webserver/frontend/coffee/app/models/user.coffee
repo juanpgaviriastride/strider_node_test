@@ -1,2 +1,2 @@
-class App.Models.User extends System.Models.Base
+class App.Models.User extends Null.Models.Base
   urlRoot: '/api/v1/users'

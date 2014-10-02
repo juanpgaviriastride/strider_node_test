@@ -1,4 +1,4 @@
-class System.Views.Base extends Backbone.View
+class Null.Views.Base extends Backbone.View
   # tempalte example
   # template: JST['app/test/test.html']
 
@@ -175,11 +175,11 @@ class System.Views.Base extends Backbone.View
 
 
 
-_.extend System.Views.Base, Backbone.Events
+_.extend Null.Views.Base, Backbone.Events
 
 # Proxy jQuery methods
 _.each ['find', 'addClass', 'attr', 'removeClass', 'fadeIn', 'fadeOut', 'effect', 'css', 'append', 'prepend', 'prop', 'is', 'blur'], (method) =>
-  System.Views.Base::[method] = (args...) ->
+  Null.Views.Base::[method] = (args...) ->
     @$el[method].apply @$el, args
 
 

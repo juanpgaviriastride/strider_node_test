@@ -1,4 +1,4 @@
-class App.Routers.Admin extends System.Routers.Base
+class App.Routers.Admin extends Null.Routers.Base
   routes:
     '': 'index',
     'patients': 'patients'

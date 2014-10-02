@@ -1,4 +1,4 @@
-class App.Views.Admin.Surgeries.Form extends System.Views.Base
+class App.Views.Admin.Surgeries.Form extends Null.Views.Base
   template: JST['app/admin/surgeries/form.html']
 
   form: '.surgery-form'

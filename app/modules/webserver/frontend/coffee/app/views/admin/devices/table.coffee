@@ -1,4 +1,4 @@
-class App.Views.Admin.Devices.Table extends System.Views.Base
+class App.Views.Admin.Devices.Table extends Null.Views.Base
   template: JST['app/admin/devices/table.html']
 
   initialize: (options) =>

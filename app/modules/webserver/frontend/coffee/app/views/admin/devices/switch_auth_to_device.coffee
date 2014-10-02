@@ -1,4 +1,4 @@
-class App.Views.Admin.Devices.SwitchAuthToDevice extends System.Views.Base
+class App.Views.Admin.Devices.SwitchAuthToDevice extends Null.Views.Base
   template: JST['app/admin/devices/switch_auth_to_device.html']
 
   form: '.switch-auth-form'

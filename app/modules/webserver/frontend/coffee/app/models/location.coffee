@@ -1,2 +1,2 @@
-class App.Models.Location extends System.Models.Base
+class App.Models.Location extends Null.Models.Base
   urlRoot: '/api/v1/locations'

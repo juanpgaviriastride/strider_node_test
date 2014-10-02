@@ -1,4 +1,4 @@
-class App.Views.Contacts.Invitations extends System.Views.Base
+class App.Views.Contacts.Invitations extends Null.Views.Base
   template: JST['app/contacts/invitations.html']
 
   initialize: (options) =>
@@ -39,7 +39,7 @@ class App.Views.Contacts.Invitations extends System.Views.Base
 
 
 
-class App.Views.Contacts.Invitation extends System.Views.Base
+class App.Views.Contacts.Invitation extends Null.Views.Base
   template: JST['app/contacts/invitation.html']
   tagName: 'li'
   className: "contact"

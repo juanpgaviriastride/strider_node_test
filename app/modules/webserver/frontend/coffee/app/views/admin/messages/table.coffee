@@ -1,4 +1,4 @@
-class App.Views.Admin.Messages.Table extends System.Views.Base
+class App.Views.Admin.Messages.Table extends Null.Views.Base
   template: JST['app/admin/messages/table.html']
 
   initialize: (options) =>

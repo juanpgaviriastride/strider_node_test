@@ -1,4 +1,4 @@
-class App.Views.Chats.Roster extends System.Views.Base
+class App.Views.Chats.Roster extends Null.Views.Base
   template: JST['app/chats/roster.html']
 
   initialize: (options) =>
@@ -34,7 +34,7 @@ class App.Views.Chats.Roster extends System.Views.Base
 
 
 
-class App.Views.Chats.RosterItem extends System.Views.Base
+class App.Views.Chats.RosterItem extends Null.Views.Base
   template: JST['app/chats/roster_item.html']
   tagName: 'li'
 

@@ -1,4 +1,4 @@
-class App.Views.Admin.Locations.Row extends System.Views.Base
+class App.Views.Admin.Locations.Row extends Null.Views.Base
   template: JST['app/admin/locations/row.html']
   tagName: 'tr'
 

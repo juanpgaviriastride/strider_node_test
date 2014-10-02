@@ -1,4 +1,4 @@
-class App.Views.TestApi.Surgeries.Form extends System.Views.Base
+class App.Views.TestApi.Surgeries.Form extends Null.Views.Base
   template: JST['app/test_api/surgeries/form.html']
 
   form: '.surgery-form'
@@ -13,7 +13,7 @@ class App.Views.TestApi.Surgeries.Form extends System.Views.Base
     super
     @patients = new App.Views.Helpers.Patients.Select({el: $('select#patient', @$el)})
     @locations = new App.Views.Helpers.Locations.Select({el: $('select#location', @$el)})
-    
+
     @
 
   saveModel: (e) ->

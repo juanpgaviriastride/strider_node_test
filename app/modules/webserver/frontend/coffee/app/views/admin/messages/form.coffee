@@ -1,4 +1,4 @@
-class App.Views.Admin.Messages.Form extends System.Views.Base
+class App.Views.Admin.Messages.Form extends Null.Views.Base
   template: JST['app/admin/messages/form.html']
 
   form: '.message-form'

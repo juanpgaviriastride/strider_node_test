@@ -1,4 +1,4 @@
-class App.Models.XMPP.Message extends System.Models.Base
+class App.Models.XMPP.Message extends Null.Models.Base
   urlRoot: '/api/v1/messages'
   parse: (data, opt) =>
     data.from_jid = data.from.bare if data.from?.bare?

@@ -1,4 +1,4 @@
-class App.Views.Admin.Messages.Row extends System.Views.Base
+class App.Views.Admin.Messages.Row extends Null.Views.Base
   template: JST['app/admin/messages/row.html']
   tagName: 'tr'
 

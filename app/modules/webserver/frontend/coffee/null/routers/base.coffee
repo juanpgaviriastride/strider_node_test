@@ -1,4 +1,4 @@
-class System.Routers.Base extends Backbone.Router
+class Null.Routers.Base extends Backbone.Router
   initialize: (options) =>
     @bind "all", @_change, @
 

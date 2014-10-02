@@ -1,4 +1,4 @@
-class App.Routers.Index extends System.Routers.Base
+class App.Routers.Index extends Null.Routers.Base
   routes:
     '': 'index',
     'contacts': 'contacts'

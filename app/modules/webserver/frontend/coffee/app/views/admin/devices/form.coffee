@@ -1,4 +1,4 @@
-class App.Views.Admin.Devices.Form extends System.Views.Base
+class App.Views.Admin.Devices.Form extends Null.Views.Base
   template: JST['app/test_api/devices/form.html']
 
   form: '.token-reques-form'

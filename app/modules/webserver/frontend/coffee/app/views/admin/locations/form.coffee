@@ -1,4 +1,4 @@
-class App.Views.Admin.Locations.Form extends System.Views.Base
+class App.Views.Admin.Locations.Form extends Null.Views.Base
   template: JST['app/admin/locations/form.html']
 
   form: '.location-form'
