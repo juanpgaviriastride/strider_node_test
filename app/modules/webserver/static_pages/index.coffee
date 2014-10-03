@@ -67,8 +67,8 @@ app.get '/test-api', (req, res) ->
 
   if req.isAuthenticated()
     debug = (if req.query.debug then req.query.debug else config.get('debug'))
-    res.render "admin.html", {
-      rootBase: '/admin',
+    res.render "test-api.html", {
+      rootBase: '/test-api',
       address: config.get('app').baseUrl,
       imHost: "#{config.get('app').im?.bosh?.host}",
       imPort: "#{config.get('app').im?.bosh?.port}",
