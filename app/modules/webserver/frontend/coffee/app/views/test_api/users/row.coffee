@@ -1,4 +1,4 @@
-class App.Views.TestApi.Users.Row extends System.Views.Base
+class App.Views.TestApi.Users.Row extends Null.Views.Base
   template: JST['app/test_api/users/row.html']
   tagName: 'tr'
 

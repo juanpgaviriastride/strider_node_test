@@ -1,4 +1,4 @@
-class App.Views.TestApi.Messages.Form extends System.Views.Base
+class App.Views.TestApi.Messages.Form extends Null.Views.Base
   template: JST['app/test_api/messages/form.html']
 
   form: '.message-form'

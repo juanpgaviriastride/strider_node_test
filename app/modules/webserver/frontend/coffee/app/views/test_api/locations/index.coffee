@@ -1,4 +1,4 @@
-class App.Views.TestApi.Locations.Index extends System.Views.Base
+class App.Views.TestApi.Locations.Index extends Null.Views.Base
   template: JST['app/test_api/locations/index.html']
 
   initialize: (options) =>

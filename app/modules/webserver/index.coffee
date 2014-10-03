@@ -37,7 +37,7 @@ sessionConf =
 
 #app.use express.favicon(path.join __dirname, './public/favicon.ico')
 app.use express.logger("dev")
-#app.use express.bodyParser({limit: '50mb', keepExtensions: true, uploadDir: path.join(global.root, config.get('media_root'))})
+app.use express.bodyParser({limit: '50mb', keepExtensions: true, uploadDir: path.join(global.root, config.get('media_root'))})
 app.use express.urlencoded()
 app.use express.json()
 app.use methodOverride()

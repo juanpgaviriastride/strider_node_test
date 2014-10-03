@@ -1,4 +1,4 @@
-class App.Views.TestApi.Devices.SwitchAuthToDevice extends System.Views.Base
+class App.Views.TestApi.Devices.SwitchAuthToDevice extends Null.Views.Base
   template: JST['app/test_api/devices/switch_auth_to_device.html']
 
   form: '.switch-auth-form'
@@ -39,7 +39,7 @@ class App.Views.TestApi.Devices.SwitchAuthToDevice extends System.Views.Base
     new PNotify
       title: "Authenticated as"
       text: "Using the app as User"
-      
+
     event.preventDefault()
     $.cookies.set("auth_token", $.cookies.get('user_auth_token'))
     $.cookies.del("user_auth_token")

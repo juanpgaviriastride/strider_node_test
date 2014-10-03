@@ -1,4 +1,4 @@
-class App.Views.TestApi.Devices.Form extends System.Views.Base
+class App.Views.TestApi.Devices.Form extends Null.Views.Base
   template: JST['app/test_api/devices/form.html']
 
   form: '.token-reques-form'
@@ -15,7 +15,7 @@ class App.Views.TestApi.Devices.Form extends System.Views.Base
 
   render: () =>
     super
-    @users = new App.Views.Helpers.Users.Select({el: $('select#user', @$el)})
+    @users = new App.Views.Common.Helpers.Users.Select({el: $('select#user', @$el)})
 
     @
 

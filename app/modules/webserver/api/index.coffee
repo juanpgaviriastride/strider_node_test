@@ -270,7 +270,7 @@ apiController.namespace("/api/v1", () ->
     assets = assets_conn()
     # pipe saved file named 'asset' to couch
     # TODO: interrogate asset to discover mime type, don't trust the client
-    unless req.files.asset?
+    unless req.files?.asset?
       res.status(500).send("{\"error\":\"Asset required\"}")
       return
     content_type = req.files.asset.headers['content-type']

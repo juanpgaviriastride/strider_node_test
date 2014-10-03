@@ -1,4 +1,4 @@
-class App.Views.TestApi.Locations.Table extends System.Views.Base
+class App.Views.TestApi.Locations.Table extends Null.Views.Base
   template: JST['app/test_api/locations/table.html']
 
   initialize: (options) =>

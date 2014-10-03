@@ -1,4 +1,4 @@
-class App.Views.TestApi.Locations.Form extends System.Views.Base
+class App.Views.TestApi.Locations.Form extends Null.Views.Base
   template: JST['app/test_api/locations/form.html']
 
   form: '.location-form'

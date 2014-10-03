@@ -9,11 +9,7 @@ window.App =
   Events: {}
   XMPP: {}
   Views: {
-    Common: {}
-    Me: {}
-    Contacts: {}
-    Chats: {}
-    TestApi: {
+    Admin: {
       Users: {}
       Patients: {}
       Surgeries: {}
@@ -24,7 +20,25 @@ window.App =
       }
       Contacts: {}
     }
-    Helpers: {
+    Common: {
+      Me: {}
+      Helpers: {
+        Users: {}
+        Patients: {}
+        Surgeries: {}
+        Locations: {}
+        Messages: {}
+        Devices: {
+          DevicesRequestToken: {}
+        }
+        Contacts: {}
+      }
+    }
+    IM: {
+      Contacts: {}
+      Chats: {}
+    }
+    TestApi: {
       Users: {}
       Patients: {}
       Surgeries: {}

@@ -1,4 +1,4 @@
-class App.Views.Common.DeleteConfirmation extends System.Views.Base
+class App.Views.Common.DeleteConfirmation extends Null.Views.Base
   template: JST['app/common/delete_confirmation.html']
 
   initialize: (options) =>

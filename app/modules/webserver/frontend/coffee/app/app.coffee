@@ -22,35 +22,24 @@ class App.Initialize
     @onLoad()
 
   onLoad: =>
+    # load meModel
+    @me = new App.Models.Me($.cookies.get('user'))
+    @me_info = new App.Views.Common.Me.Info({el: '[data-role="me-info"]',model: @me})
+
     # Setup routers
     @routers = []
     @routers.push new App.Routers.Common
 
-    if window.rootBase == "/test-api"
-      @routers.push new App.Routers.TestApi
-    else
-      @routers.push new App.Routers.Index
+    switch window.rootBase
+      when "/test-api"
+        @routers.push new App.Routers.TestApi()
+      when "/admin"
+        @routers.push new App.Routers.Admin()
+      else
+        @routers.push new App.Routers.IM()
 
     # evetns
     @events = new App.Events.Events()
-
-    # load meModel
-    @me = new App.Models.Me($.cookies.get('user'))
-    @me_info = new App.Views.Me.Info({el: '[data-role="me-info"]',model: @me})
-    # load the conversation list
-    #@conversations = new
-
-    # load new_mesage modal
-    # to show call app.new_meesage.show()
-    # to hide call app.new_meesage.hide()
-    #@new_message = new App.Views.Chats.NewMessage({el: 'div[data-role=modal-container]'})
-
-    # load contact invitations on the top right menu dropdown
-    @invitations = new App.Views.Contacts.Invitations({el: 'ul[data-role=check-invitations]'})
-
-    # load roster
-    @roster = new App.Views.Chats.Roster({el: '[data-role=roster]'})
-
 
     @loadXMPP()
     @onLoaded()
@@ -67,6 +56,12 @@ class App.Initialize
     app.current_view.remove() if app.current_view?
     app.current_view = new view_class options
     app.current_view.render()
+
+  setupPage: (view_class, options) =>
+    console.log "setup page: ", arguments
+    app.current_page.remove() if app.current_page
+    app.current_page = new view_class options
+    app.current_page.render()
 
 $(document).ready ->
   window.app = new App.Initialize

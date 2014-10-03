@@ -1,4 +1,4 @@
-class App.Views.TestApi.Patients.Form extends System.Views.Base
+class App.Views.TestApi.Patients.Form extends Null.Views.Base
   template: JST['app/test_api/patients/form.html']
 
   form: '.patient-form'
@@ -11,7 +11,7 @@ class App.Views.TestApi.Patients.Form extends System.Views.Base
 
   render: () =>
     super
-    @locations = new App.Views.Helpers.Locations.Select({el: $('select#currentLocation', @$el)})
+    @locations = new App.Views.Common.Helpers.Locations.Select({el: $('select#currentLocation', @$el)})
 
     @
 

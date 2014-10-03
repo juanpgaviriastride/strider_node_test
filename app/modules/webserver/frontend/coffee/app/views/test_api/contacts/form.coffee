@@ -1,4 +1,4 @@
-class App.Views.TestApi.Contacts.Form extends System.Views.Base
+class App.Views.TestApi.Contacts.Form extends Null.Views.Base
   template: JST['app/test_api/contacts/form.html']
 
   form: '.contact-form'
@@ -12,7 +12,7 @@ class App.Views.TestApi.Contacts.Form extends System.Views.Base
   render: () =>
     super
 
-    @users = new App.Views.Helpers.Users.Select({el: $('select#contact_id', @$el)})
+    @users = new App.Views.Common.Helpers.Users.Select({el: $('select#contact_id', @$el)})
     @
 
   saveModel: (e) ->

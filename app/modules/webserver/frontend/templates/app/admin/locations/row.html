@@ -1,0 +1,8 @@
+<td><%= model.id %></td>
+<td><%= model.escape('display_name') %></td>
+<td><%= model.get('geo').type %></td>
+<td>lat: <%= model.get('geo').coordinates[1] %>, lng: <%= model.get('geo').coordinates[0] %></td>
+<td>
+  <button class="btn btn-danger delete"><span class="glyphicon glyphicon-trash"></span></button>
+  <button class="btn btn-warning edit"><span class="glyphicon glyphicon-edit"></span></button>
+</td>
