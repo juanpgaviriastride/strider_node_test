@@ -7,8 +7,6 @@ class App.Views.IM.Chats.Roster extends Null.Views.Base
     @listenTo app.me.contacts, 'add', @addOne
     @listenTo app.me.messages, 'add', @newMessage
 
-    @render()
-
     @on "contact:selected", @onContactSelected
 
     @

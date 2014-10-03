@@ -3,6 +3,8 @@ class App.Routers.IM extends Null.Routers.Base
     '': 'index',
     'messages/@:username': 'chat'
 
+  page_class: App.Views.IM.Page
+
   index: =>
     @selectNav('')
     $a = $("<a>")

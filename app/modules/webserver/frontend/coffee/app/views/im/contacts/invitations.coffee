@@ -6,7 +6,6 @@ class App.Views.IM.Contacts.Invitations extends Null.Views.Base
 
     @listenTo app.me.contact_request, "add", @addOne, @
     @listenTo app.me.contact_request, "remove", @removeOne, @
-    @render()
     @
 
   render: () =>
