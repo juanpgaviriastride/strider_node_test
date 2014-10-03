@@ -11,7 +11,7 @@ class App.Views.TestApi.Patients.Form extends Null.Views.Base
 
   render: () =>
     super
-    @locations = new App.Views.Helpers.Locations.Select({el: $('select#currentLocation', @$el)})
+    @locations = new App.Views.Common.Helpers.Locations.Select({el: $('select#currentLocation', @$el)})
 
     @
 

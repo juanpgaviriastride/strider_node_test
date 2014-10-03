@@ -11,8 +11,8 @@ class App.Views.Admin.Surgeries.Form extends Null.Views.Base
 
   render: () =>
     super
-    @patients = new App.Views.Helpers.Patients.Select({el: $('select#patient', @$el)})
-    @locations = new App.Views.Helpers.Locations.Select({el: $('select#location', @$el)})
+    @patients = new App.Views.Common.Helpers.Patients.Select({el: $('select#patient', @$el)})
+    @locations = new App.Views.Common.Helpers.Locations.Select({el: $('select#location', @$el)})
 
     @
 

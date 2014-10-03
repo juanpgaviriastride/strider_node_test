@@ -1,4 +1,4 @@
-class App.Views.Helpers.Patients.Select extends Null.Views.Helpers.Select
+class App.Views.Common.Helpers.Patients.Select extends Null.Views.Helpers.Select
 
   initialize: (options) =>
     @collection = new App.Collections.Patients()

@@ -12,7 +12,7 @@ class App.Views.Admin.Contacts.Form extends Null.Views.Base
   render: () =>
     super
 
-    @users = new App.Views.Helpers.Users.Select({el: $('select#contact_id', @$el)})
+    @users = new App.Views.Common.Helpers.Users.Select({el: $('select#contact_id', @$el)})
     @
 
   saveModel: (e) ->

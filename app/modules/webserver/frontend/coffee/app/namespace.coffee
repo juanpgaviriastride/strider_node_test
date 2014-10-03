@@ -22,23 +22,23 @@ window.App =
     }
     Common: {
       Me: {}
+      Helpers: {
+        Users: {}
+        Patients: {}
+        Surgeries: {}
+        Locations: {}
+        Messages: {}
+        Devices: {
+          DevicesRequestToken: {}
+        }
+        Contacts: {}
+      }
     }
     IM: {
       Contacts: {}
       Chats: {}
     }
     TestApi: {
-      Users: {}
-      Patients: {}
-      Surgeries: {}
-      Locations: {}
-      Messages: {}
-      Devices: {
-        DevicesRequestToken: {}
-      }
-      Contacts: {}
-    }
-    Helpers: {
       Users: {}
       Patients: {}
       Surgeries: {}

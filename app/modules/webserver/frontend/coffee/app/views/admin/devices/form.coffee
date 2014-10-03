@@ -15,7 +15,7 @@ class App.Views.Admin.Devices.Form extends Null.Views.Base
 
   render: () =>
     super
-    @users = new App.Views.Helpers.Users.Select({el: $('select#user', @$el)})
+    @users = new App.Views.Common.Helpers.Users.Select({el: $('select#user', @$el)})
 
     @
 
