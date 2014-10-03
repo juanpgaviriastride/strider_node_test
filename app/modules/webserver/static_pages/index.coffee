@@ -42,13 +42,13 @@ app.get '/', (req, res) ->
     debug = (if req.query.debug then req.query.debug else config.get('debug'))
     res.render "login.html", {debug: debug}
 
-app.get '/test-api', (req, res) ->
+app.get '/admin', (req, res) ->
   debug = (if req.query.debug then req.query.debug else config.get('debug'))
 
   if req.isAuthenticated()
     debug = (if req.query.debug then req.query.debug else config.get('debug'))
-    res.render "test_api.html", {
-      rootBase: '/test-api',
+    res.render "admin.html", {
+      rootBase: '/admin',
       address: config.get('app').baseUrl,
       imHost: "#{config.get('app').im?.bosh?.host}",
       imPort: "#{config.get('app').im?.bosh?.port}",
@@ -76,13 +76,6 @@ app.get '/jobs', (req, res) ->
 # stanza.io demo
 app.get '/test-xmpp', (req, res) ->
   res.render "test-xmpp.html"
-
-
-app.get '/test-theme', (req, res) ->
-  res.render "theme.html"
-
-app.get '/test-theme/:page', (req, res) ->
-  res.render "theme/#{req.params.page}"
 
 app.get '/404', (req, res) ->
   res.render "404.html"
