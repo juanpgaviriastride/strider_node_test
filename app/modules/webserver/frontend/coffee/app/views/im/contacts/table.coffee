@@ -1,5 +1,5 @@
-class App.Views.Contacts.Table extends Null.Views.Base
-  template: JST['app/contacts/table.html']
+class App.Views.IM.Contacts.Table extends Null.Views.Base
+  template: JST['app/im/contacts/table.html']
 
   initialize: (options) =>
     super
@@ -14,7 +14,7 @@ class App.Views.Contacts.Table extends Null.Views.Base
     @collection.each @addOne
 
   addOne: (item) =>
-    item_view = new App.Views.Contacts.Row({model: item})
+    item_view = new App.Views.IM.Contacts.Row({model: item})
     @appendView item_view.render(), 'tbody'
 
   onConfirmDelete: (event) =>

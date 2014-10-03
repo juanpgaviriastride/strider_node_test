@@ -1,5 +1,5 @@
-class App.Views.Chats.Index extends Null.Views.Base
-  template: JST['app/chats/index.html']
+class App.Views.IM.Chats.Index extends Null.Views.Base
+  template: JST['app/im/chats/index.html']
 
   events:
     'click [data-role="new-message"]': 'newMessageModal'

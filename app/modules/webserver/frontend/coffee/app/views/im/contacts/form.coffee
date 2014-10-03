@@ -1,5 +1,5 @@
-class App.Views.Contacts.Form extends Null.Views.Base
-  template: JST['app/contacts/form.html']
+class App.Views.IM.Contacts.Form extends Null.Views.Base
+  template: JST['app/im/contacts/form.html']
 
   form: '[data-role=contact-form]'
 

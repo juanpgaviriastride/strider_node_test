@@ -1,5 +1,5 @@
-class App.Views.Chats.Chat extends Null.Views.Base
-  template: JST['app/chats/chat.html']
+class App.Views.IM.Chats.Chat extends Null.Views.Base
+  template: JST['app/im/chats/chat.html']
 
   form: '[data-role="new-message-form"]'
 
@@ -51,7 +51,7 @@ class App.Views.Chats.Chat extends Null.Views.Base
 
   addOne: (item, all = false) =>
     if item.get('from')?.split('@')[0] == app.current_chat_with or (item.get('from') == app.me.jid and item.get('to').split('@')[0] == app.current_chat_with)
-      item_view = new App.Views.Chats.Message({model: item})
+      item_view = new App.Views.IM.Chats.Message({model: item})
       @appendView item_view.render(), '[data-role=messages-list]'
 
       # scroll on message but no when loading history
@@ -121,15 +121,15 @@ class App.Views.Chats.Chat extends Null.Views.Base
 
   onUploadFile: (event) =>
     event.preventDefault()
-    modal = new App.Views.Chats.UploadFile()
+    modal = new App.Views.IM.Chats.UploadFile()
     @appendView modal.render(), "[data-role=modals]"
 
 
 
 
 
-class App.Views.Chats.Message extends Null.Views.Base
-  template: JST['app/chats/message.html']
+class App.Views.IM.Chats.Message extends Null.Views.Base
+  template: JST['app/im/chats/message.html']
   tagName: 'li'
 
   initialize: (options) =>
@@ -143,10 +143,10 @@ class App.Views.Chats.Message extends Null.Views.Base
       if mime.content_type?
         content_type = mime.content_type
         if content_type.match "^image/"
-          @mime = new App.Views.Chats.MessageImage({model: new Backbone.Model(mime)})
+          @mime = new App.Views.IM.Chats.MessageImage({model: new Backbone.Model(mime)})
 
         else if content_type.match "^video/"
-          @mime = new App.Views.Chats.MessageVideo({model: new Backbone.Model(mime)})
+          @mime = new App.Views.IM.Chats.MessageVideo({model: new Backbone.Model(mime)})
 
         @appendView @mime.render(), '[data-role="messange-mime"]'
     @
@@ -158,8 +158,8 @@ class App.Views.Chats.Message extends Null.Views.Base
     return {model: @model, text: text}
 
 
-class App.Views.Chats.UploadFile extends Null.Views.Base
-  template: JST['app/chats/upload_file.html']
+class App.Views.IM.Chats.UploadFile extends Null.Views.Base
+  template: JST['app/im/chats/upload_file.html']
 
   form: '[data-role="new-message-form"]'
 
@@ -218,8 +218,8 @@ class App.Views.Chats.UploadFile extends Null.Views.Base
     @hide()
 
 
-class App.Views.Chats.MessageImage extends Null.Views.Base
-  template: JST['app/chats/mimes/image.html']
+class App.Views.IM.Chats.MessageImage extends Null.Views.Base
+  template: JST['app/im/chats/mimes/image.html']
 
   initialize: (options) =>
     super
@@ -233,8 +233,8 @@ class App.Views.Chats.MessageImage extends Null.Views.Base
     return {src: @model.get('url'), max_width: 800, max_height: 1000}
 
 
-class App.Views.Chats.MessageVideo extends Null.Views.Base
-  template: JST['app/chats/mimes/video.html']
+class App.Views.IM.Chats.MessageVideo extends Null.Views.Base
+  template: JST['app/im/chats/mimes/video.html']
 
   initialize: (options) =>
     super

@@ -1,5 +1,5 @@
-class App.Views.Contacts.Row extends Null.Views.Base
-  template: JST['app/contacts/row.html']
+class App.Views.IM.Contacts.Row extends Null.Views.Base
+  template: JST['app/im/contacts/row.html']
   tagName: 'tr'
 
   initialize: (options) =>

@@ -1,5 +1,5 @@
-class App.Views.Chats.NewMessage extends Null.Views.Base
-  template: JST['app/chats/new_message.html']
+class App.Views.IM.Chats.NewMessage extends Null.Views.Base
+  template: JST['app/im/chats/new_message.html']
 
   form: '[data-role="new-message-form"]'
 

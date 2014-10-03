@@ -1,5 +1,5 @@
-class App.Views.Contacts.Invitations extends Null.Views.Base
-  template: JST['app/contacts/invitations.html']
+class App.Views.IM.Contacts.Invitations extends Null.Views.Base
+  template: JST['app/im/contacts/invitations.html']
 
   initialize: (options) =>
     super
@@ -21,7 +21,7 @@ class App.Views.Contacts.Invitations extends Null.Views.Base
     $unread.html unread_messages + 1
 
     @find('[data-role="invitation-list-none"]').hide()
-    item_view = new App.Views.Contacts.Invitation({model: item})
+    item_view = new App.Views.IM.Contacts.Invitation({model: item})
     @appendAfterView item_view.render(), '[data-role="invitation-list"]'
 
   removeOne: (item) =>
@@ -39,8 +39,8 @@ class App.Views.Contacts.Invitations extends Null.Views.Base
 
 
 
-class App.Views.Contacts.Invitation extends Null.Views.Base
-  template: JST['app/contacts/invitation.html']
+class App.Views.IM.Contacts.Invitation extends Null.Views.Base
+  template: JST['app/im/contacts/invitation.html']
   tagName: 'li'
   className: "contact"
 

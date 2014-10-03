@@ -1,15 +1,15 @@
-class App.Views.Contacts.Index extends Null.Views.Base
-  template: JST['app/contacts/index.html']
+class App.Views.IM.Contacts.Index extends Null.Views.Base
+  template: JST['app/im/contacts/index.html']
 
   initialize: (options) =>
     super
 
     @collection = new App.Collections.Contacts()
 
-    @form = new App.Views.Contacts.Form
+    @form = new App.Views.IM.Contacts.Form
       collection: @collection
 
-    @table = new App.Views.Contacts.Table
+    @table = new App.Views.IM.Contacts.Table
       collection: @collection
 
   render: () =>

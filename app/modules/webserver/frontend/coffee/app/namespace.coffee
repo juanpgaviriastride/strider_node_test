@@ -20,10 +20,13 @@ window.App =
       }
       Contacts: {}
     }
-    Common: {}
-    Me: {}
-    Contacts: {}
-    Chats: {}
+    Common: {
+      Me: {}
+    }
+    IM: {
+      Contacts: {}
+      Chats: {}
+    }
     TestApi: {
       Users: {}
       Patients: {}

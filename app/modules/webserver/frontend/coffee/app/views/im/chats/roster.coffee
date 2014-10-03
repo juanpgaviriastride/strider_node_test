@@ -1,5 +1,5 @@
-class App.Views.Chats.Roster extends Null.Views.Base
-  template: JST['app/chats/roster.html']
+class App.Views.IM.Chats.Roster extends Null.Views.Base
+  template: JST['app/im/chats/roster.html']
 
   initialize: (options) =>
     super
@@ -17,7 +17,7 @@ class App.Views.Chats.Roster extends Null.Views.Base
     super
 
   addOne: (item) =>
-    item_view = new App.Views.Chats.RosterItem({model: item})
+    item_view = new App.Views.IM.Chats.RosterItem({model: item})
     @appendView item_view.render(), '[data-role=roster-list]'
 
   onContactSelected: (item) =>
@@ -34,8 +34,8 @@ class App.Views.Chats.Roster extends Null.Views.Base
 
 
 
-class App.Views.Chats.RosterItem extends Null.Views.Base
-  template: JST['app/chats/roster_item.html']
+class App.Views.IM.Chats.RosterItem extends Null.Views.Base
+  template: JST['app/im/chats/roster_item.html']
   tagName: 'li'
 
   initialize: (options) =>

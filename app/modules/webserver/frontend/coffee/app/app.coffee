@@ -32,14 +32,14 @@ class App.Initialize
       when "/admin"
         @routers.push new App.Routers.Admin
       else
-        @routers.push new App.Routers.Index
+        @routers.push new App.Routers.IM
 
     # evetns
     @events = new App.Events.Events()
 
     # load meModel
     @me = new App.Models.Me($.cookies.get('user'))
-    @me_info = new App.Views.Me.Info({el: '[data-role="me-info"]',model: @me})
+    @me_info = new App.Views.Common.Me.Info({el: '[data-role="me-info"]',model: @me})
     # load the conversation list
     #@conversations = new
 
@@ -49,10 +49,10 @@ class App.Initialize
     #@new_message = new App.Views.Chats.NewMessage({el: 'div[data-role=modal-container]'})
 
     # load contact invitations on the top right menu dropdown
-    @invitations = new App.Views.Contacts.Invitations({el: 'ul[data-role=check-invitations]'})
+    @invitations = new App.Views.IM.Contacts.Invitations({el: 'ul[data-role=check-invitations]'})
 
     # load roster
-    @roster = new App.Views.Chats.Roster({el: '[data-role=roster]'})
+    @roster = new App.Views.IM.Chats.Roster({el: '[data-role=roster]'})
 
 
     @loadXMPP()
