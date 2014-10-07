@@ -16,11 +16,6 @@ module.exports = {
   },
   "media_root": 'modules/webserver/public/userdata',
   "media_url": 'userdata',
-  "mongo": {
-    "host": "localhost",
-    "port": 27017,
-    "db": "context_surgery"
-  },
   "redis": {
     "host": "localhost",
     "port": 6379,

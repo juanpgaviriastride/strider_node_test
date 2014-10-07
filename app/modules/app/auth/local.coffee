@@ -1,5 +1,4 @@
 passport = require "passport"
-mongoose = require "mongoose"
 
 express = require "express"
 app = module.exports = express()

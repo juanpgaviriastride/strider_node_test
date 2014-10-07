@@ -16,11 +16,6 @@ module.exports = {
   },
   "media_root": 'modules/webserver/public/userdata',
   "media_url": 'userdata',
-  "mongo": {
-    "host": "162.209.94.221",
-    "port": 27017,
-    "db": "cs_staging"
-  },
   "redis": {
     "host": "162.209.94.221",
     "port": 6379,
